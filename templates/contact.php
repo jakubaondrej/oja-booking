@@ -21,17 +21,19 @@ function oja_get_customer_contact_placeholder()
 
 function oja_get_customer_privacy_placeholder()
 {
+    $oja_terms_and_conditions_page = get_option('oja_terms_and_conditions', '');
+    $privacy_page=get_privacy_policy_url();
 ?>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="termsCheck" name="termsCheck" required>
         <label class="form-check-label" for="termsCheck">
-            <?php printf(wp_kses(__('By ticking this box, I confirm that I have read the <a href="%1$s">Terms and Conditions</a>.', 'oja'), array('a' => array('href' => array()))), esc_url(get_permalink($terms_page_id))); ?></p>
+            <?php printf(wp_kses(__('By ticking this box, I confirm that I have read the <a href="%1$s">Terms and Conditions</a>.', 'oja'), array('a' => array('href' => array()))), esc_url(get_permalink($oja_terms_and_conditions_page))); ?></p>
         </label>
     </div>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="privacyCheck" name="privacyCheck" required>
         <label class="form-check-label" for="privacyCheck">
-            <?php printf(wp_kses(__('By ticking this box, I confirm that I have read the <a href="%1$s">Privacy Policy</a>.', 'oja'), array('a' => array('href' => array()))), esc_url(get_permalink($privacy_page_id))); ?>
+            <?php printf(wp_kses(__('By ticking this box, I confirm that I have read the <a href="%1$s">Privacy Policy</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($privacy_page)); ?>
         </label>
     </div>
 <?php
