@@ -576,7 +576,6 @@ function oja_booking_can_be_created_by_term(int $event_id, string $term, int $gr
 
 function oja_send_booking_confirmation_email($user_email, $booking_id, $event_id, $code, $term, $group, $language)
 {
-    $oja_booking_categories = get_option('oja_booking_categories');
     $terms_and_conditions = get_option('oja_terms_and_conditions');
     $total_price = oja_get_total_price($event_id, $group);
     $oja_price_category = get_post_meta($event_id, 'oja_price_category', true);

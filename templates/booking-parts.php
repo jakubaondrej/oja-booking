@@ -15,9 +15,6 @@ function oja_get_template_part_booking_filter()
     $use_languages = get_option('oja_use_booking_languages', 0);
     $default_language = get_option('oja_default_booking_language', '');
     if (!isset($book_lang)) $book_lang = $default_language;
-
-    $terms_page_id = get_option('oja_terms_and_conditions');
-    $privacy_page_id = get_option('oja_privacy_policy');
 ?>
     <?php oja_get_alert_placeholder() ?>
 

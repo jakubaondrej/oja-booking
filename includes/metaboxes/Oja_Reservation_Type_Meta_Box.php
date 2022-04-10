@@ -46,7 +46,7 @@ abstract class Oja_Reservation_Type_Meta_Box
     {
         wp_enqueue_script(
             'admin_oja_edit_event-js',
-            plugins_url('private/js/admin_oja_edit_event.js',  __FILE__),
+            plugins_url('../../admin/js/admin_oja_edit_event.js',  __FILE__),
             array('jquery')
         );
         global $wp_locale;
