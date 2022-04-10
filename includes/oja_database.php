@@ -19,7 +19,7 @@ function oja_db_custom_tables()
             '(ID BIGINT NOT NULL AUTO_INCREMENT,
             event_id BIGINT NOT NULL,
             term TIMESTAMP NOT NULL,
-            language VARCHAR(32) NULL
+            language VARCHAR(32) NULL,
             PRIMARY KEY (ID)
             );';
 
