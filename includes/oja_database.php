@@ -1,5 +1,5 @@
 <?php
-//global $wpdb;
+global $wpdb;
 define('TERMS_EVENT_TABLE_NAME', $wpdb->prefix . 'event_terms');
 define('BOOKING_TERMS_EVENT_TABLE_NAME', $wpdb->prefix . 'event_terms_booking');
 define('BOOKING_GROUP_TABLE_NAME', $wpdb->prefix . 'booking_group');
