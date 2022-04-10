@@ -18,6 +18,7 @@
 
 
 register_activation_hook(__FILE__, 'oja_booking_activation');
+register_activation_hook(__FILE__, 'oja_db_custom_tables');
 function oja_booking_activation()
 {
     $new_page_id = oja_create_page_if_not_exists('Terms and Conditions');

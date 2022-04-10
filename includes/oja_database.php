@@ -6,8 +6,6 @@ define('BOOKING_GROUP_TABLE_NAME', $wpdb->prefix . 'booking_group');
 /**
  * Create DB tables
  */
-add_action('after_setup_theme', 'oja_db_custom_tables');
-
 function oja_db_custom_tables()
 {
     global $wpdb;

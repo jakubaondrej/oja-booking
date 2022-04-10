@@ -7,7 +7,7 @@ function get_created_booking_time_filter($table = "")
     return ' AND (NOW() - INTERVAL 1 HOUR) <= ' . $table . 'created ';
 }
 
-function oja_create_event_term(int $event_id, string $term, string $language)
+function oja_create_event_term(int $event_id, string $term, string $language="")
 {
 
     global $wpdb;
@@ -486,6 +486,7 @@ function oja_create_booking($user_email, $name, $group, $event_id, $term, $langu
     global $wpdb;
 
     $event_term = oja_get_event_term_by_datetime($event_id, $term);
+    
     if (is_null($event_term)) {
         $term_id = oja_create_event_term($event_id, $term, $language);
     } else {
@@ -494,6 +495,7 @@ function oja_create_booking($user_email, $name, $group, $event_id, $term, $langu
             $result = oja_update_term_language($term_id, $language);
         }
     }
+    
     if ($term_id == 0) {
         return false;
     }

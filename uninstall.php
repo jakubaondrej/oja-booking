@@ -1,17 +1,17 @@
-<?php /*
+<?php
 // if uninstall.php is not called by WordPress, die
 if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
- 
-$option_name = 'wporg_option';
- 
-delete_option($option_name);
- 
+
+$oja_db_version = 'oja_db_version';
+
+delete_option($oja_db_version);
 // for site options in Multisite
-delete_site_option($option_name);
- 
+delete_site_option($oja_db_version);
+
 // drop a custom database table
 global $wpdb;
-$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}mytable");
-*/
+$wpdb->query("DROP TABLE IF EXISTS " . TERMS_EVENT_TABLE_NAME);
+$wpdb->query("DROP TABLE IF EXISTS " . BOOKING_TERMS_EVENT_TABLE_NAME);
+$wpdb->query("DROP TABLE IF EXISTS " . BOOKING_GROUP_TABLE_NAME);

@@ -227,7 +227,7 @@ function oja_create_booking_ajax()
         wp_send_json_error($errors);
     }
     $term = date("Y-m-d H:i:s", strtotime($term));
-
+    wp_send_json_success($term);
     if (oja_create_booking($email, $name, $group, $event_id, $term, $language)) {
         wp_send_json_success(__('The booking was successful. Please confirm booking in email.', 'oja'));
     }
