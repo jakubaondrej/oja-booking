@@ -61,7 +61,7 @@ class Oja_Booking_Language_Options_Page
             <h1><?php _e('Booking languages', 'oja'); ?></h1>
             <?php settings_errors('oja_booking'); ?>
             <form action="" method="post">
-                <h4><?php _e('Do you want to use languages for events?', 'oja'); ?></h4>
+                <h4><?php _e('Do you offer events in 2 or more languages?', 'oja'); ?></h4>
 
                 <input type="radio" name="use_languages" value="0" id="use_languages_false" <?php checked(0, $use_languages); ?>>
                 <label class="form-check-label" for="use_languages_false">

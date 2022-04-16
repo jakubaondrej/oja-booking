@@ -25,6 +25,18 @@ function oja_event_post_type()
 }
 add_action('init', 'oja_event_post_type');
 
+add_filter('single_template', 'oja_use_single_oja_event_template');
+
+function oja_use_single_oja_event_template($single_template)
+{
+    global $post;
+
+    if ('oja_event' === $post->post_type) {
+        $single_template = plugin_dir_path(__FILE__) . 'single-oja_event.php';
+    }
+
+    return $single_template;
+}
 
 add_action('wp_ajax_oja_get_events', 'oja_get_events'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_oja_get_events', 'oja_get_events'); // wp_ajax_nopriv_{action}
@@ -42,7 +54,7 @@ function oja_get_events()
     $language = $_POST['booking-language'];
 
     $group_size = isset($group) ? array_sum($group) : 0;
-    if ($group_size<1) {
+    if ($group_size < 1) {
         wp_send_json_error("Group is not set");
     }
     $use_languages = get_option('oja_use_booking_languages', 0);
@@ -87,9 +99,9 @@ function oja_get_events()
             $query->the_post();
             $id = get_the_id();
             $is_periodical = oja_is_event_periodical($id);
-            if(!$is_periodical && $is_private_party)
+            if (!$is_periodical && $is_private_party)
                 continue; //single day event can not be booked as a private.
-            
+
             if (oja_can_be_shown_event($id, $date)) {
                 $event_times = oja_get_event_time_terms($id);
                 $event_group_size = get_post_meta($id, 'oja_group_size', true);
@@ -99,16 +111,16 @@ function oja_get_events()
                 foreach ($event_times as $event_time) {
                     //get booking group size 
                     $event_term = $date . " " . $event_time;
-                    if($is_periodical && !oja_is_periodical_event_actual($id,$event_term))
+                    if ($is_periodical && !oja_is_periodical_event_actual($id, $event_term))
                         continue;
-                    
+
                     $already_existed = oja_get_object_by_property_value($created_terms, 'term', $event_term . ":00");
                     $occupancy  = $already_existed == new stdClass() ? 0 : $already_existed->group_size;
                     $term_booked_as_private_party  = $already_existed == new stdClass() ? 0 : $already_existed->private_party;
-                    
+
                     if (($is_private_party && $occupancy > 0) || $term_booked_as_private_party) continue;
-                    
-                    
+
+
                     $term_language = oja_get_existed_term_language($already_existed) ?? $language;
 
                     if ($already_existed)

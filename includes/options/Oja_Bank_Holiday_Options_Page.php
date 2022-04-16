@@ -35,7 +35,7 @@ class Oja_Bank_Holiday_Options_Page
         $this->oja_bank_holidays_save_options();
         wp_enqueue_script(
             'admin_bank_holidays-js',
-            plugins_url('private/js/admin_bank_holidays.js',  __FILE__),
+            plugins_url('../../admin/js/admin_bank_holidays.js',  __FILE__),
             array('jquery')
         );
         

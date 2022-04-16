@@ -8,13 +8,13 @@ $(document).ready(function () {
     var input = $("<input type=\"date\"  name=\"oja_bank_holidays[]\" value=\"\">");
     container.appendTo("#oja_bank_holidays");
     input.appendTo(container);
-    $( "#oja_repeat_times > div:first-child button.button.remove-holiday" ).clone(true, true).appendTo( container );
+    $( "#oja_bank_holidays > div:first-child button.button.remove-holiday" ).clone(true, true).appendTo( container );
   })
  
   $('.button.remove-holiday').mousedown(function (e) {
     e.preventDefault();
     e.stopPropagation();
-    if($("#oja_repeat_times > div").length > 1){
+    if($("#oja_bank_holidays > div").length > 1){
       $(this).parent().remove();
     }
     else{
