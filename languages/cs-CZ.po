@@ -1,0 +1,768 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Ondřej Jakuba
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oja 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-16 23:35+0200\n"
+"PO-Revision-Date: 2022-04-17 00:42+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Eazy Po 0.9.5.3\n"
+
+#: oja-booking.php:130
+msgid "&laquo;"
+msgstr ""
+
+#: oja-booking.php:131
+msgid "&raquo;"
+msgstr ""
+
+#: oja-booking.php:145
+#, php-format
+msgid "There are no categories. <a href=\"%s\">Please create one</a>."
+msgstr "Není vytvořena žádná kategorie. <a href=\"%s\">Prosím, vytvořte nějakou</a>."
+
+#: oja-booking.php:154
+#, php-format
+msgid ""
+"It looks like there is no \"Terms and conditions\" page. <a href=\"%s"
+"\">Please create one</a>."
+msgstr ""
+"Vypadá to, že nemáte vytvořenou stránku \"Pravidla a Podmínky\". <a href=\"%"
+"s\">Prosím, vytvořte ji</a>."
+
+#: oja-booking.php:163
+#, php-format
+msgid ""
+"It looks like there is no \"Booking\" page. <a href=\"%s\">Please create "
+"one</a>."
+msgstr ""
+"Vypadá to, že nemáte vytvořenou stránku \"Rezervace\". <a href=\"%s\">Prosím,"
+" vytvořte ji</a>."
+
+#: oja-booking.php:172
+#, php-format
+msgid ""
+"It looks like there is no \"Booking Confirmation\" page. <a href=\"%s"
+"\">Please create one</a>."
+msgstr ""
+"Vypadá to, že nemáte vytvořenou stránku \"Potvrzení rezervace\". <a href=\"%"
+"s\">Prosím, vytvořte ji</a>."
+
+#: includes/email.php:14
+msgid "Invalid email format"
+msgstr "Nevalidní formát emailu"
+
+#: includes/email.php:17
+msgid "Email address is required"
+msgstr "Emailová adresa je povinná"
+
+#: includes/email.php:22
+msgid "Message is required"
+msgstr "Zpráva je povinná"
+
+#: includes/email.php:36
+msgid "New message on your web"
+msgstr "Nová zpráva na Vašem webu"
+
+#: includes/email.php:37 includes/email.php:40
+msgid "Message was successfully sent"
+msgstr "Zpráva byla úspěšně odeslána"
+
+#: includes/email.php:52
+msgid "Messages"
+msgstr "Zprávy"
+
+#: includes/email.php:53
+msgid "Message"
+msgstr "Zpráva"
+
+#: includes/reservations.php:593 includes/reservations.php:666
+#: includes/reservations.php:692
+#: includes/options/Oja_Booking_Admin_Page.php:20
+#: includes/options/Oja_Booking_Admin_Page.php:21
+msgid "Booking"
+msgstr "Rezervace"
+
+#: includes/reservations.php:595
+msgid ""
+"Please, check and confirm your booking. If you will not confirm your booking "
+"you will lose claim on your booking. "
+msgstr ""
+"Prosím, zkontrolujte si Vaši rezervaci. Pokud Vaše rezervace nebude "
+"potvrzena, ztratíte nárok na rezervaci."
+
+#: includes/reservations.php:596 includes/posttypes/single-oja_event.php:129
+#: templates/single-oja_event.php:130
+msgid "Summary"
+msgstr "Shrnutí"
+
+#: includes/reservations.php:597 includes/reservations.php:669
+msgid "Booking for"
+msgstr "Rezervace pro"
+
+#: includes/reservations.php:598
+#: includes/options/Oja_Booking_Admin_Page.php:126
+#: includes/options/Oja_Booking_Admin_Page.php:142
+#: includes/options/Oja_Booking_Admin_Page.php:181
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:99
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:116
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:145
+#: includes/posttypes/single-oja_event.php:63
+#: includes/posttypes/single-oja_event.php:70 templates/booking-parts.php:164
+#: templates/single-oja_event.php:63 templates/single-oja_event.php:70
+msgid "Term"
+msgstr "Pravidla"
+
+#: includes/reservations.php:599 includes/posttypes/single-oja_event.php:92
+#: templates/booking-parts.php:36 templates/single-oja_event.php:93
+msgid "Language"
+msgstr "Jazyk"
+
+#: includes/reservations.php:600
+msgid "Total price"
+msgstr "Celková cena"
+
+#: includes/reservations.php:601
+msgid "Group"
+msgstr "Skupina"
+
+#: includes/reservations.php:603
+msgid "Participant"
+msgstr "Účastník"
+
+#: includes/reservations.php:603 includes/posttypes/single-oja_event.php:113
+#: templates/single-oja_event.php:114
+msgid "Count"
+msgstr "Počet"
+
+#: includes/reservations.php:603
+msgid "Price per one"
+msgstr "Cena za jednoho"
+
+#: includes/reservations.php:630
+#, php-format
+msgid ""
+"<p>Everything looks OK? Please, <a href=\"%1$s\">Confirm your reservation</"
+"a> otherwise you can <a href=\"%2$s\">Cancel your reservation</a> </p>"
+msgstr ""
+"<p>Vypadá vše v pořádku? Prosím, <a href=\"%1$s\">Potvrďte Vaší rezervaci</a>"
+" v opačném případě <a href=\"%2$s\">Zrušte Vaši rezervaci</a> </p>"
+
+#: includes/reservations.php:640 includes/reservations.php:682
+#, php-format
+msgid "<p>More info you can find on <a href=\"%1$s\">%2$s</a>.</p>"
+msgstr "<p>Více informací můžete najít na <a href=\"%1$s\">%2$s</a>.</p>"
+
+#: includes/reservations.php:650
+msgid "booking"
+msgstr "rezervace"
+
+#: includes/reservations.php:668
+msgid ""
+"Your booking for this term already exists. It is not possible to create 2 or "
+"more booking for single email. No changes has been done."
+msgstr ""
+"Vaše rezervace na tento termín už byla vytvořena. Není možné vytvořit více "
+"rezervací na termín jedním emailem. Žádná změna neproběhla."
+
+#: includes/reservations.php:672
+#, php-format
+msgid ""
+"<p>You can <a href=\"%1$s\">cancel your reservation</a> and after that you "
+"can create another new one.</p>"
+msgstr ""
+"<p>Můžete <a href=\"%1$s\">Stornovat Vaši rezervaci</a> a poté můžete "
+"vytvořit novou.</p>"
+
+#: includes/reservations.php:701 includes/reservations.php:706
+msgid "Booking cancellation"
+msgstr "Zrušení rezervace"
+
+#: includes/reservations.php:703
+msgid "Your booking was cancelled."
+msgstr "Vaše rezervace byla zrušena."
+
+#: includes/reservations.php:734
+msgid "Booking does not exist."
+msgstr "Rezervace neexistuje."
+
+#: includes/reservations.php:742
+msgid "Sorry, You are too late. Term is already full."
+msgstr "Omlouváme se, ale je pozdě. Termín je již plně obsazen."
+
+#: includes/reservations.php:747
+msgid ""
+"Sorry, You are too late. Term is not available in your selected language."
+msgstr ""
+"Omlouváme se, ale je pozdě. Termín již není dostupný pro zvolený jazyk."
+
+#: includes/reservations.php:756
+#, php-format
+msgid "Your booking has been %1$s."
+msgstr "Vaše rezervace byla %1$s."
+
+#: includes/reservations.php:759
+#, php-format
+msgid "Your booking is already %1$s."
+msgstr "Vaše rezervace již je %1$s."
+
+#: includes/reservations.php:762
+msgid "Booking confirmation has failed"
+msgstr "Zrušení rezervace se nezdařilo"
+
+#: includes/metaboxes/Oja_Date_Span_Meta_Box.php:63
+msgid "Start"
+msgstr "Začátek"
+
+#: includes/metaboxes/Oja_Date_Span_Meta_Box.php:67
+msgid "End"
+msgstr "Konec"
+
+#: includes/metaboxes/Oja_Group_Size_Meta_Box.php:50
+msgid "What's the max group size?"
+msgstr "Jaká je maximální velikost skupiny?"
+
+#: includes/metaboxes/Oja_Repeat_Days_Meta_Box.php:54
+#: includes/metaboxes/Oja_Repeat_Months_Meta_Box.php:54
+msgid "Repeat"
+msgstr "Opakování"
+
+#: includes/metaboxes/Oja_Repeat_Days_Meta_Box.php:67
+msgid "Bank holiday"
+msgstr "Den pracovního pokoje"
+
+#: includes/metaboxes/Oja_Repeat_Times_Meta_Box.php:59
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:62
+#: includes/options/Oja_Booking_Language_Options_Page.php:57
+msgid "Remove"
+msgstr "Odebrat"
+
+#: includes/metaboxes/Oja_Repeat_Times_Meta_Box.php:65
+msgid "Add a next time"
+msgstr "Přidat další čas"
+
+#: includes/metaboxes/Oja_Reservation_Type_Meta_Box.php:57
+msgid "One day event"
+msgstr "Jednodenní událost"
+
+#: includes/metaboxes/Oja_Reservation_Type_Meta_Box.php:59
+msgid "Periodical event"
+msgstr "Pravidelná událost"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:19
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:20
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:50
+msgid "Bank holidays"
+msgstr "Dny pracovního pokoje"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:55
+msgid "Dates of Bank holidays"
+msgstr "Data pracovního pokoje"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:66
+msgid "Add bank holiday"
+msgstr "Přidat den pracovního pokoje"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:70
+#: includes/options/Oja_Booking_Language_Options_Page.php:93
+#: includes/options/Oja_Currency_Options_Page.php:69
+#: includes/options/Oja_Price_Categories_Options_Page.php:74
+msgid "Save"
+msgstr "Uložit"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:101
+msgid "You do not have enough permissions"
+msgstr "Nemáte dostatečné oprávnění"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:113
+#: includes/options/Oja_Booking_Admin_Page.php:241
+#: includes/options/Oja_Booking_Language_Options_Page.php:132
+#: includes/options/Oja_Currency_Options_Page.php:103
+#: includes/options/Oja_Price_Categories_Options_Page.php:110
+#: includes/options/Oja_Terms_Conditions.php:137
+msgid "Successfully updated"
+msgstr "Úspěšně aktualizováno"
+
+#: includes/options/Oja_Bank_Holiday_Options_Page.php:116
+msgid "WTF?"
+msgstr "Něco se pokazilo"
+
+#: includes/options/Oja_Booking_Admin_Page.php:73
+msgid "Bookings"
+msgstr "Rezervace"
+
+#: includes/options/Oja_Booking_Admin_Page.php:77
+msgid "All"
+msgstr "Vše"
+
+#: includes/options/Oja_Booking_Admin_Page.php:84
+#: includes/options/Oja_Booking_Admin_Page.php:86
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:67
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:69
+msgid "Search"
+msgstr "Hledat"
+
+#: includes/options/Oja_Booking_Admin_Page.php:97
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:79
+#: includes/posttypes/single-oja_event.php:59
+#: templates/single-oja_event.php:59
+msgid "From"
+msgstr "Od"
+
+#: includes/options/Oja_Booking_Admin_Page.php:99
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:81
+#: includes/posttypes/single-oja_event.php:60
+#: templates/single-oja_event.php:60
+msgid "to"
+msgstr "do"
+
+#: includes/options/Oja_Booking_Admin_Page.php:101
+msgid "Filter by status"
+msgstr "Filtrovat dle stavu"
+
+#: includes/options/Oja_Booking_Admin_Page.php:103
+msgid "All statuses"
+msgstr "Všechy stavy"
+
+#: includes/options/Oja_Booking_Admin_Page.php:110
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:84
+msgid "Filter"
+msgstr "Filtr"
+
+#: includes/options/Oja_Booking_Admin_Page.php:122
+#: includes/options/Oja_Booking_Admin_Page.php:138
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:95
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:112
+msgid "Select all"
+msgstr "Vybrat vše"
+
+#: includes/options/Oja_Booking_Admin_Page.php:125
+#: includes/options/Oja_Booking_Admin_Page.php:141
+#: includes/options/Oja_Booking_Admin_Page.php:167
+msgid "User email"
+msgstr "Email uživatele"
+
+#: includes/options/Oja_Booking_Admin_Page.php:127
+#: includes/options/Oja_Booking_Admin_Page.php:143
+#: includes/options/Oja_Booking_Admin_Page.php:186
+msgid "Status"
+msgstr "Stav"
+
+#: includes/options/Oja_Booking_Admin_Page.php:128
+#: includes/options/Oja_Booking_Admin_Page.php:144
+#: includes/options/Oja_Booking_Admin_Page.php:187
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:101
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:118
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:151
+msgid "Group size"
+msgstr "Velikost skupiny"
+
+#: includes/options/Oja_Booking_Admin_Page.php:129
+#: includes/options/Oja_Booking_Admin_Page.php:145
+#: includes/options/Oja_Booking_Admin_Page.php:188
+msgid "Detail"
+msgstr "Detail"
+
+#: includes/options/Oja_Booking_Admin_Page.php:130
+#: includes/options/Oja_Booking_Admin_Page.php:146
+#: includes/options/Oja_Booking_Admin_Page.php:189
+msgid "Event"
+msgstr "Událost"
+
+#: includes/options/Oja_Booking_Admin_Page.php:131
+#: includes/options/Oja_Booking_Admin_Page.php:147
+#: includes/options/Oja_Booking_Admin_Page.php:194
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: includes/options/Oja_Booking_Admin_Page.php:174
+msgid "Show term"
+msgstr "Zobrazit termín"
+
+#: includes/options/Oja_Booking_Admin_Page.php:175
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:142
+msgid "Edit Event"
+msgstr "Upravit událost"
+
+#: includes/options/Oja_Booking_Admin_Page.php:176
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: includes/options/Oja_Booking_Admin_Page.php:177
+msgid "Accept"
+msgstr "Přijat"
+
+#: includes/options/Oja_Booking_Admin_Page.php:236
+#: includes/options/Oja_Booking_Language_Options_Page.php:123
+#: includes/options/Oja_Price_Categories_Options_Page.php:104
+#: includes/options/Oja_Terms_Conditions.php:126
+msgid "Sorry, your data could not be saved"
+msgstr "Omlouváme se, ale vaše data nemohla být uložena"
+
+#: includes/options/Oja_Booking_Admin_Page.php:244
+msgid "Something went wrong"
+msgstr "Něco se pokazilo"
+
+#: includes/options/Oja_Booking_Admin_Page.php:248
+#: includes/options/Oja_Booking_Language_Options_Page.php:135
+#: includes/options/Oja_Currency_Options_Page.php:106
+#: includes/options/Oja_Price_Categories_Options_Page.php:113
+#: includes/options/Oja_Terms_Conditions.php:140
+msgid "Invalid request"
+msgstr "Neplatný požadavek"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:19
+#: includes/options/Oja_Booking_Language_Options_Page.php:20
+msgid "Booking Languages"
+msgstr "Jazyk rezervace"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:55
+msgid "Default language"
+msgstr "Výchozí jazyk"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:61
+msgid "Booking languages"
+msgstr "Jazyk rezervace"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:64
+msgid "Do you offer events in 2 or more languages?"
+msgstr "Přejete si nabízet události ve více než jednom jazyce?"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:68
+msgid "No"
+msgstr "Ne"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:73
+msgid "Yes"
+msgstr "Ano"
+
+#: includes/options/Oja_Booking_Language_Options_Page.php:78
+msgid "Default booking language"
+msgstr "Výchozí jazyk rezervace"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:19
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:20
+msgid "Booking Terms"
+msgstr "Termíny rezervací"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:63
+msgid "Terms"
+msgstr "Termíny"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:98
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:115
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:134
+msgid "Event name"
+msgstr "Název události"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:100
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:117
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:150
+msgid "Booking count"
+msgstr "Počet rezervací"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:102
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:119
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:152
+msgid "Accepted booking count"
+msgstr "Počet potvrzených rezervací"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:103
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:120
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:153
+msgid "Accepted group size"
+msgstr "Potvrzená velikost skupiny"
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:141
+msgid "Show bookings"
+msgstr "Zobrazit rezervace"
+
+#: includes/options/Oja_Currency_Options_Page.php:19
+#: includes/options/Oja_Currency_Options_Page.php:20
+#: includes/options/Oja_Currency_Options_Page.php:45
+msgid "Currency"
+msgstr "Měna"
+
+#: includes/options/Oja_Currency_Options_Page.php:52
+msgid "Select currency"
+msgstr "Vybrat měnu"
+
+#: includes/options/Oja_Price_Categories_Options_Page.php:19
+#: includes/options/Oja_Price_Categories_Options_Page.php:20
+#: includes/options/Oja_Price_Categories_Options_Page.php:55
+msgid "Price Categories"
+msgstr "Cenové kategorie"
+
+#: includes/options/Oja_Price_Categories_Options_Page.php:60
+msgid "Select default category"
+msgstr "Vybrat váchozí kategorii"
+
+#: includes/options/Oja_Terms_Conditions.php:19
+#: includes/options/Oja_Terms_Conditions.php:20
+#: includes/options/Oja_Terms_Conditions.php:47
+msgid "Terms and Conditions"
+msgstr "Pravidla a Podmínky"
+
+#: includes/options/Oja_Terms_Conditions.php:54
+msgid "Create new Terms and Conditions page"
+msgstr "Vytvořit novou sptránku Pravidla a Podmínky"
+
+#: includes/options/Oja_Terms_Conditions.php:61
+msgid "Create"
+msgstr "Vytvořit"
+
+#: includes/options/Oja_Terms_Conditions.php:78
+msgid "Use already existing page"
+msgstr "Použít již existující stránku"
+
+#: includes/options/Oja_Terms_Conditions.php:89
+msgid "Use this page"
+msgstr "Použít tuto stránku"
+
+#: includes/options/Oja_Terms_Conditions.php:131
+msgid "Page was created."
+msgstr "Stránka vytvořena."
+
+#: includes/posttypes/event.php:9
+msgctxt "Post type General name"
+msgid "Events"
+msgstr "Události"
+
+#: includes/posttypes/event.php:10
+msgctxt "Post type Singular name"
+msgid "Event"
+msgstr "Událost"
+
+#: includes/posttypes/event.php:14
+msgctxt "url slug"
+msgid "events"
+msgstr "události"
+
+#: includes/posttypes/event.php:15
+msgctxt "Post type description"
+msgid "Custom post type for guided tour"
+msgstr ""
+
+#: includes/posttypes/event.php:71
+msgid "Inputs are not correct."
+msgstr "Údaje nejsou správné."
+
+#: includes/posttypes/event.php:148
+msgid ""
+"We are sorry, there is nothing for this date. Please, select another date."
+msgstr ""
+"Omlouváme se, ale pro zvolený termín nebylo nic nalezeno. Prosím, zvolte "
+"jiný datum."
+
+#: includes/posttypes/event.php:166
+msgid "There is no post found."
+msgstr "Nic nebylo nalezeno."
+
+#: includes/posttypes/event.php:184
+msgid "Method only for ajax."
+msgstr ""
+
+#: includes/posttypes/event.php:203
+msgid "Term is required"
+msgstr "Termín je povinný údaj"
+
+#: includes/posttypes/event.php:206
+msgid "Group is required"
+msgstr "Skupina je povinný údaj"
+
+#: includes/posttypes/event.php:208
+msgid "Please, change group size. It looks like it is empty."
+msgstr "Prosím, upravte velikost skupiny. Vypadá to, že není zvolena."
+
+#: includes/posttypes/event.php:211
+msgid "Email is required"
+msgstr "Email je povinný"
+
+#: includes/posttypes/event.php:213
+msgid "Please, write correct email address."
+msgstr "Prosím, zadejte správnou emailovou adresu."
+
+#: includes/posttypes/event.php:216
+msgid "Name is required"
+msgstr "Jméno je povinný údaj"
+
+#: includes/posttypes/event.php:220
+msgid "Language is required"
+msgstr "Jazyk je povinný údaj"
+
+#: includes/posttypes/event.php:224
+msgid "Language has unsupported value"
+msgstr "Jazyk nemá podporovanou hodnotu"
+
+#: includes/posttypes/event.php:230
+msgid "Event ID is required"
+msgstr "ID události je povinný údaj"
+
+#: includes/posttypes/event.php:233
+msgid "Terms and Conditions acceptation is required"
+msgstr "Je nutné souhlasit s Pravidly a podmínky"
+
+#: includes/posttypes/event.php:236
+msgid "Privacy Policy acceptation is required"
+msgstr "Je nutné souhlasit se Zásady ochrany osobních údajů"
+
+#: includes/posttypes/event.php:243
+msgid "The booking was successful. Please confirm booking in email."
+msgstr "Rezervace byla úspěšná. Prosím, potvrďte ji v emailu."
+
+#: includes/posttypes/event.php:245
+msgid "Booking could not be created."
+msgstr "Rezervace nemohla být vytvořena."
+
+#: includes/posttypes/single-oja_event.php:46
+#: templates/single-oja_event.php:46
+msgid "Languages"
+msgstr "Jazyky"
+
+#: includes/posttypes/single-oja_event.php:52
+#: templates/single-oja_event.php:52
+msgid "Maximum group size"
+msgstr "Maximální velikost skupiny"
+
+#: includes/posttypes/single-oja_event.php:53
+#: templates/single-oja_event.php:53
+#, php-format
+msgid "%d people"
+msgstr "%d lidí"
+
+#: includes/posttypes/single-oja_event.php:112
+#: templates/single-oja_event.php:113
+msgid "Category"
+msgstr "Kategorie"
+
+#: includes/posttypes/single-oja_event.php:114
+#: templates/single-oja_event.php:115
+msgid "Price"
+msgstr "Cena"
+
+#: includes/posttypes/single-oja_event.php:135
+#: templates/single-oja_event.php:136
+msgid "Book now"
+msgstr "Rezervovat nyní"
+
+#: includes/posttypes/single-oja_event.php:143
+#: templates/single-oja_event.php:144
+msgid "Page"
+msgstr "Stránka"
+
+#: includes/posttypes/single-oja_event.php:146
+#: templates/single-oja_event.php:147
+msgid "Page %"
+msgstr "Strana %"
+
+#: includes/taxonomies/languages.php:4
+msgctxt "language tags"
+msgid "Languages"
+msgstr "Jazyky"
+
+#: includes/taxonomies/languages.php:5
+msgctxt "language tag"
+msgid "Language"
+msgstr "Jazyk"
+
+#: includes/taxonomies/price_categories.php:4
+msgctxt "Price category tags"
+msgid "Price categories"
+msgstr "Ceny kategorií"
+
+#: includes/taxonomies/price_categories.php:5
+msgctxt "Price category tag"
+msgid "Price category"
+msgstr "Cena kategorie"
+
+#: includes/taxonomies/price_categories.php:40
+#: includes/taxonomies/price_categories.php:51
+msgid "Private party"
+msgstr "Uzavřená společnost"
+
+#: includes/taxonomies/price_categories.php:42
+#: includes/taxonomies/price_categories.php:55
+msgid "No one else can book on the same term."
+msgstr "Nikdo další nemůže vytvořit rezervaci na stejný termín."
+
+#: templates/booking-page.php:23
+msgid "Loading"
+msgstr "Načítaní"
+
+#: templates/booking-parts.php:23
+msgid "Date"
+msgstr "Datum"
+
+#: templates/booking-parts.php:51 templates/booking-parts.php:58
+#: templates/booking-parts.php:66
+msgid "Select participants"
+msgstr "Vyberte účastníky"
+
+#: templates/booking-parts.php:72
+msgid "Select"
+msgstr "Vybrat"
+
+#: templates/booking-parts.php:82
+msgid "Contact"
+msgstr "Kontakt"
+
+#: templates/booking-parts.php:93 templates/booking-parts.php:186
+msgid "Book"
+msgstr "Rezervace"
+
+#: templates/booking-parts.php:142
+#, php-format
+msgid "Select %1$s"
+msgstr "Vybrat %1$s"
+
+#: templates/booking-parts.php:173
+msgid "Vacancies"
+msgstr "Volná místa"
+
+#: templates/booking-parts.php:182
+msgid "Your price"
+msgstr "Vaše cena"
+
+#: templates/contact.php:6 templates/contact.php:7
+msgid "Name"
+msgstr "Jméno"
+
+#: templates/contact.php:9
+msgid "Please write your name."
+msgstr "Prosím, vyplňte Vaše jméno."
+
+#: templates/contact.php:13 templates/contact.php:14
+msgid "Email"
+msgstr "Email"
+
+#: templates/contact.php:16
+msgid "Please write correct email."
+msgstr "Prosím, vyplňte správný email."
+
+#: templates/contact.php:30
+#, php-format
+msgid ""
+"By ticking this box, I confirm that I have read the <a href=\"%1$s\">Terms "
+"and Conditions</a>."
+msgstr ""
+"Zaškrtnutím tohoto políčka, souhlasím, že jsem si přečetl <a href=\"%1$s\">"
+"Pravidla a Podmínky</a>."
+
+#: templates/contact.php:36
+#, php-format
+msgid ""
+"By ticking this box, I confirm that I have read the <a href=\"%1$s\">Privacy "
+"Policy</a>."
+msgstr ""
+"Zaškrtnutím tohoto políčka potvrzuji, že jsem si přečetl <a href=\\\"%1$s\\\""
+">Zásady ochrany osobních údajů</a>."

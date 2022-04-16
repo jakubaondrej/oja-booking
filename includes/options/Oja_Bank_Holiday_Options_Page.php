@@ -113,7 +113,7 @@ class Oja_Bank_Holiday_Options_Page
                 $message = __('Successfully updated', 'oja');
                 $type = 'updated';
             } else {
-                $message = __('WTF?', 'oja');
+                $message = __('Something failed.', 'oja');
                 $type = 'error';
             }
         }
