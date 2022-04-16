@@ -49,6 +49,7 @@ $('#booking-filter').on('click','button#button-select-group', function (e){
 });
 
 function group_changed(event) {
+    if(event && event.target.attributes.style.value=="display: none;") return;
     var groups = $("#booking-group-modal .price_category");
     selected_group_array = new Array();
     groups.each(function (index, value) {
@@ -63,6 +64,7 @@ function group_changed(event) {
 
 
 function oja_load_booking() {
+    removeAlerts();
     var button = $('#load-more');
     var loading_spin = $("#loading-more");
     var data = $("#booking-filter").serialize() + "&action=oja_get_events&nextNonce=" + Oja_Ajax.nextNonce;
