@@ -1,9 +1,5 @@
 <?php
-wp_enqueue_script(
-        'oja-currency-js',
-        get_template_directory_uri() . '/assets/js/oja_currency.js',
-        array('jquery')
-);
+oja_booking_enqueue();
 
 get_header();
 ?>
