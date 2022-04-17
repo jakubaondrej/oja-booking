@@ -224,6 +224,8 @@ function oja_create_booking_ajax()
                 $errors[] = __('Language has unsupported value', 'oja');
             }
         }
+    }else{
+        $language='';
     }
 
     if (empty($event_id)) {
