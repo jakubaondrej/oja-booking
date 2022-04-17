@@ -1,7 +1,7 @@
 <?php
 oja_booking_enqueue();
-oja_get_booking_style();
 get_header();
+oja_get_booking_style();
 ?>
 <div class="container rounded my-md-2 p-sm-3 p-md-5 bg-content shadow rounded">
         <?php if (have_posts()) :
@@ -35,7 +35,7 @@ get_header();
                                 </div>
                         <?php endif; ?>
                         <?php the_title('<h1>', '</h1>'); ?>
-                        <table class="table w-auto">
+                        <table class="table w-auto mb-3">
                                 <tbody>
                                         <?php if ($languages) : ?>
                                                 <tr>

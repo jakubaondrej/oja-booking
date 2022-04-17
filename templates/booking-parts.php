@@ -151,7 +151,6 @@ function oja_get_template_part_select_categories()
 
 function oja_get_template_part_booking_list()
 {
-    oja_booking_enqueue();
 ?>
     <template id="booking-list-template">
         <section class="booking container bg-content shadow rounded-3 p-3 mb-2">

@@ -294,16 +294,17 @@ function oja_booking_enqueue()
             'select_group_text' => __('Select group','oja')
         )
     );
-}
-
-function oja_enqueue_scripts()
-{
     wp_enqueue_style(
         'oja-booking-style',
         plugins_url('public/css/style.css',  __FILE__),
         false,
-        '1.3.0'
+        '1.4.0'
     );
+}
+
+function oja_enqueue_scripts()
+{
+    
     wp_enqueue_script(
         'oja-Bootstrap-js-async',
         plugins_url('public/js/bootstrap.min.js',  __FILE__),

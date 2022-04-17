@@ -1,5 +1,4 @@
 <?php 
-oja_get_booking_style();
 $key = filter_input(INPUT_GET, 'key');
 $booking_id = filter_input(INPUT_GET, 'booking_id', FILTER_VALIDATE_INT, array('options' => array('min_range' => 1)));
 $action = filter_input(INPUT_GET, 'action');
@@ -10,7 +9,9 @@ if (empty($code) || $code != $key) {
     oja_show_404();
 }
 
-get_header(); ?>
+get_header(); 
+oja_get_booking_style();
+?>
 
 <div class="container p-1 my-2 p-sm-3 p-md-5 my-2 bg-content shadow rounded-3">
     <h1><?php the_title(); ?></h1>
