@@ -92,30 +92,47 @@ if (current_user_can('manage_options')) {
     require_once plugin_dir_path(__FILE__) . 'includes/options/Oja_Price_Categories_Options_Page.php';
     require_once plugin_dir_path(__FILE__) . 'includes/options/Oja_Terms_Conditions.php';
 }
-if (is_admin()) {
-    // we are in admin mode
+add_action('wp_loaded', function () {
+    if (is_admin()) {
+        // we are in admin mode
 
-    global $pagenow;
-    $admin_pages = ['index.php', 'edit.php', 'plugins.php'];
-    if (in_array($pagenow, $admin_pages)) {
-        
-        oja_check_exists_category();
-       
-        $terms_page_id = get_option('oja_terms_and_conditions');
-        $oja_booking_page = get_option('oja_booking_page');
-        $oja_booking_confirmation_page = get_option('oja_booking_confirmation_page');
-       
-        if (is_wp_error($terms_page_id) || !isset($terms_page_id) || !$terms_page_id)
-            add_action('admin_notices', 'oja_admin_terms_warning');
+        global $pagenow;
+        $admin_pages = ['index.php', 'edit.php', 'plugins.php'];
+        if (in_array($pagenow, $admin_pages)) {
 
-        if (is_wp_error($oja_booking_page) || !isset($oja_booking_page) || !$oja_booking_page)
-            add_action('admin_notices', 'oja_admin_bookings_warning');
+            oja_check_exists_category();
 
-        if (is_wp_error($oja_booking_confirmation_page) || !isset($oja_booking_confirmation_page) || !$oja_booking_confirmation_page)
-            add_action('admin_notices', 'oja_admin_confirmation_warning');
+            $terms_page_id = get_option('oja_terms_and_conditions');
+            $oja_booking_page = get_option('oja_booking_page');
+            $oja_booking_confirmation_page = get_option('oja_booking_confirmation_page');
 
+            if (is_wp_error($terms_page_id) || !isset($terms_page_id) || !$terms_page_id)
+                add_action('admin_notices', 'oja_admin_terms_warning');
+
+            if (is_wp_error($oja_booking_page) || !isset($oja_booking_page) || !$oja_booking_page)
+                add_action('admin_notices', 'oja_admin_bookings_warning');
+
+            if (is_wp_error($oja_booking_confirmation_page) || !isset($oja_booking_confirmation_page) || !$oja_booking_confirmation_page)
+                add_action('admin_notices', 'oja_admin_confirmation_warning');
+
+            global $wpdb;
+            $table = TERMS_EVENT_TABLE_NAME;
+            if ($wpdb->get_var("SHOW TABLES LIKE '$table'") != $table) {
+                oja_admin_DB_warning($table);
+            }
+            $table = BOOKING_TERMS_EVENT_TABLE_NAME;
+            if ($wpdb->get_var("SHOW TABLES LIKE '$table'") != $table) {
+                oja_admin_DB_warning($table);
+            }
+            $table = BOOKING_GROUP_TABLE_NAME;
+            if ($wpdb->get_var("SHOW TABLES LIKE '$table'") != $table) {
+                oja_admin_DB_warning($table);
+            }
+        }
     }
+});
 
+if (is_admin()) {
     function oja_admin_pagination($num_of_pages = '',  $page = '')
     {
         if (empty($page)) {
@@ -137,12 +154,21 @@ if (is_admin()) {
             echo '<div class="tablenav"><div class="tablenav-pages" style="margin: 1em 0">' . $page_links . '</div></div>';
         }
     }
-    
+
     function oja_admin_categories_warning()
     {
         $class = 'notice notice-warning is-dismissible';
         $url = admin_url('edit-tags.php?taxonomy=oja_price_categories'); //&post_type=oja_event
         $link = sprintf(wp_kses(__('There are no categories. <a href="%s">Please create one</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
+
+        printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
+    }
+    
+    function oja_admin_default_categories_warning()
+    {
+        $class = 'notice notice-warning is-dismissible';
+        $url = admin_url('options-general.php?page=oja_price_categories'); //&post_type=oja_event
+        $link = sprintf(wp_kses(__('Default category is not set. <a href="%s">Please set it</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
     }
@@ -172,6 +198,30 @@ if (is_admin()) {
         $link = sprintf(wp_kses(__('It looks like there is no "Booking Confirmation" page. <a href="%s">Please create one</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
+    }
+
+    function oja_admin_DB_warning($db_name)
+    {
+        $class = 'notice notice-warning is-dismissible';
+        $text = sprintf(esc_html__('Database "%s" does not exists.', 'oja'), $db_name);
+        printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $text);
+    }
+
+    function oja_check_exists_category()
+    {
+        $tax = get_taxonomy('oja_price_categories');
+        $categories = get_terms(array(
+            'taxonomy' => 'oja_price_categories',
+            'hide_empty' => false
+        ));
+        if (is_wp_error($categories) || !isset($categories)) {
+            add_action('admin_notices', 'oja_admin_categories_warning');
+            return;
+        }
+        $default_category = get_option('oja_default_price_category', '');
+        if (is_wp_error($default_category) || !isset($default_category)) {
+            add_action('admin_notices', 'oja_admin_default_categories_warning');
+        }
     }
 }
 
@@ -331,16 +381,4 @@ function oja_get_object_by_property_value(array $objects, $property, $value)
         }
     }
     return new stdClass();
-}
-
-
-function oja_check_exists_category(){
-    $categories = get_terms(array(
-        'taxonomy' => 'oja_price_categories',
-        'hide_empty' => false
-    ));
-    //var_dump($categories);exit;
-    if (is_wp_error($categories) || !isset($categories)) {
-        add_action('admin_notices', 'oja_admin_categories_warning');
-    }
 }

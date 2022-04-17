@@ -14,11 +14,11 @@ function oja_register_price_categories_taxonomy(){
         'meta_box_cb'       => false,
         'show_admin_column' => false,
         'query_var'         => true,
-        'public'            => false,
+        'public'            => true,
     );
     register_taxonomy('oja_price_categories','oja_event',$args);
 }
-add_action( 'init', 'oja_register_price_categories_taxonomy', 0 );
+add_action( 'init', 'oja_register_price_categories_taxonomy');
 
 add_action( 'oja_price_categories_add_form_fields', 'oja_price_categories_add_term_fields' );
 add_action( 'oja_price_categories_edit_form_fields', 'oja_price_categories_edit_term_fields' );
