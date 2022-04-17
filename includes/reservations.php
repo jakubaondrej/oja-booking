@@ -7,7 +7,7 @@ function get_created_booking_time_filter($table = "")
     return ' AND (NOW() - INTERVAL 1 HOUR) <= ' . $table . 'created ';
 }
 
-function oja_create_event_term(int $event_id, string $term, string $language="")
+function oja_create_event_term(int $event_id, string $term, string $language = "")
 {
 
     global $wpdb;
@@ -84,7 +84,7 @@ function oja_is_periodical_event_actual(int $event_id, string $term)
 function oja_get_periodical_event_next_term(int $event_id)
 {
     $time = time();
-    $time2=$time;
+    $time2 = $time;
     for ($i = 0; $i < 5; $i++) {
         $time = oja_get_next_month_event_term($event_id, $time);
         $time = oja_get_next_week_day_event_term($event_id, $time);
@@ -105,9 +105,9 @@ function oja_get_periodical_event_next_term(int $event_id)
             $oja_start_term_time = strtotime($oja_start_term);
             if ($time < $oja_start_term_time) return date("Y-m-d", $oja_start_term_time);
         }
-        if($time2==$time)
+        if ($time2 == $time)
             return date("Y-m-d", $time);
-        $time2=$time;
+        $time2 = $time;
     }
     return false;
 }
@@ -486,7 +486,7 @@ function oja_create_booking($user_email, $name, $group, $event_id, $term, $langu
     global $wpdb;
 
     $event_term = oja_get_event_term_by_datetime($event_id, $term);
-    
+
     if (is_null($event_term)) {
         $term_id = oja_create_event_term($event_id, $term, $language);
     } else {
@@ -495,7 +495,7 @@ function oja_create_booking($user_email, $name, $group, $event_id, $term, $langu
             $result = oja_update_term_language($term_id, $language);
         }
     }
-    
+
     if ($term_id == 0) {
         return false;
     }
@@ -585,6 +585,7 @@ function oja_send_booking_confirmation_email($user_email, $booking_id, $event_id
     $date_format = get_option('date_format');
     $time_format = get_option('time_format');
     $term = date($date_format . " "  . $time_format, strtotime($term));
+    $use_languages = get_option('oja_use_booking_languages', 0);
     $language_term = get_term($language, 'oja_languages');
 
     $confirm_link = oja_create_booking_action_link($code, $booking_id, $language);
@@ -594,11 +595,15 @@ function oja_send_booking_confirmation_email($user_email, $booking_id, $event_id
 
     $body    .= sprintf('<p>%s</p>', __('Please, check and confirm your booking. If you will not confirm your booking you will lose claim on your booking. ', 'oja'));
     $body    .= sprintf('<h3>%s:</h3>', __('Summary', 'oja'));
-    $body    .= sprintf('<strong>%s:</strong> %s</br>', __('Booking for', 'oja'), $booking->name);
-    $body    .= sprintf('<strong>%s:</strong> %s</br>', __('Term', 'oja'), $term);
-    $body    .= sprintf('<strong>%s:</strong> %s</br>', __('Language', 'oja'), $language_term->name);
-    $body    .= sprintf('<strong>%s:</strong> %s</br>', __('Total price', 'oja'), oja_get_currency($total_price));
-    $body    .= sprintf('<strong>%s:</strong>', __('Group', 'oja'));
+    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Booking for', 'oja'), $booking->name);
+    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Term', 'oja'), $term);
+    
+    if ($use_languages) {
+        $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Language', 'oja'), $language_term->name);
+    }
+
+    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Total price', 'oja'), oja_get_currency($total_price));
+    $body    .= sprintf('<div><strong>%s:</strong>', __('Group', 'oja'));
 
     $body    .= sprintf('<table border="1"><tr><th>%s</th><th>%s</th><th>%s</th></tr>', __('Participant', 'oja'), __('Count', 'oja'), __('Price per one', 'oja'));
 
@@ -608,23 +613,7 @@ function oja_send_booking_confirmation_email($user_email, $booking_id, $event_id
         $participants_price = $oja_price_category[$participant_id];
         $body   .= sprintf('<tr><td>%s</td><td>%s</td><td>%s</td></tr>', $participant->name, $participant_count, oja_get_currency($participants_price));
     }
-    $body    .= sprintf('</table>');
-    $body    .= sprintf("<script>
-        const lang = navigator.language;
-        var currency = '%s';
-        (function() {
-            var currencyElements=document.getElementsByClassName('currency');
-
-            for (let item of currencyElements) {
-                var curVal = parseInt(item.getAttribute('amount'));
-                    console.log(curVal);
-                    console.log(lang);
-                    console.log(currency);
-                var curStr = curVal.toLocaleString(lang, { style: 'currency', currency: currency });
-                console.log(curStr);
-                            item.textContent = curStr;
-            }
-        });</script>", get_option('oja_current_currency', 'USD'));
+    $body    .= sprintf('</table></div>');
 
     $body    .= sprintf(wp_kses(
         __('<p>Everything looks OK? Please, <a href="%1$s">Confirm your reservation</a> otherwise you can <a href="%2$s">Cancel your reservation</a> </p>', 'oja'),
@@ -935,23 +924,24 @@ function oja_get_bookings($page = 1, $search = "", $date_from = "", $date_to = "
 
 function oja_get_private_party_price_categories()
 {
-  $args = [
-    'taxonomy'  => 'oja_price_categories',
-    'fields'     => 'ids',
-    'hide_empty' => false,
-    'meta_key'   => 'private_party',
-    'meta_value' => true
-  ];
-  return get_terms($args);
+    $args = [
+        'taxonomy'  => 'oja_price_categories',
+        'fields'     => 'ids',
+        'hide_empty' => false,
+        'meta_key'   => 'private_party',
+        'meta_value' => true
+    ];
+    return get_terms($args);
 }
 /**
  * @param array $group Array of types and count of people array('adult'=>2) 
  * @return boolean True if group is private party
  */
-function oja_is_group_private_party(array $group){
+function oja_is_group_private_party(array $group)
+{
     $private_party_cats = oja_get_private_party_price_categories();
-    foreach ($private_party_cats as $cat){
-      if(array_key_exists($cat,$group) && $group[$cat]>0) return true;
+    foreach ($private_party_cats as $cat) {
+        if (array_key_exists($cat, $group) && $group[$cat] > 0) return true;
     }
     return false;
-  }
+}

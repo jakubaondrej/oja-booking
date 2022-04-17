@@ -240,12 +240,13 @@ if (!function_exists('IsNullOrEmptyString')) {
 
 function oja_get_currency($num)
 {
-    $local_wp = get_locale();
+    $current_currency = get_option('oja_current_currency');
+     $local_wp = get_locale();
     $local_lang = $local_wp . ".utf8";
     setlocale(LC_ALL, $local_lang);
     $locale_info = localeconv();
     $cur_val = number_format_i18n($num, $locale_info['mon_decimal_point']);
-    return $cur_val . " " . $locale_info['currency_symbol'];
+    return $cur_val . " " . oja_get_currency_symbol($current_currency);
 }
 
 /**
