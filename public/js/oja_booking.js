@@ -58,7 +58,9 @@ function group_changed(event) {
             selected_group_array.push(cat_count + "x " + $(this).find("label").text());
         }
     });
-    $(".selected-group").html(selected_group_array.toString());
+    var text = selected_group_array.toString();
+    if(text.length<1) text = Oja_Ajax.select_group_text;
+    $(".selected-group").html(text);
     oja_load_booking();
 }
 

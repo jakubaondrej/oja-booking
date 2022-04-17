@@ -1,4 +1,5 @@
 <?php 
+oja_get_booking_style();
 $key = filter_input(INPUT_GET, 'key');
 $booking_id = filter_input(INPUT_GET, 'booking_id', FILTER_VALIDATE_INT, array('options' => array('min_range' => 1)));
 $action = filter_input(INPUT_GET, 'action');

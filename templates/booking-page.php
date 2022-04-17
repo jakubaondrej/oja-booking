@@ -1,5 +1,6 @@
 <?php /*Template Name: Booking page*/
 include plugin_dir_path(__FILE__) . 'booking-parts.php';
+oja_get_booking_style();
 oja_enqueue_scripts();
 get_header();
 ?>

@@ -19,7 +19,7 @@ function oja_get_template_part_booking_filter()
     <?php oja_get_alert_placeholder() ?>
 
     <form id="booking-filter" class="row g-3 needs-validation">
-        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <div class="col-auto">
             <div class="input-group" title="<?php _e('Date', 'oja'); ?>">
                 <label class="input-group-text" for="date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event" viewBox="0 0 16 16">
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z" />
@@ -32,7 +32,7 @@ function oja_get_template_part_booking_filter()
         </div>
 
         <?php if ($use_languages) : ?>
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="col-auto">
                 <div class="input-group" title="<?php _e('Language', 'oja'); ?>">
                     <label class="input-group-text" for="booking-language"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-translate" viewBox="0 0 16 16">
                             <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z" />
@@ -123,7 +123,7 @@ function oja_get_template_part_select_categories()
             $group_count = 1;
     ?>
         <div id="oja_booking_category_<?php echo $key; ?>" class="form-floating price_category">
-            <input type="number" id="oja_group_<?php echo $category->name; ?>" class="form-control" name="group[<?php echo $category->term_id; ?>]" value="<?php echo $group_count; ?>" min="0" max="100">
+            <input type="number" id="oja_group_<?php echo $category->name; ?>" class="form-control" name="group[<?php echo $category->term_id; ?>]" value="<?php echo $group_count; ?>" min="0" max="100" size="3">
             <label for="oja_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
         </div>
     <?php endforeach; ?>

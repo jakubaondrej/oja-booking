@@ -1,6 +1,6 @@
 <?php
 oja_booking_enqueue();
-
+oja_get_booking_style();
 get_header();
 ?>
 <div class="container rounded my-md-2 p-sm-3 p-md-5 bg-content shadow rounded">
@@ -35,7 +35,7 @@ get_header();
                                 </div>
                         <?php endif; ?>
                         <?php the_title('<h1>', '</h1>'); ?>
-                        <table class="table">
+                        <table class="table w-auto">
                                 <tbody>
                                         <?php if ($languages) : ?>
                                                 <tr>
@@ -102,7 +102,7 @@ get_header();
                                 <?php endif; ?>
 
                                 <?php if ($prices) : ?>
-                                        <table class="table">
+                                        <table class="table w-auto">
                                                 <thead>
                                                         <tr>
                                                                 <th scope="col"><?php _e('Category', 'oja'); ?></th>
@@ -115,7 +115,7 @@ get_header();
                                                                 <tr>
                                                                         <th scope="row"><?php echo $category->name; ?></th>
                                                                         <td>
-                                                                                <input type="number" class="group-count" name="group[<?php echo $category->term_id; ?>]" value="0" price="<?php echo oja_get_currency($prices[$category->term_id]); ?>" min="0" max="100">
+                                                                                <input type="number" class="group-count" name="group[<?php echo $category->term_id; ?>]" value="0" price="<?php echo oja_get_currency($prices[$category->term_id]); ?>" min="0" max="100" size="3">
                                                                         </td>
                                                                         <td class="price-category"></td>
                                                                 </tr>

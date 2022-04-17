@@ -5,7 +5,7 @@
  * Plugin URI:        
  * Description:       This is my best booking plugin.
  * Version:           0.0.1
- * Requires at least: 5.2
+ * Requires at least: 5.3
  * Requires PHP:      7.2
  * Author:            Ondřej Jakuba
  * Author URI:        https://ojakuba.eu
@@ -91,6 +91,7 @@ if (current_user_can('manage_options')) {
     require_once plugin_dir_path(__FILE__) . 'includes/options/Oja_Booking_Language_Options_Page.php';
     require_once plugin_dir_path(__FILE__) . 'includes/options/Oja_Price_Categories_Options_Page.php';
     require_once plugin_dir_path(__FILE__) . 'includes/options/Oja_Terms_Conditions.php';
+    require_once plugin_dir_path(__FILE__) . 'includes/options/Oja_Color_Style.php';
 }
 add_action('wp_loaded', function () {
     if (is_admin()) {
@@ -289,7 +290,8 @@ function oja_booking_enqueue()
             'bookingNonce' => wp_create_nonce('oja-create-booking-nonce'),
             'current_page' => 0,
             'posts_per_page' => 6,
-            'private_party' => oja_get_private_party_price_categories()
+            'private_party' => oja_get_private_party_price_categories(),
+            'select_group_text' => __('Select group','oja')
         )
     );
 }
