@@ -115,7 +115,7 @@ oja_get_booking_style();
                                                                 <tr>
                                                                         <th scope="row"><?php echo $category->name; ?></th>
                                                                         <td>
-                                                                                <input type="number" class="group-count" name="group[<?php echo $category->term_id; ?>]" value="0" price="<?php echo oja_get_currency($prices[$category->term_id]); ?>" min="0" max="100" size="3">
+                                                                                <input type="number" class="group-count" name="group[<?php echo $category->term_id; ?>]" value="0" price="<?php echo $prices[$category->term_id]; ?>" min="0" max="100" size="3">
                                                                         </td>
                                                                         <td class="price-category"></td>
                                                                 </tr>

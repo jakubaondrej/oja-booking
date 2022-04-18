@@ -103,18 +103,18 @@ function oja_get_template_part_select_categories()
 {
     $group = $_GET['group'];
     $categories = get_terms(array(
-    'taxonomy' => 'oja_price_categories',
-    'hide_empty' => false,
-    'meta_key' => 'private_party',
-    'meta_compare' => 'NOT EXISTS'
+        'taxonomy' => 'oja_price_categories',
+        'hide_empty' => false,
+        'meta_key' => 'private_party',
+        'meta_compare' => 'NOT EXISTS'
     ));
-    if(!isset($categories)){
+    if (!isset($categories)) {
         echo "<p>Please create any price categories</p>";
         return;
     }
     $default_category = get_option('oja_default_price_category', '');
     //private_party
-    ?>
+?>
     <?php foreach ($categories as $category) :
         $group_count = 0;
         if ($group && $group["$category->term_id"])
@@ -122,9 +122,9 @@ function oja_get_template_part_select_categories()
         elseif (!$group && $category->term_id == $default_category)
             $group_count = 1;
     ?>
-        <div id="oja_booking_category_<?php echo $key; ?>" class="form-floating price_category">
-            <input type="number" id="oja_group_<?php echo $category->name; ?>" class="form-control" name="group[<?php echo $category->term_id; ?>]" value="<?php echo $group_count; ?>" min="0" max="100" size="3">
-            <label for="oja_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
+        <div id="oja_booking_category_<?php echo $category->term_id; ?>" class="price_category row m-2">
+            <label class="col-5 col-form-label" for="oja_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
+            <input type="number" id="oja_group_<?php echo $category->name; ?>" class="col form-control" name="group[<?php echo $category->term_id; ?>]" value="<?php echo $group_count; ?>" min="0" max="100" size="3">
         </div>
     <?php endforeach; ?>
 
@@ -136,9 +136,10 @@ function oja_get_template_part_select_categories()
         'meta_compare' => 'EXISTS'
     ));
     ?>
-    <div id="private-party-groups">
+    <div id="private-party-groups" class="mt-3 text-center">
+        <div class="separator text-center my-3"><?php _e('Or', 'oja'); ?></div>
         <?php foreach ($categories as $category) : ?>
-            <div id="oja_booking_category_<?php echo $key; ?>" class="private_party price_category">
+            <div id="oja_booking_category_<?php echo $category->term_id; ?>" class="private_party price_category">
                 <button class="btn btn-secondary private-party-select" data-bs-dismiss="modal"><?php printf(esc_html__('Select %1$s', 'oja'), $category->name); ?></button>
                 <label class="d-none" for="oja_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
                 <input type="hidden" id="oja_group_<?php echo $category->name; ?>" name="group[<?php echo $category->term_id; ?>]" value="0">

@@ -70,11 +70,11 @@ function oja_is_periodical_event_actual(int $event_id, string $term)
     $term_time = strtotime($term);
     $oja_start_term = get_post_meta($event_id, 'oja_start_term', true);
     $oja_end_term = get_post_meta($event_id, 'oja_end_term', true);
-    if (isset($oja_start_term)) {
+    if (isset($oja_start_term) && $oja_start_term != '') {
         $oja_start_term_time = strtotime($oja_start_term);
         if ($term_time < $oja_start_term_time) return false;
     }
-    if (isset($oja_end_term)) {
+    if (isset($oja_end_term) && $oja_end_term != '') {
         $oja_end_term_time = strtotime($oja_end_term);
         if ($term_time > $oja_end_term_time) return false;
     }
@@ -521,7 +521,7 @@ function oja_create_booking($user_email, $name, $group, $event_id, $term, $langu
         'name'      => $name,
         'tel'       => $tel,
         'school_name_department' => $school_name_department,
-        'class_department'      =>$class_department
+        'class_department'      => $class_department
     );
 
     $format = array('%d', '%s', '%s', '%s', '%s', '%s', '%s');
@@ -603,7 +603,7 @@ function oja_send_booking_confirmation_email($user_email, $booking_id, $event_id
     $body    .= sprintf('<h3>%s:</h3>', __('Summary', 'oja'));
     $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Booking for', 'oja'), $booking->name);
     $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Term', 'oja'), $term);
-    
+
     if ($use_languages) {
         $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Language', 'oja'), $language_term->name);
     }

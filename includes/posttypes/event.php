@@ -113,7 +113,6 @@ function oja_get_events()
                     $event_term = $date . " " . $event_time;
                     if ($is_periodical && !oja_is_periodical_event_actual($id, $event_term))
                         continue;
-
                     $already_existed = oja_get_object_by_property_value($created_terms, 'term', $event_term . ":00");
                     $occupancy  = $already_existed == new stdClass() ? 0 : $already_existed->group_size;
                     $term_booked_as_private_party  = $already_existed == new stdClass() ? 0 : $already_existed->private_party;
@@ -122,7 +121,6 @@ function oja_get_events()
 
 
                     $term_language = oja_get_existed_term_language($already_existed) ?? $language;
-
                     if ($already_existed)
                         if (($group_size <= $event_group_size - $occupancy) && ($term_language == $language || !isset($term_language))) {
                             $event_terms[] = array(
@@ -140,6 +138,7 @@ function oja_get_events()
                     'terms' => $event_terms,
                     'max_group_size' => $event_group_size,
                     'price' => oja_get_total_price($id, $group),
+                    'times' => $event_times,
                 );
             }
         endwhile;
@@ -235,10 +234,10 @@ function oja_create_booking_ajax()
                 $errors[] = __('Language has unsupported value', 'oja');
             }
         }
-    }else{
-        $language='';
+    } else {
+        $language = '';
     }
-    if(!empty($group) && is_array($group) && oja_is_group_private_party($group)){
+    if (!empty($group) && is_array($group) && oja_is_group_private_party($group)) {
         if (empty($school_name_department)) {
             $errors[] = __('School name/Institution is required', 'oja');
         }
@@ -260,7 +259,7 @@ function oja_create_booking_ajax()
     }
 
     $term = date("Y-m-d H:i:s", strtotime($term));
-    if (oja_create_booking($email, $name, $group, $event_id, $term, $language,$tel, $school_name_department, $class_department)) {
+    if (oja_create_booking($email, $name, $group, $event_id, $term, $language, $tel, $school_name_department, $class_department)) {
         wp_send_json_success(__('The booking was successful. Please confirm booking in email.', 'oja'));
     }
     wp_send_json_error(__('Booking could not be created.', 'oja'));

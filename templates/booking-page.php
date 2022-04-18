@@ -1,4 +1,4 @@
-<?php /*Template Name: Booking page*/
+<?php 
 include plugin_dir_path(__FILE__) . 'booking-parts.php';
 oja_enqueue_scripts();
 get_header();
