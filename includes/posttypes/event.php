@@ -194,6 +194,9 @@ function oja_create_booking_ajax()
     $group = $_POST['group'];
     $email = $_POST['email'];
     $name = $_POST['name'];
+    $tel = $_POST['tel'];
+    $school_name_department = $_POST['school_name_department'];
+    $class_department = $_POST['class_department'];
     $event_id = $_POST['event_id'];
     $termsCheck = $_POST['termsCheck'];
     $privacyCheck = $_POST['privacyCheck'];
@@ -212,6 +215,14 @@ function oja_create_booking_ajax()
     } elseif (!is_email($email)) {
         $errors[] = __('Please, write correct email address.', 'oja');
     }
+
+    if (empty($tel)) {
+        $errors[] = __('Phone number is required', 'oja');
+    } elseif (!oja_is_phone_correct($tel)) {
+        $errors[] = __('Please, write valid phone number.', 'oja');
+        $errors[] = $tel;
+    }
+
     if (empty($name)) {
         $errors[] = __('Name is required', 'oja');
     }
@@ -227,7 +238,14 @@ function oja_create_booking_ajax()
     }else{
         $language='';
     }
-
+    if(!empty($group) && is_array($group) && oja_is_group_private_party($group)){
+        if (empty($school_name_department)) {
+            $errors[] = __('School name/Institution is required', 'oja');
+        }
+        if (empty($class_department)) {
+            $errors[] = __('Class/Department is required', 'oja');
+        }
+    }
     if (empty($event_id)) {
         $errors[] = __('Event ID is required', 'oja');
     }
@@ -240,8 +258,9 @@ function oja_create_booking_ajax()
     if (!empty($errors)) {
         wp_send_json_error($errors);
     }
+
     $term = date("Y-m-d H:i:s", strtotime($term));
-    if (oja_create_booking($email, $name, $group, $event_id, $term, $language)) {
+    if (oja_create_booking($email, $name, $group, $event_id, $term, $language,$tel, $school_name_department, $class_department)) {
         wp_send_json_success(__('The booking was successful. Please confirm booking in email.', 'oja'));
     }
     wp_send_json_error(__('Booking could not be created.', 'oja'));

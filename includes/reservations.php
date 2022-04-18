@@ -449,6 +449,9 @@ function oja_update_booking_status($booking_id, $status)
     if ($status == 'canceled') {
         $update_data['user_email'] = $_SERVER['REMOTE_ADDR'];
         $update_data['code'] = '';
+        $update_data['tel'] = '';
+        $update_data['name'] = '';
+        $format_data[] = '%s';
         $format_data[] = '%s';
         $format_data[] = '%s';
     }
@@ -481,7 +484,7 @@ function oja_update_term_language($term_id, $language)
  * @param string $language 
  * @return true if booking was created successfully, else return false
  */
-function oja_create_booking($user_email, $name, $group, $event_id, $term, $language)
+function oja_create_booking($user_email, $name, $group, $event_id, $term, $language, $tel, $school_name_department, $class_department)
 {
     global $wpdb;
 
@@ -516,9 +519,12 @@ function oja_create_booking($user_email, $name, $group, $event_id, $term, $langu
         'user_email' => $user_email,
         'code'      => $confirmation_code,
         'name'      => $name,
+        'tel'       => $tel,
+        'school_name_department' => $school_name_department,
+        'class_department'      =>$class_department
     );
 
-    $format = array('%d', '%s', '%s', '%s');
+    $format = array('%d', '%s', '%s', '%s', '%s', '%s', '%s');
     $wpdb->insert(BOOKING_TERMS_EVENT_TABLE_NAME, $data, $format);
     $booking_id = $wpdb->insert_id;
 
@@ -884,7 +890,7 @@ function oja_get_bookings($page = 1, $search = "", $date_from = "", $date_to = "
     $term_table = TERMS_EVENT_TABLE_NAME;
     $group_table = BOOKING_GROUP_TABLE_NAME;
     $booking_table = BOOKING_TERMS_EVENT_TABLE_NAME;
-    $query = "SELECT b.id, b.user_email, b.status, b.created, g.group_obj, g.group_size, b.term_id, t.term, t.event_id, p.post_title as event_name FROM {$booking_table} b
+    $query = "SELECT b.id, b.name, b.user_email, b.tel, b.school_name_department, b.class_department, b.status, b.created, g.group_obj, g.group_size, b.term_id, t.term, t.event_id, p.post_title as event_name FROM {$booking_table} b
         LEFT JOIN (SELECT booking_id, JSON_OBJECTAGG(category, count) as group_obj, SUM(count) as group_size
             FROM {$group_table}
             GROUP BY booking_id) AS g ON g.booking_id = b.ID
@@ -940,6 +946,7 @@ function oja_get_private_party_price_categories()
 function oja_is_group_private_party(array $group)
 {
     $private_party_cats = oja_get_private_party_price_categories();
+    //var_dump($private_party_cats);
     foreach ($private_party_cats as $cat) {
         if (array_key_exists($cat, $group) && $group[$cat] > 0) return true;
     }

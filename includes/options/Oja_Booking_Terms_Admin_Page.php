@@ -57,7 +57,7 @@ class Oja_Booking_Terms_Admin_Page
         $terms = oja_get_terms($paged, $s, $date_from, $date_to, $term_id, 15);
         $terms_count = $terms['terms_count'];
         $booking_uri_nonce = wp_create_nonce($action);
-        $booking_uri = add_query_arg(array('page' => 'oja_booking', $nonce => $booking_uri_nonce), admin_url('admin.php'));
+        $booking_uri = add_query_arg(array('page' => 'oja_booking', 'post_type' => 'oja_event', $nonce => $booking_uri_nonce), admin_url('edit.php'));
 ?>
         <div class="wrap">
             <h1><?php _e('Terms', 'oja'); ?></h1>
@@ -69,6 +69,7 @@ class Oja_Booking_Terms_Admin_Page
                     <input type="submit" id="search-submit" class="button" value="<?php _e('Search', 'oja'); ?>">
                 </p>
 
+                <input type="hidden" name="post_type" value="oja_event">
                 <input type="hidden" name="page" class="post_type_page" value="oja_booking_terms">
                 <?php wp_nonce_field($action, $nonce); ?>
 
@@ -95,7 +96,7 @@ class Oja_Booking_Terms_Admin_Page
                                 <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'oja'); ?></label>
                                 <input id="cb-select-all-1" type="checkbox">
                             </td>
-                            <th id="event_name" class="manage-column column-event_name" scope="col"><?php _e('Event name', 'oja'); ?></th>
+                            <th id="event_name" class="manage-column column-event_name" scope="col" style="width: 25%;"><?php _e('Event name', 'oja'); ?></th>
                             <th id="term" class="manage-column column-term" scope="col"><?php _e('Term', 'oja'); ?></th>
                             <th id="booking_count" class="manage-column column-booking_count num" scope="col"><?php _e('Booking count', 'oja'); ?></th>
                             <th id="group_size" class="manage-column column-group_size num" scope="col"><?php _e('Group size', 'oja'); ?></th>

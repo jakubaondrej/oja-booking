@@ -27,6 +27,9 @@ function oja_db_custom_tables()
             '(ID BIGINT NOT NULL AUTO_INCREMENT,
             user_email VARCHAR(255) NOT NULL,
             name VARCHAR(255) NOT NULL,
+            tel VARCHAR(18) NOT NULL,
+            school_name_department VARCHAR(255),
+            class_department VARCHAR(255), 
             term_id BIGINT NOT NULL,
             status VARCHAR(32) DEFAULT "created",
             code VARCHAR(64) NOT NULL,
@@ -46,15 +49,25 @@ function oja_db_custom_tables()
         oja_db_request_query($event_terms_booking_sql_create);
         oja_db_request_query($booking_group_sql_create);
     }
+    if ($installed_ver = '1.0.1') {
+        $booking_table = BOOKING_TERMS_EVENT_TABLE_NAME;
+
+        $query = "ALTER TABLE {$booking_table} 
+            ADD COLUMN tel VARCHAR(18) NOT NULL,
+            ADD COLUMN school_name_department VARCHAR(255),
+            ADD COLUMN class_department VARCHAR(255);";
+        
+        $wpdb->query($query);
+    }
     update_option("oja_db_version", $oja_actual_version);
 }
 
 
 function oja_db_request_query($query)
 {
-  global $wpdb;
-  require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-  dbDelta($query);
+    global $wpdb;
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    return dbDelta($query);
 }
 
 

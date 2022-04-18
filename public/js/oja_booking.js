@@ -41,11 +41,15 @@ $('#booking-filter').on('click','button.private-party-select', function (e){
     e.preventDefault();
     $("#booking-group-modal .price_category input").val("0");
     $(this).siblings( "input" ).val("1");
+    $("#private-party-contact-details").removeClass("hidden");
+    $("#private-party-contact-details input").prop('required',true);
     group_changed();
 });
 
 $('#booking-filter').on('click','button#button-select-group', function (e){
     $("#booking-group-modal .private_party.price_category input").val("0");
+    $("#private-party-contact-details").addClass("hidden");
+    $("#private-party-contact-details input").prop('required',false);
 });
 
 function group_changed(event) {

@@ -10,10 +10,33 @@ function oja_get_customer_contact_placeholder()
         </div>
     </div>
     <div class="form-floating">
-        <input id="oja_booking_email" type="email" class="form-control email_address" name="email" placeholder="<?php _e('Email', 'oja'); ?>" required>
+        <input id="oja_booking_email" type="email" class="form-control email_address" name="email" placeholder="<?php _e('Email', 'oja'); ?>" pattern="^[+a-zA-Z0-9\._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required>
         <label for="oja_booking_email"><?php _e('Email', 'oja'); ?></label>
         <div id="oja_booking_email-invalid-feedback" class="invalid-feedback">
             <?php _e('Please write correct email.', 'oja'); ?>
+        </div>
+    </div>
+    <div class="form-floating">
+        <input id="oja_booking_tel" type="tel" class="form-control" name="tel" placeholder="<?php _e('Phone number', 'oja'); ?>" pattern="^\+?([0-9]{3})?\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$" required>
+        <label for="oja_booking_tel"><?php _e('Phone number', 'oja'); ?></label>
+        <div id="oja_booking_tel-invalid-feedback" class="invalid-feedback">
+            <?php _e('Please write correct phone number. (+421 123 456 789)', 'oja'); ?>
+        </div>
+    </div>
+    <div id="private-party-contact-details" class="hidden">
+        <div class="form-floating">
+            <input id="oja_booking_school_institution" type="string" class="form-control" name="school_name_department" placeholder="<?php _e('School name/Institution', 'oja'); ?>">
+            <label for="oja_booking_school_institution"><?php _e('School name/Institution', 'oja'); ?></label>
+            <div id="oja_booking_school_institution-invalid-feedback" class="invalid-feedback">
+                <?php _e('Please write School name/Institution.', 'oja'); ?>
+            </div>
+        </div>
+        <div class="form-floating">
+            <input id="oja_booking_class_department" type="string" class="form-control" name="class_department" placeholder="<?php _e('Class/Department', 'oja'); ?>">
+            <label for="oja_booking_class_department"><?php _e('Class/Department', 'oja'); ?></label>
+            <div id="oja_booking_class_department-invalid-feedback" class="invalid-feedback">
+                <?php _e('Please write Class/Department.', 'oja'); ?>
+            </div>
         </div>
     </div>
 <?php
@@ -22,7 +45,7 @@ function oja_get_customer_contact_placeholder()
 function oja_get_customer_privacy_placeholder()
 {
     $oja_terms_and_conditions_page = get_option('oja_terms_and_conditions', '');
-    $privacy_page=get_privacy_policy_url();
+    $privacy_page = get_privacy_policy_url();
 ?>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="termsCheck" name="termsCheck" required>

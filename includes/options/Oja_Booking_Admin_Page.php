@@ -45,6 +45,9 @@ class Oja_Booking_Admin_Page
             $is_valid_nonce = wp_verify_nonce($_GET[$nonce], $action);
         }
 
+        $update_uri_nonce = wp_create_nonce('oja_update_booking_status');
+
+        $nonce_value=wp_create_nonce($action); // wp_nonce_field($action, $nonce); 
 
         $paged = filter_input(INPUT_GET, 'paged') ?? 1;
         $s = filter_input(INPUT_GET, 's');
@@ -60,9 +63,21 @@ class Oja_Booking_Admin_Page
         $bookings = oja_get_bookings($paged, $s, $date_from, $date_to, $term_id,  $status, 15);
         $bookings_count = $bookings['booking_count'];
         $terms_uri_nonce = wp_create_nonce($action);
-        $terms_uri = add_query_arg(array('page' => 'oja_booking_terms', $nonce => $terms_uri_nonce), admin_url('admin.php'));
+        $terms_uri = add_query_arg(array('page' => 'oja_booking_terms', 'post_type' => 'oja_event', $nonce => $terms_uri_nonce), admin_url('edit.php'));
         $update_uri_nonce = wp_create_nonce('oja_update_booking_status');
-        $update_status_uri = add_query_arg(array('page' => 'oja_booking', 'oja_update_booking_status-nonce' => $update_uri_nonce), admin_url('admin.php'));
+        $update_status_uri = add_query_arg(
+            array(
+                'page' => 'oja_booking',
+                'post_type' => 'oja_event',
+                'oja_update_booking_status-nonce' => $update_uri_nonce,
+                'filter-by-date-from' => $date_from,
+                'filter-by-date-to' => $date_to,
+                'status' => $status,
+                's' => $s,
+                $nonce =>$nonce_value
+            ),
+            admin_url('edit.php')
+        );
 
         $price_categories = get_terms(array(
             'taxonomy' => 'oja_price_categories',
@@ -73,7 +88,7 @@ class Oja_Booking_Admin_Page
             <h1><?php _e('Bookings', 'oja'); ?></h1>
             <div class="wrap">
                 <ul class="subsubsub">
-                    <li class="all"><a href="<?php echo add_query_arg(array('page' => 'oja_booking'), admin_url('admin.php')); ?>" class="current" aria-current="page">
+                    <li class="all"><a href="<?php echo add_query_arg(array('post_type' => 'oja_event','page' => 'oja_booking'), admin_url('edit.php')); ?>" class="current" aria-current="page">
                             <?php _e('All', 'oja'); ?> <span class="count">(<?php echo $bookings['booking_all_count'];; ?>)</span></a> |
                     </li>
                 </ul>
@@ -86,12 +101,11 @@ class Oja_Booking_Admin_Page
                     <input type="submit" id="search-submit" class="button" value="<?php _e('Search', 'oja'); ?>">
                 </p>
 
-                <input type="hidden" name="page" class="post_type_page" value="oja_booking">
+                <input type="hidden" name="post_type" value="oja_event">
+                <input type="hidden" name="page" value="oja_booking">
                 <input type="hidden" name="term_id" value="<?php echo $term_id; ?>">
-                <?php wp_nonce_field($action, $nonce); ?>
-
-
-
+                <input type="hidden" name="<?php echo $nonce;?>" value="<?php echo $nonce_value; ?>">
+                
                 <div class="tablenav top">
                     <div class="alignleft actions">
                         <label for="filter-by-date-from"><?php _e('From', 'oja'); ?></label>
@@ -122,13 +136,13 @@ class Oja_Booking_Admin_Page
                                 <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'oja'); ?></label>
                                 <input id="cb-select-all-1" type="checkbox">
                             </td>
-                            <th id="column-email" class="manage-column column-column-email" scope="col"><?php _e('User email', 'oja'); ?></th>
-                            <th id="term" class="manage-column column-term" scope="col"><?php _e('Term', 'oja'); ?></th>
-                            <th id="status" class="manage-column column-status" scope="col"><?php _e('Status', 'oja'); ?></th>
-                            <th id="group_size" class="manage-column column-group_size num" scope="col"><?php _e('Group size', 'oja'); ?></th>
+                            <th id="column-email" class="manage-column column-column-email" scope="col" style="width: 25%;"><?php _e('Contact', 'oja'); ?></th>
+                            <th id="term" class="manage-column column-term" scope="col" style="width: 15ch;"><?php _e('Term', 'oja'); ?></th>
+                            <th id="status" class="manage-column column-status" scope="col" style="width: 10ch;"><?php _e('Status', 'oja'); ?></th>
+                            <th id="group_size" class="manage-column column-group_size num" scope="col" style="width: 5ch;"><?php _e('Group size', 'oja'); ?></th>
                             <th id="detail" class="manage-column column-detail" scope="col"><?php _e('Detail', 'oja'); ?></th>
                             <th id="event" class="manage-column column-event" scope="col"><?php _e('Event', 'oja'); ?></th>
-                            <th id="created" class="manage-column column-created" scope="col"><?php _e('Created', 'oja'); ?></th>
+                            <th id="created" class="manage-column column-created" scope="col" style="width: 15ch;"><?php _e('Created', 'oja'); ?></th>
                         </tr>
                     </thead>
 
@@ -138,7 +152,7 @@ class Oja_Booking_Admin_Page
                                 <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'oja'); ?></label>
                                 <input id="cb-select-all-1" type="checkbox">
                             </td>
-                            <th id="column-email" class="manage-column column-column-email" scope="col"><?php _e('User email', 'oja'); ?></th>
+                            <th id="column-email" class="manage-column column-column-email" scope="col"><?php _e('Contact', 'oja'); ?></th>
                             <th id="term" class="manage-column column-term" scope="col"><?php _e('Term', 'oja'); ?></th>
                             <th id="status" class="manage-column column-status" scope="col"><?php _e('Status', 'oja'); ?></th>
                             <th id="group_size" class="manage-column column-group_size num" scope="col"><?php _e('Group size', 'oja'); ?></th>
@@ -150,12 +164,18 @@ class Oja_Booking_Admin_Page
 
                     <tbody>
                         <?php foreach ($bookings['bookings'] as $booking) :  ?>
-                            <?php $group = json_decode($booking->group_obj);
+                            
+                            <?php 
+                            //var_dump($booking);exit;
+                            $group = json_decode($booking->group_obj);
+                            $group2=array();
                             $booking_detail = array();
                             foreach ($group as $key => $value) {
                                 $cat_name = oja_get_object_by_property_value($price_categories, 'term_id', (int)$key)->name;
                                 $booking_detail[] =  $value . "x " . $cat_name;
+                                $group2[(int)$key]=$value;
                             }
+                            $contact=oja_is_group_private_party($group2)?  ", ".$booking->school_name_department . ", ".$booking->class_department:"";
                             ?>
                             <tr id="post-<?php echo $booking->id; ?>" class="iedit author-self level-0 post-<?php echo $booking->id; ?> type-post status-publish format-standard">
                                 <th scope="row" class="check-column">
@@ -165,16 +185,17 @@ class Oja_Booking_Admin_Page
                                     <input id="cb-select-<?php echo $booking->id; ?>" type="checkbox" name="user_email[]" value="<?php echo $booking->id; ?>">
                                 </th>
                                 <td class="title column-email has-row-actions column-primary" data-colname="<?php _e('User email', 'oja'); ?>">
+                                    <?php echo $booking->name; ?>,
                                     <strong>
                                         <a class="row-title" href="mailto:<?php echo $booking->user_email; ?>" aria-label="<?php echo $booking->user_email; ?> ">
                                             <?php echo $booking->user_email; ?>
                                         </a>
-                                    </strong>
+                                    </strong>, <?php echo $booking->tel . $contact; ?>
                                     <div class="row-actions">
                                         <span><a href="<?php echo add_query_arg(array('term_id' => $booking->term_id), $terms_uri); ?>"><?php _e('Show term', 'oja'); ?></a> |</span>
                                         <span><a href="<?php echo get_edit_post_link($booking->event_id); ?>"><?php _e('Edit Event', 'oja'); ?></a> |</span>
-                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'status' => "canceled"), $update_status_uri); ?>"><?php _e('Cancel', 'oja'); ?></a> |</span>
-                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'status' => "accepted"), $update_status_uri); ?>"><?php _e('Accept', 'oja'); ?></a> |</span>
+                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'new_status' => "canceled"), $update_status_uri); ?>"><?php _e('Cancel', 'oja'); ?></a> |</span>
+                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'new_status' => "accepted"), $update_status_uri); ?>"><?php _e('Accept', 'oja'); ?></a> |</span>
 
                                     </div>
                                 </td>
@@ -204,8 +225,9 @@ class Oja_Booking_Admin_Page
                     </div>
                     <br class="clear">
                 </div>
-
             </form>
+
+
         </div>
 <?php
     }
@@ -230,7 +252,7 @@ class Oja_Booking_Admin_Page
             return;
         }
         $booking = $_GET['booking'];
-        $status = $_GET['status'];
+        $status = $_GET['new_status'];
         if (!$is_valid_nonce) {
             return;
             $message = __('Sorry, your data could not be saved', 'oja');

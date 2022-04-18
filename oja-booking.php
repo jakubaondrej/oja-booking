@@ -249,18 +249,6 @@ function oja_get_currency($num)
     return $cur_val . " " . oja_get_currency_symbol($current_currency);
 }
 
-/**
- * Return unicode char by its code
- *
- * @param int $u
- * @return char
- */
-function unichr($u)
-{
-    return mb_convert_encoding('&#' . intval($u) . ';', 'UTF-8', 'HTML-ENTITIES');
-}
-
-
 function oja_booking_enqueue()
 {
     wp_enqueue_script(
@@ -273,7 +261,6 @@ function oja_booking_enqueue()
         'Oja_Currency',
         array(
             'current_currency'  => get_option('oja_current_currency', 'USD')
-
         )
     );
 
@@ -385,4 +372,8 @@ function oja_get_object_by_property_value(array $objects, $property, $value)
         }
     }
     return new stdClass();
+}
+
+function oja_is_phone_correct($number){
+    return preg_match('/^\+?([0-9]{3})?\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/i', $number);
 }
