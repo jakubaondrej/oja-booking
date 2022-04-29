@@ -4,7 +4,7 @@
  * Plugin Name:       OJA Booking
  * Plugin URI:        
  * Description:       This is my best booking plugin.
- * Version:           0.0.1
+ * Version:           1.0.0
  * Requires at least: 5.3
  * Requires PHP:      7.2
  * Author:            Ondřej Jakuba

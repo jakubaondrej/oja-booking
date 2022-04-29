@@ -775,7 +775,7 @@ function oja_create_booking_action_link($code, $booking_id, $language = null, $a
  * Get terms
  * @return array of term objects(event_name,booking_count,group_size,accepted_booking_count,accepted_group_size)
  */
-function oja_get_terms($page = 1, $search = "", $date_from = "", $date_to = "", $term_id = "", $limit = 10)
+function  oja_get_terms($page = 1, $search = "", $date_from = "", $date_to = "", $term_id = "", $limit = 10)
 {
     $page -= 1;
     global $wpdb;
@@ -790,6 +790,7 @@ function oja_get_terms($page = 1, $search = "", $date_from = "", $date_to = "", 
     else $date_to .= " 23:59:59";
     $term_table = TERMS_EVENT_TABLE_NAME;
     $booking_table = BOOKING_TERMS_EVENT_TABLE_NAME;
+    $booking_group = BOOKING_GROUP_TABLE_NAME;
     $query = "SELECT term.*, p.post_title AS event_name,
         c.booking_count AS booking_count,
         c.group_size AS group_size,
@@ -800,16 +801,16 @@ function oja_get_terms($page = 1, $search = "", $date_from = "", $date_to = "", 
         LEFT JOIN {$wpdb->prefix}posts p ON p.ID=term.event_id
 
         LEFT JOIN (SELECT b1.term_id, COUNT(DISTINCT(b1.ID)) as booking_count, SUM(g1.count) group_size FROM {$booking_table} b1
-        LEFT JOIN wp_booking_group g1 ON g1.booking_id = b1.ID
+        LEFT JOIN {$booking_group} g1 ON g1.booking_id = b1.ID
         WHERE  b1.status IN ('confirmed', 'accepted')
         GROUP BY b1.term_id) AS b ON term.id = b.term_id
 
         LEFT JOIN (SELECT b1.term_id, COUNT(DISTINCT(b1.ID)) as booking_count, SUM(g1.count) group_size FROM {$booking_table} b1
-        LEFT JOIN wp_booking_group g1 ON g1.booking_id = b1.ID
+        LEFT JOIN {$booking_group} g1 ON g1.booking_id = b1.ID
         GROUP BY b1.term_id) AS c ON term.id = c.term_id
 
         WHERE (EXISTS(SELECT * FROM {$booking_table} WHERE user_email LIKE %s AND term.ID = term_id)
-        OR EXISTS(SELECT * FROM {$wpdb->prefix}posts WHERE (post_title LIKE %s OR post_content LIKE %s) AND term.event_id= wp_posts.ID))
+        OR EXISTS(SELECT * FROM {$wpdb->prefix}posts WHERE (post_title LIKE %s OR post_content LIKE %s) AND term.event_id= {$wpdb->prefix}posts.ID))
         AND term.term >= %s AND term.term <= %s
         {$term_param}
         GROUP BY term.ID
@@ -820,8 +821,8 @@ function oja_get_terms($page = 1, $search = "", $date_from = "", $date_to = "", 
 
     $query_count = "SELECT COUNT(DISTINCT(term.ID)) FROM {$term_table} term
         
-        WHERE (EXISTS(SELECT * FROM {$booking_table} WHERE user_email LIKE %s AND term.ID = term_id)
-        OR EXISTS(SELECT * FROM {$wpdb->prefix}posts WHERE (post_title LIKE %s OR post_content LIKE %s) AND term.event_id= wp_posts.ID))
+        WHERE (EXISTS(SELECT * FROM {$booking_table} bt WHERE user_email LIKE %s AND term.ID = bt.term_id)
+        OR EXISTS(SELECT * FROM {$wpdb->prefix}posts WHERE (post_title LIKE %s OR post_content LIKE %s) AND term.event_id= {$wpdb->prefix}posts.ID))
         AND term.term >= %s AND term.term <= %s {$term_param}";
 
     $sql_query_count = $wpdb->prepare($query_count, $search, $search, $search, $date_from, $date_to, $term_id);

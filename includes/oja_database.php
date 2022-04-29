@@ -9,7 +9,7 @@ define('BOOKING_GROUP_TABLE_NAME', $wpdb->prefix . 'booking_group');
 function oja_db_custom_tables()
 {
     global $wpdb;
-    $oja_actual_version = '1.0.0';
+    $oja_actual_version = '1.0.1';
     $installed_ver = get_option("oja_db_version");
     if ($installed_ver == $oja_actual_version) {
         return;
@@ -49,7 +49,7 @@ function oja_db_custom_tables()
         oja_db_request_query($event_terms_booking_sql_create);
         oja_db_request_query($booking_group_sql_create);
     }
-    if ($installed_ver = '1.0.1') {
+    if ($installed_ver = '1.0.0') {
         $booking_table = BOOKING_TERMS_EVENT_TABLE_NAME;
 
         $query = "ALTER TABLE {$booking_table} 

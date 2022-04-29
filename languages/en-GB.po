@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Ondřej Jakuba
+# Copyright (C) YEAR Ondrej Jakuba
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: oja 0.0.1\n"
+"Project-Id-Version: oja 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-16 23:35+0200\n"
-"PO-Revision-Date: 2022-04-16 23:36+0100\n"
+"POT-Creation-Date: 2022-04-22 23:50+0200\n"
+"PO-Revision-Date: 2022-04-22 23:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,38 +18,52 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Eazy Po 0.9.5.3\n"
 
-#: oja-booking.php:130
+#: oja-booking.php:148
 msgid "&laquo;"
 msgstr ""
 
-#: oja-booking.php:131
+#: oja-booking.php:149
 msgid "&raquo;"
 msgstr ""
 
-#: oja-booking.php:145
+#: oja-booking.php:163
 #, php-format
 msgid "There are no categories. <a href=\"%s\">Please create one</a>."
 msgstr ""
 
-#: oja-booking.php:154
+#: oja-booking.php:172
+#, php-format
+msgid "Default category is not set. <a href=\"%s\">Please set it</a>."
+msgstr ""
+
+#: oja-booking.php:181
 #, php-format
 msgid ""
 "It looks like there is no \"Terms and conditions\" page. <a href=\"%s"
 "\">Please create one</a>."
 msgstr ""
 
-#: oja-booking.php:163
+#: oja-booking.php:190
 #, php-format
 msgid ""
 "It looks like there is no \"Booking\" page. <a href=\"%s\">Please create "
 "one</a>."
 msgstr ""
 
-#: oja-booking.php:172
+#: oja-booking.php:199
 #, php-format
 msgid ""
 "It looks like there is no \"Booking Confirmation\" page. <a href=\"%s"
 "\">Please create one</a>."
+msgstr ""
+
+#: oja-booking.php:207
+#, php-format
+msgid "Database \"%s\" does not exists."
+msgstr ""
+
+#: oja-booking.php:282
+msgid "Select group"
 msgstr ""
 
 #: includes/email.php:14
@@ -80,128 +94,125 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: includes/reservations.php:593 includes/reservations.php:666
-#: includes/reservations.php:692
+#: includes/reservations.php:600 includes/reservations.php:661
+#: includes/reservations.php:687
 #: includes/options/Oja_Booking_Admin_Page.php:20
 #: includes/options/Oja_Booking_Admin_Page.php:21
 msgid "Booking"
 msgstr ""
 
-#: includes/reservations.php:595
+#: includes/reservations.php:602
 msgid ""
 "Please, check and confirm your booking. If you will not confirm your booking "
 "you will lose claim on your booking. "
 msgstr ""
 
-#: includes/reservations.php:596 includes/posttypes/single-oja_event.php:129
-#: templates/single-oja_event.php:130
+#: includes/reservations.php:603 includes/posttypes/single-oja_event.php:125
 msgid "Summary"
 msgstr ""
 
-#: includes/reservations.php:597 includes/reservations.php:669
+#: includes/reservations.php:604 includes/reservations.php:664
 msgid "Booking for"
 msgstr ""
 
-#: includes/reservations.php:598
-#: includes/options/Oja_Booking_Admin_Page.php:126
-#: includes/options/Oja_Booking_Admin_Page.php:142
-#: includes/options/Oja_Booking_Admin_Page.php:181
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:99
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:116
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:145
-#: includes/posttypes/single-oja_event.php:63
-#: includes/posttypes/single-oja_event.php:70 templates/booking-parts.php:164
-#: templates/single-oja_event.php:63 templates/single-oja_event.php:70
+#: includes/reservations.php:605
+#: includes/options/Oja_Booking_Admin_Page.php:152
+#: includes/options/Oja_Booking_Admin_Page.php:168
+#: includes/options/Oja_Booking_Admin_Page.php:214
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:100
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:117
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:146
+#: includes/posttypes/single-oja_event.php:59
+#: includes/posttypes/single-oja_event.php:66 templates/booking-parts.php:164
 msgid "Term"
 msgstr ""
 
-#: includes/reservations.php:599 includes/posttypes/single-oja_event.php:92
-#: templates/booking-parts.php:36 templates/single-oja_event.php:93
+#: includes/reservations.php:608 includes/posttypes/single-oja_event.php:88
+#: templates/booking-parts.php:36
 msgid "Language"
 msgstr ""
 
-#: includes/reservations.php:600
+#: includes/reservations.php:611
 msgid "Total price"
 msgstr ""
 
-#: includes/reservations.php:601
+#: includes/reservations.php:612
 msgid "Group"
 msgstr ""
 
-#: includes/reservations.php:603
+#: includes/reservations.php:614
 msgid "Participant"
 msgstr ""
 
-#: includes/reservations.php:603 includes/posttypes/single-oja_event.php:113
-#: templates/single-oja_event.php:114
+#: includes/reservations.php:614 includes/posttypes/single-oja_event.php:109
 msgid "Count"
 msgstr ""
 
-#: includes/reservations.php:603
+#: includes/reservations.php:614
 msgid "Price per one"
 msgstr ""
 
-#: includes/reservations.php:630
+#: includes/reservations.php:625
 #, php-format
 msgid ""
 "<p>Everything looks OK? Please, <a href=\"%1$s\">Confirm your reservation</"
 "a> otherwise you can <a href=\"%2$s\">Cancel your reservation</a> </p>"
 msgstr ""
 
-#: includes/reservations.php:640 includes/reservations.php:682
+#: includes/reservations.php:635 includes/reservations.php:677
 #, php-format
 msgid "<p>More info you can find on <a href=\"%1$s\">%2$s</a>.</p>"
 msgstr ""
 
-#: includes/reservations.php:650
+#: includes/reservations.php:645
 msgid "booking"
 msgstr ""
 
-#: includes/reservations.php:668
+#: includes/reservations.php:663
 msgid ""
 "Your booking for this term already exists. It is not possible to create 2 or "
 "more booking for single email. No changes has been done."
 msgstr ""
 
-#: includes/reservations.php:672
+#: includes/reservations.php:667
 #, php-format
 msgid ""
 "<p>You can <a href=\"%1$s\">cancel your reservation</a> and after that you "
 "can create another new one.</p>"
 msgstr ""
 
-#: includes/reservations.php:701 includes/reservations.php:706
+#: includes/reservations.php:696 includes/reservations.php:701
 msgid "Booking cancellation"
 msgstr ""
 
-#: includes/reservations.php:703
+#: includes/reservations.php:698
 msgid "Your booking was cancelled."
 msgstr ""
 
-#: includes/reservations.php:734
+#: includes/reservations.php:729
 msgid "Booking does not exist."
 msgstr ""
 
-#: includes/reservations.php:742
+#: includes/reservations.php:737
 msgid "Sorry, You are too late. Term is already full."
 msgstr ""
 
-#: includes/reservations.php:747
+#: includes/reservations.php:742
 msgid ""
 "Sorry, You are too late. Term is not available in your selected language."
 msgstr ""
 
-#: includes/reservations.php:756
+#: includes/reservations.php:751
 #, php-format
 msgid "Your booking has been %1$s."
 msgstr ""
 
-#: includes/reservations.php:759
+#: includes/reservations.php:754
 #, php-format
 msgid "Your booking is already %1$s."
 msgstr ""
 
-#: includes/reservations.php:762
+#: includes/reservations.php:757
 msgid "Booking confirmation has failed"
 msgstr ""
 
@@ -270,8 +281,9 @@ msgid "You do not have enough permissions"
 msgstr ""
 
 #: includes/options/Oja_Bank_Holiday_Options_Page.php:113
-#: includes/options/Oja_Booking_Admin_Page.php:241
+#: includes/options/Oja_Booking_Admin_Page.php:275
 #: includes/options/Oja_Booking_Language_Options_Page.php:132
+#: includes/options/Oja_Color_Style.php:192
 #: includes/options/Oja_Currency_Options_Page.php:103
 #: includes/options/Oja_Price_Categories_Options_Page.php:110
 #: includes/options/Oja_Terms_Conditions.php:137
@@ -279,127 +291,131 @@ msgid "Successfully updated"
 msgstr ""
 
 #: includes/options/Oja_Bank_Holiday_Options_Page.php:116
-msgid "WTF?"
+msgid "Something failed."
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:73
+#: includes/options/Oja_Booking_Admin_Page.php:100
 msgid "Bookings"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:77
+#: includes/options/Oja_Booking_Admin_Page.php:104
 msgid "All"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:84
-#: includes/options/Oja_Booking_Admin_Page.php:86
+#: includes/options/Oja_Booking_Admin_Page.php:111
+#: includes/options/Oja_Booking_Admin_Page.php:113
 #: includes/options/Oja_Booking_Terms_Admin_Page.php:67
 #: includes/options/Oja_Booking_Terms_Admin_Page.php:69
 msgid "Search"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:97
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:79
-#: includes/posttypes/single-oja_event.php:59
-#: templates/single-oja_event.php:59
+#: includes/options/Oja_Booking_Admin_Page.php:123
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:80
+#: includes/posttypes/single-oja_event.php:55
 msgid "From"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:99
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:81
-#: includes/posttypes/single-oja_event.php:60
-#: templates/single-oja_event.php:60
+#: includes/options/Oja_Booking_Admin_Page.php:125
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:82
+#: includes/posttypes/single-oja_event.php:56
 msgid "to"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:101
+#: includes/options/Oja_Booking_Admin_Page.php:127
 msgid "Filter by status"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:103
+#: includes/options/Oja_Booking_Admin_Page.php:129
 msgid "All statuses"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:110
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:84
+#: includes/options/Oja_Booking_Admin_Page.php:136
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:85
 msgid "Filter"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:122
-#: includes/options/Oja_Booking_Admin_Page.php:138
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:95
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:112
+#: includes/options/Oja_Booking_Admin_Page.php:148
+#: includes/options/Oja_Booking_Admin_Page.php:164
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:96
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:113
 msgid "Select all"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:125
-#: includes/options/Oja_Booking_Admin_Page.php:141
+#: includes/options/Oja_Booking_Admin_Page.php:151
 #: includes/options/Oja_Booking_Admin_Page.php:167
-msgid "User email"
+#: templates/booking-parts.php:82
+msgid "Contact"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:127
-#: includes/options/Oja_Booking_Admin_Page.php:143
-#: includes/options/Oja_Booking_Admin_Page.php:186
+#: includes/options/Oja_Booking_Admin_Page.php:153
+#: includes/options/Oja_Booking_Admin_Page.php:169
+#: includes/options/Oja_Booking_Admin_Page.php:219
 msgid "Status"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:128
-#: includes/options/Oja_Booking_Admin_Page.php:144
-#: includes/options/Oja_Booking_Admin_Page.php:187
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:101
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:118
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:151
+#: includes/options/Oja_Booking_Admin_Page.php:154
+#: includes/options/Oja_Booking_Admin_Page.php:170
+#: includes/options/Oja_Booking_Admin_Page.php:220
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:102
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:119
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:152
 msgid "Group size"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:129
-#: includes/options/Oja_Booking_Admin_Page.php:145
-#: includes/options/Oja_Booking_Admin_Page.php:188
+#: includes/options/Oja_Booking_Admin_Page.php:155
+#: includes/options/Oja_Booking_Admin_Page.php:171
+#: includes/options/Oja_Booking_Admin_Page.php:221
 msgid "Detail"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:130
-#: includes/options/Oja_Booking_Admin_Page.php:146
-#: includes/options/Oja_Booking_Admin_Page.php:189
+#: includes/options/Oja_Booking_Admin_Page.php:156
+#: includes/options/Oja_Booking_Admin_Page.php:172
+#: includes/options/Oja_Booking_Admin_Page.php:222
 msgid "Event"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:131
-#: includes/options/Oja_Booking_Admin_Page.php:147
-#: includes/options/Oja_Booking_Admin_Page.php:194
+#: includes/options/Oja_Booking_Admin_Page.php:157
+#: includes/options/Oja_Booking_Admin_Page.php:173
+#: includes/options/Oja_Booking_Admin_Page.php:227
 msgid "Created"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:174
+#: includes/options/Oja_Booking_Admin_Page.php:199
+msgid "User email"
+msgstr ""
+
+#: includes/options/Oja_Booking_Admin_Page.php:207
 msgid "Show term"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:175
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:142
+#: includes/options/Oja_Booking_Admin_Page.php:208
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:143
 msgid "Edit Event"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:176
+#: includes/options/Oja_Booking_Admin_Page.php:209
 msgid "Cancel"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:177
+#: includes/options/Oja_Booking_Admin_Page.php:210
 msgid "Accept"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:236
+#: includes/options/Oja_Booking_Admin_Page.php:270
 #: includes/options/Oja_Booking_Language_Options_Page.php:123
+#: includes/options/Oja_Color_Style.php:165
 #: includes/options/Oja_Price_Categories_Options_Page.php:104
 #: includes/options/Oja_Terms_Conditions.php:126
 msgid "Sorry, your data could not be saved"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:244
+#: includes/options/Oja_Booking_Admin_Page.php:278
 msgid "Something went wrong"
 msgstr ""
 
-#: includes/options/Oja_Booking_Admin_Page.php:248
+#: includes/options/Oja_Booking_Admin_Page.php:282
 #: includes/options/Oja_Booking_Language_Options_Page.php:135
+#: includes/options/Oja_Color_Style.php:196
 #: includes/options/Oja_Currency_Options_Page.php:106
 #: includes/options/Oja_Price_Categories_Options_Page.php:113
 #: includes/options/Oja_Terms_Conditions.php:140
@@ -444,32 +460,61 @@ msgstr ""
 msgid "Terms"
 msgstr ""
 
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:98
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:115
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:134
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:99
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:116
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:135
 msgid "Event name"
 msgstr ""
 
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:100
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:117
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:150
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:101
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:118
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:151
 msgid "Booking count"
-msgstr ""
-
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:102
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:119
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:152
-msgid "Accepted booking count"
 msgstr ""
 
 #: includes/options/Oja_Booking_Terms_Admin_Page.php:103
 #: includes/options/Oja_Booking_Terms_Admin_Page.php:120
 #: includes/options/Oja_Booking_Terms_Admin_Page.php:153
+msgid "Accepted booking count"
+msgstr ""
+
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:104
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:121
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:154
 msgid "Accepted group size"
 msgstr ""
 
-#: includes/options/Oja_Booking_Terms_Admin_Page.php:141
+#: includes/options/Oja_Booking_Terms_Admin_Page.php:142
 msgid "Show bookings"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:41
+#: includes/options/Oja_Color_Style.php:42
+msgid "Color style booking"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:61
+msgid "Booking - Color settings"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:170
+msgid "Please, set valid primary color"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:174
+msgid "Please, set valid secondary color"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:178
+msgid "Please, set valid primary hover color"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:182
+msgid "Please, set valid body color"
+msgstr ""
+
+#: includes/options/Oja_Color_Style.php:186
+msgid "Please, set valid light color"
 msgstr ""
 
 #: includes/options/Oja_Currency_Options_Page.php:19
@@ -542,109 +587,117 @@ msgstr ""
 msgid "Inputs are not correct."
 msgstr ""
 
-#: includes/posttypes/event.php:148
+#: includes/posttypes/event.php:147
 msgid ""
 "We are sorry, there is nothing for this date. Please, select another date."
 msgstr ""
 
-#: includes/posttypes/event.php:166
+#: includes/posttypes/event.php:165
 msgid "There is no post found."
 msgstr ""
 
-#: includes/posttypes/event.php:184
+#: includes/posttypes/event.php:183
 msgid "Method only for ajax."
 msgstr ""
 
-#: includes/posttypes/event.php:203
+#: includes/posttypes/event.php:205
 msgid "Term is required"
 msgstr ""
 
-#: includes/posttypes/event.php:206
+#: includes/posttypes/event.php:208
 msgid "Group is required"
 msgstr ""
 
-#: includes/posttypes/event.php:208
+#: includes/posttypes/event.php:210
 msgid "Please, change group size. It looks like it is empty."
 msgstr ""
 
-#: includes/posttypes/event.php:211
+#: includes/posttypes/event.php:213
 msgid "Email is required"
 msgstr ""
 
-#: includes/posttypes/event.php:213
+#: includes/posttypes/event.php:215
 msgid "Please, write correct email address."
 msgstr ""
 
-#: includes/posttypes/event.php:216
+#: includes/posttypes/event.php:219
+msgid "Phone number is required"
+msgstr ""
+
+#: includes/posttypes/event.php:221
+msgid "Please, write valid phone number."
+msgstr ""
+
+#: includes/posttypes/event.php:226
 msgid "Name is required"
 msgstr ""
 
-#: includes/posttypes/event.php:220
+#: includes/posttypes/event.php:230
 msgid "Language is required"
 msgstr ""
 
-#: includes/posttypes/event.php:224
+#: includes/posttypes/event.php:234
 msgid "Language has unsupported value"
 msgstr ""
 
-#: includes/posttypes/event.php:230
-msgid "Event ID is required"
-msgstr ""
-
-#: includes/posttypes/event.php:233
-msgid "Terms and Conditions acceptation is required"
-msgstr ""
-
-#: includes/posttypes/event.php:236
-msgid "Privacy Policy acceptation is required"
-msgstr ""
-
-#: includes/posttypes/event.php:243
-msgid "The booking was successful. Please confirm booking in email."
+#: includes/posttypes/event.php:242
+msgid "School name/Institution is required"
 msgstr ""
 
 #: includes/posttypes/event.php:245
+msgid "Class/Department is required"
+msgstr ""
+
+#: includes/posttypes/event.php:249
+msgid "Event ID is required"
+msgstr ""
+
+#: includes/posttypes/event.php:252
+msgid "Terms and Conditions acceptation is required"
+msgstr ""
+
+#: includes/posttypes/event.php:255
+msgid "Privacy Policy acceptation is required"
+msgstr ""
+
+#: includes/posttypes/event.php:263
+msgid "The booking was successful. Please confirm booking in email."
+msgstr ""
+
+#: includes/posttypes/event.php:265
 msgid "Booking could not be created."
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:46
-#: templates/single-oja_event.php:46
+#: includes/posttypes/single-oja_event.php:42
 msgid "Languages"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:52
-#: templates/single-oja_event.php:52
+#: includes/posttypes/single-oja_event.php:48
 msgid "Maximum group size"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:53
-#: templates/single-oja_event.php:53
+#: includes/posttypes/single-oja_event.php:49
 #, php-format
 msgid "%d people"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:112
-#: templates/single-oja_event.php:113
+#: includes/posttypes/single-oja_event.php:108
 msgid "Category"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:114
-#: templates/single-oja_event.php:115
+#: includes/posttypes/single-oja_event.php:110
 msgid "Price"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:135
-#: templates/single-oja_event.php:136
+#: includes/posttypes/single-oja_event.php:131
 msgid "Book now"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:143
-#: templates/single-oja_event.php:144
+#: includes/posttypes/single-oja_event.php:139
 msgid "Page"
 msgstr ""
 
-#: includes/posttypes/single-oja_event.php:146
-#: templates/single-oja_event.php:147
+#: includes/posttypes/single-oja_event.php:142
 msgid "Page %"
 msgstr ""
 
@@ -678,7 +731,7 @@ msgstr ""
 msgid "No one else can book on the same term."
 msgstr ""
 
-#: templates/booking-page.php:23
+#: templates/booking-page.php:25
 msgid "Loading"
 msgstr ""
 
@@ -695,15 +748,15 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: templates/booking-parts.php:82
-msgid "Contact"
-msgstr ""
-
 #: templates/booking-parts.php:93 templates/booking-parts.php:186
 msgid "Book"
 msgstr ""
 
-#: templates/booking-parts.php:142
+#: templates/booking-parts.php:140
+msgid "Or"
+msgstr ""
+
+#: templates/booking-parts.php:143
 #, php-format
 msgid "Select %1$s"
 msgstr ""
@@ -732,14 +785,38 @@ msgstr ""
 msgid "Please write correct email."
 msgstr ""
 
-#: templates/contact.php:30
+#: templates/contact.php:20 templates/contact.php:21
+msgid "Phone number"
+msgstr ""
+
+#: templates/contact.php:23
+msgid "Please write correct phone number. (+421 123 456 789)"
+msgstr ""
+
+#: templates/contact.php:28 templates/contact.php:29
+msgid "School name/Institution"
+msgstr ""
+
+#: templates/contact.php:31
+msgid "Please write School name/Institution."
+msgstr ""
+
+#: templates/contact.php:35 templates/contact.php:36
+msgid "Class/Department"
+msgstr ""
+
+#: templates/contact.php:38
+msgid "Please write Class/Department."
+msgstr ""
+
+#: templates/contact.php:53
 #, php-format
 msgid ""
 "By ticking this box, I confirm that I have read the <a href=\"%1$s\">Terms "
 "and Conditions</a>."
 msgstr ""
 
-#: templates/contact.php:36
+#: templates/contact.php:59
 #, php-format
 msgid ""
 "By ticking this box, I confirm that I have read the <a href=\"%1$s\">Privacy "
