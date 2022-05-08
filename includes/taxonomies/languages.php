@@ -1,8 +1,8 @@
 <?php 
 function ojabooking_register_language_taxonomy(){
     $labels=array(
-        'name'  => _x('Languages','language tags', 'oja'),
-        'singular_name'  => _x('Language','language tag', 'oja'),
+        'name'  => _x('Languages','language tags', 'ojabooking'),
+        'singular_name'  => _x('Language','language tag', 'ojabooking'),
     );
     $args=array(
         'hierarchical'      => false,

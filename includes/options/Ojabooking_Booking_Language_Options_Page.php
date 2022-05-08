@@ -16,8 +16,8 @@ class Ojabooking_Booking_Language_Options_Page
     function admin_menu()
     {
         add_options_page(
-            __('Booking Languages', 'oja'),
-            __('Booking Languages', 'oja'),
+            __('Booking Languages', 'ojabooking'),
+            __('Booking Languages', 'ojabooking'),
             'manage_options',
             'ojabooking_booking_language',
             array(
@@ -52,30 +52,30 @@ class Ojabooking_Booking_Language_Options_Page
 ?>
         <template id="ojabooking_booking_language_template">
             <div>
-                <input type="radio" class="default-language" name="default-language" value="" title="<?php _e('Default language', 'oja'); ?>">
+                <input type="radio" class="default-language" name="default-language" value="" title="<?php _e('Default language', 'ojabooking'); ?>">
                 <input class="booking_language_name" name="ojabooking_booking_language[]" type="text" value="" maxlength="32">
-                <button class="button remove-booking" style="margin: 0 1rem;"><?php _e('Remove', 'oja'); ?></button>
+                <button class="button remove-booking" style="margin: 0 1rem;"><?php _e('Remove', 'ojabooking'); ?></button>
             </div>
         </template>
         <div class="wrap">
-            <h1><?php _e('Booking languages', 'oja'); ?></h1>
+            <h1><?php _e('Booking languages', 'ojabooking'); ?></h1>
             <?php settings_errors('ojabooking_booking'); ?>
             <form action="" method="post">
-                <h4><?php _e('Do you offer events in 2 or more languages?', 'oja'); ?></h4>
+                <h4><?php _e('Do you offer events in 2 or more languages?', 'ojabooking'); ?></h4>
 
                 <input type="radio" name="use_languages" value="0" id="use_languages_false" <?php checked(0, $use_languages); ?>>
                 <label class="form-check-label" for="use_languages_false">
-                    <?php _e('No', 'oja') ?>
+                    <?php _e('No', 'ojabooking') ?>
                 </label>
 
                 <input type="radio" name="use_languages" value="1" id="use_languages_true" <?php checked(1, $use_languages); ?>>
                 <label class="form-check-label" for="use_languages_true">
-                    <?php _e('Yes', 'oja') ?>
+                    <?php _e('Yes', 'ojabooking') ?>
                 </label>
                 <tr>
                     <th scope="row">
                         <label for="ojabooking_booking">
-                            <h4><?php _e('Default booking language', 'oja'); ?></h4>
+                            <h4><?php _e('Default booking language', 'ojabooking'); ?></h4>
                         </label>
                     </th>
                     <td>
@@ -90,7 +90,7 @@ class Ojabooking_Booking_Language_Options_Page
                     </td>
                 </tr>
 
-                <?php submit_button(__('Save', 'oja')); ?>
+                <?php submit_button(__('Save', 'ojabooking')); ?>
                 <?php wp_nonce_field('ojabooking_booking_language-save', 'ojabooking_booking_language-save-nonce'); ?>
             </form>
         </div>
@@ -120,7 +120,7 @@ class Ojabooking_Booking_Language_Options_Page
         $is_nonce_ok = $is_nonce_set && $is_valid_nonce;
         if (!$is_nonce_ok) {
             return;
-            $message = __('Sorry, your data could not be saved', 'oja');
+            $message = __('Sorry, your data could not be saved', 'ojabooking');
             $type = 'error';
         } elseif (isset($_POST['use_languages'])) {
             $use_languages = $_POST['use_languages'];
@@ -129,10 +129,10 @@ class Ojabooking_Booking_Language_Options_Page
             $default_language = $_POST['default-language'];
             update_option('ojabooking_default_booking_language', $default_language);
 
-            $message = __('Successfully updated', 'oja');
+            $message = __('Successfully updated', 'ojabooking');
             $type = 'updated';
         } else {
-            $message = __('Invalid request', 'oja');
+            $message = __('Invalid request', 'ojabooking');
             $type = 'error';
         }
         /* Here is where you update your options. Depending on what you've implemented,

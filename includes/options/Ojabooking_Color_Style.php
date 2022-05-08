@@ -38,8 +38,8 @@ class Ojabooking_Color_Style
     function admin_menu()
     {
         add_options_page(
-            __('Color style booking', 'oja'),
-            __('Color style booking', 'oja'),
+            __('Color style booking', 'ojabooking'),
+            __('Color style booking', 'ojabooking'),
             'manage_options',
             'ojabooking_color_style',
             array(
@@ -58,7 +58,7 @@ class Ojabooking_Color_Style
         $this->save_options();
 ?>
         <div class="wrap privacy-settings-body">
-            <h1><?php _e('Booking - Color settings', 'oja'); ?></h1>
+            <h1><?php _e('Booking - Color settings', 'ojabooking'); ?></h1>
             <form method="post" action="">
 
                 <?php wp_nonce_field('ojabooking_color_style-save', 'ojabooking_color_style-save-nonce'); ?>
@@ -162,38 +162,38 @@ class Ojabooking_Color_Style
         $is_nonce_ok = $is_nonce_set && $is_valid_nonce;
         if (!$is_nonce_ok) {
             return;
-            $message = __('Sorry, your data could not be saved', 'oja');
+            $message = __('Sorry, your data could not be saved', 'ojabooking');
             $type = 'error';
         } elseif (isset($_POST['ojabooking_color_style'])) {
             $colors = $_POST['ojabooking_color_style'];
             if (FALSE === $this->check_color($colors['primary_color'])) {
-                $message = __('Please, set valid primary color', 'oja');
+                $message = __('Please, set valid primary color', 'ojabooking');
                 $type = 'error';
             } 
             elseif (FALSE === $this->check_color($colors['secondary_color'])) {
-                $message = __('Please, set valid secondary color', 'oja');
+                $message = __('Please, set valid secondary color', 'ojabooking');
                 $type = 'error';
             }
             elseif (FALSE === $this->check_color($colors['primary_hover_color'])) {
-                $message = __('Please, set valid primary hover color', 'oja');
+                $message = __('Please, set valid primary hover color', 'ojabooking');
                 $type = 'error';
             }
             elseif (FALSE === $this->check_color($colors['body_color'])) {
-                $message = __('Please, set valid body color', 'oja');
+                $message = __('Please, set valid body color', 'ojabooking');
                 $type = 'error';
             } 
             elseif (FALSE === $this->check_color($colors['light_color'])) {
-                $message = __('Please, set valid light color', 'oja');
+                $message = __('Please, set valid light color', 'ojabooking');
                 $type = 'error';
             }
             else {
                 update_option('ojabooking_color_style', $colors);
                 $this->options = $colors;
-                $message = __('Successfully updated', 'oja');
+                $message = __('Successfully updated', 'ojabooking');
                 $type = 'updated';
             }
         } else {
-            $message = __('Invalid request', 'oja');
+            $message = __('Invalid request', 'ojabooking');
             $type = 'error';
         }
         /* Here is where you update your options. Depending on what you've implemented,

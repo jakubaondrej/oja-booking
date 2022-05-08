@@ -161,7 +161,7 @@ if (is_admin()) {
     {
         $class = 'notice notice-warning is-dismissible';
         $url = admin_url('edit-tags.php?taxonomy=ojabooking_price_categories'); //&post_type=ojabooking_event
-        $link = sprintf(wp_kses(__('There are no categories. <a href="%s">Please create one</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
+        $link = sprintf(wp_kses(__('There are no categories. <a href="%s">Please create one</a>.', 'ojabooking'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
     }
@@ -170,7 +170,7 @@ if (is_admin()) {
     {
         $class = 'notice notice-warning is-dismissible';
         $url = admin_url('options-general.php?page=ojabooking_price_categories'); //&post_type=ojabooking_event
-        $link = sprintf(wp_kses(__('Default category is not set. <a href="%s">Please set it</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
+        $link = sprintf(wp_kses(__('Default category is not set. <a href="%s">Please set it</a>.', 'ojabooking'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
     }
@@ -179,7 +179,7 @@ if (is_admin()) {
     {
         $class = 'notice notice-warning is-dismissible';
         $url = admin_url('options-general.php?page=ojabooking_terms_conditions'); //&post_type=ojabooking_event
-        $link = sprintf(wp_kses(__('It looks like there is no "Terms and conditions" page. <a href="%s">Please create one</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
+        $link = sprintf(wp_kses(__('It looks like there is no "Terms and conditions" page. <a href="%s">Please create one</a>.', 'ojabooking'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
     }
@@ -188,7 +188,7 @@ if (is_admin()) {
     {
         $class = 'notice notice-warning is-dismissible';
         $url = admin_url('edit.php?post_type=page'); //&post_type=ojabooking_event
-        $link = sprintf(wp_kses(__('It looks like there is no "Booking" page. <a href="%s">Please create one</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
+        $link = sprintf(wp_kses(__('It looks like there is no "Booking" page. <a href="%s">Please create one</a>.', 'ojabooking'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
     }
@@ -197,7 +197,7 @@ if (is_admin()) {
     {
         $class = 'notice notice-warning is-dismissible';
         $url = admin_url('edit.php?post_type=page'); //&post_type=ojabooking_event
-        $link = sprintf(wp_kses(__('It looks like there is no "Booking Confirmation" page. <a href="%s">Please create one</a>.', 'oja'), array('a' => array('href' => array()))), esc_url($url));
+        $link = sprintf(wp_kses(__('It looks like there is no "Booking Confirmation" page. <a href="%s">Please create one</a>.', 'ojabooking'), array('a' => array('href' => array()))), esc_url($url));
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $link);
     }
@@ -205,7 +205,7 @@ if (is_admin()) {
     function ojabooking_admin_DB_warning($db_name)
     {
         $class = 'notice notice-warning is-dismissible';
-        $text = sprintf(esc_html__('Database "%s" does not exists.', 'oja'), $db_name);
+        $text = sprintf(esc_html__('Database "%s" does not exists.', 'ojabooking'), $db_name);
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $text);
     }
 
@@ -280,7 +280,7 @@ function ojabooking_booking_enqueue()
             'current_page' => 0,
             'posts_per_page' => 6,
             'private_party' => ojabooking_get_private_party_price_categories(),
-            'select_group_text' => __('Select group','oja')
+            'select_group_text' => __('Select group','ojabooking')
         )
     );
     wp_enqueue_style(

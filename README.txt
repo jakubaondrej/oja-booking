@@ -1,6 +1,5 @@
 === OJA Booking ===
-Contributors: @jakubaondrej
-Donate link: https://example.com/
+Contributors: jakubaondrej
 Tags: Booking, Events, Reservation, Private party, Multilanguage
 Requires at least: 5.3
 Tested up to: 5.9.3

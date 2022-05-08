@@ -16,8 +16,8 @@ class Ojabooking_Price_Categories_Options_Page
     function admin_menu()
     {
         add_options_page(
-            __('Price Categories', 'oja'),
-            __('Price Categories', 'oja'),
+            __('Price Categories', 'ojabooking'),
+            __('Price Categories', 'ojabooking'),
             'manage_options',
             'ojabooking_price_categories',
             array(
@@ -52,12 +52,12 @@ $default_category = get_option('ojabooking_default_price_category','');
 ?>
 
 <div class="wrap">
-    <h1><?php _e('Price Categories', 'oja'); ?></h1>
+    <h1><?php _e('Price Categories', 'ojabooking'); ?></h1>
     <?php settings_errors('ojabooking_booking'); ?>
     <form action="" method="post">
         <tr>
             <th scope="row">
-                <label for="ojabooking_booking"><h4><?php _e('Select default category', 'oja'); ?></h4></label>
+                <label for="ojabooking_booking"><h4><?php _e('Select default category', 'ojabooking'); ?></h4></label>
             </th>
             <td>
                 <div id="ojabooking_booking_categories">
@@ -71,7 +71,7 @@ $default_category = get_option('ojabooking_default_price_category','');
             </td>
         </tr>
 
-        <?php submit_button(__('Save', 'oja')); ?>
+        <?php submit_button(__('Save', 'ojabooking')); ?>
         <?php wp_nonce_field('ojabooking_booking_categories-save', 'ojabooking_booking_categories-save-nonce'); ?>
     </form>
 </div>
@@ -101,16 +101,16 @@ $default_category = get_option('ojabooking_default_price_category','');
         $is_nonce_ok = $is_nonce_set && $is_valid_nonce;
         if (!$is_nonce_ok) {
             return;
-            $message = __('Sorry, your data could not be saved', 'oja');
+            $message = __('Sorry, your data could not be saved', 'ojabooking');
             $type = 'error';
         } elseif (isset($_POST['default-category'])) {
             $default_price_category = $_POST['default-category'];
             //- Sanitize the code
             update_option('ojabooking_default_price_category', $default_price_category);
-            $message = __('Successfully updated', 'oja');
+            $message = __('Successfully updated', 'ojabooking');
             $type = 'updated';
         } else {
-            $message = __('Invalid request', 'oja');
+            $message = __('Invalid request', 'ojabooking');
             $type = 'error';
         }
         /* Here is where you update your options. Depending on what you've implemented,

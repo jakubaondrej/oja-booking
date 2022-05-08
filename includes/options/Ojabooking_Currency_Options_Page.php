@@ -16,8 +16,8 @@ class Ojabooking_Currency_Options_Page
     function admin_menu()
     {
         add_options_page(
-            __('Currency', 'oja'),
-            __('Currency', 'oja'),
+            __('Currency', 'ojabooking'),
+            __('Currency', 'ojabooking'),
             'manage_options',
             'ojabooking_currency',
             array(
@@ -42,14 +42,14 @@ class Ojabooking_Currency_Options_Page
         $current_currency = get_option('ojabooking_current_currency');
 ?>
         <div class="wrap">
-            <h1><?php _e('Currency', 'oja'); ?></h1>
+            <h1><?php _e('Currency', 'ojabooking'); ?></h1>
             <?php settings_errors('ojabooking_currency'); ?>
 
             <form action="" method="post">
                 <tr>
                     <th scope="row">
                         <label for="ojabooking_currency">
-                            <h4><?php _e('Select currency', 'oja'); ?></h4>
+                            <h4><?php _e('Select currency', 'ojabooking'); ?></h4>
                         </label>
                     </th>
                     <td>
@@ -66,7 +66,7 @@ class Ojabooking_Currency_Options_Page
 
                 </tr>
 
-                <?php submit_button(__('Save', 'oja')); ?>
+                <?php submit_button(__('Save', 'ojabooking')); ?>
                 <?php wp_nonce_field('oja-currency-save', 'oja-currency-save-nonce'); ?>
             </form>
         </div>
@@ -100,10 +100,10 @@ class Ojabooking_Currency_Options_Page
             $current_currency = $_POST['ojabooking_current_currency'];
 
             update_option('ojabooking_current_currency', $current_currency);
-            $message = __('Successfully updated', 'oja');
+            $message = __('Successfully updated', 'ojabooking');
             $type = 'success';
         } else {
-            $message = __('Invalid request', 'oja');
+            $message = __('Invalid request', 'ojabooking');
             $type = 'error';
         }
 

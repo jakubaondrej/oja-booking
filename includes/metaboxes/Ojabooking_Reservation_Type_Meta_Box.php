@@ -54,9 +54,9 @@ abstract class Ojabooking_Reservation_Type_Meta_Box
         ?>
         <fieldset>
             <input type="radio" id="one_day_event" name="ojabooking_reservation_type" value="one_day_event" <?php checked($ojabooking_reservation_type,'one_day_event') ?>>
-            <label for="one_day_event"><?php _e('One day event','oja'); ?></label>
+            <label for="one_day_event"><?php _e('One day event','ojabooking'); ?></label>
             <input type="radio" id="periodical_event" name="ojabooking_reservation_type" value="periodical_event" <?php checked($ojabooking_reservation_type,'periodical_event') ?>>
-            <label for="periodical_event"><?php _e('Periodical event','oja'); ?></label>
+            <label for="periodical_event"><?php _e('Periodical event','ojabooking'); ?></label>
         </fieldset>
         <?php
     }

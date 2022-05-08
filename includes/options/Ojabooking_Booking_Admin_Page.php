@@ -17,8 +17,8 @@ class Ojabooking_Booking_Admin_Page
     {
         add_submenu_page(
             'edit.php?post_type=ojabooking_event',
-            __('Booking', 'oja'),
-            __('Booking', 'oja'),
+            __('Booking', 'ojabooking'),
+            __('Booking', 'ojabooking'),
             'edit_published_pages',
             'ojabooking_booking',
             array(
@@ -85,20 +85,20 @@ class Ojabooking_Booking_Admin_Page
         ));
 ?>
         <div class="wrap">
-            <h1><?php _e('Bookings', 'oja'); ?></h1>
+            <h1><?php _e('Bookings', 'ojabooking'); ?></h1>
             <div class="wrap">
                 <ul class="subsubsub">
                     <li class="all"><a href="<?php echo add_query_arg(array('post_type' => 'ojabooking_event','page' => 'ojabooking_booking'), admin_url('edit.php')); ?>" class="current" aria-current="page">
-                            <?php _e('All', 'oja'); ?> <span class="count">(<?php echo $bookings['booking_all_count'];; ?>)</span></a> |
+                            <?php _e('All', 'ojabooking'); ?> <span class="count">(<?php echo $bookings['booking_all_count'];; ?>)</span></a> |
                     </li>
                 </ul>
             </div>
             <form id="posts-filter" method="get">
 
                 <p class="search-box">
-                    <label class="screen-reader-text" for="post-search-input"><?php _e('Search', 'oja'); ?>:</label>
+                    <label class="screen-reader-text" for="post-search-input"><?php _e('Search', 'ojabooking'); ?>:</label>
                     <input type="search" id="post-search-input" name="s" value="<?php echo $s; ?>">
-                    <input type="submit" id="search-submit" class="button" value="<?php _e('Search', 'oja'); ?>">
+                    <input type="submit" id="search-submit" class="button" value="<?php _e('Search', 'ojabooking'); ?>">
                 </p>
 
                 <input type="hidden" name="post_type" value="ojabooking_event">
@@ -108,22 +108,22 @@ class Ojabooking_Booking_Admin_Page
                 
                 <div class="tablenav top">
                     <div class="alignleft actions">
-                        <label for="filter-by-date-from"><?php _e('From', 'oja'); ?></label>
+                        <label for="filter-by-date-from"><?php _e('From', 'ojabooking'); ?></label>
                         <input id="filter-by-date-from" type="date" value="<?php echo $date_from; ?>" name="date_from">
-                        <label for="filter-by-date-to"><?php _e('to', 'oja'); ?></label>
+                        <label for="filter-by-date-to"><?php _e('to', 'ojabooking'); ?></label>
                         <input id="filter-by-date-to" type="date" value="<?php echo $date_to; ?>" name="date_to">
-                        <label class="screen-reader-text" for="cat"><?php _e('Filter by status', 'oja'); ?></label>
+                        <label class="screen-reader-text" for="cat"><?php _e('Filter by status', 'ojabooking'); ?></label>
                         <select name="status" id="status">
-                            <option value=""><?php _e('All statuses', 'oja'); ?></option>
+                            <option value=""><?php _e('All statuses', 'ojabooking'); ?></option>
                             <?php foreach (ojabooking_get_booking_statuses() as $status_item) {
                                 echo '<option class="level-0" value="' . $status_item . '" ' . selected($status_item, $status) . '>' . $status_item . '</option>';
                             }
                             ?>
                         </select>
 
-                        <input type="submit" name="filter_action" id="post-query-submit" class="button" value="<?php _e('Filter', 'oja'); ?>">
+                        <input type="submit" name="filter_action" id="post-query-submit" class="button" value="<?php _e('Filter', 'ojabooking'); ?>">
                     </div>
-                    <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$bookings_count bookings", 'oja'); ?></span>
+                    <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$bookings_count bookings", 'ojabooking'); ?></span>
                         <?php ojabooking_admin_pagination((int)$bookings['pages'], (int)$paged); ?>
                     </div>
                     <br class="clear">
@@ -133,32 +133,32 @@ class Ojabooking_Booking_Admin_Page
                     <thead>
                         <tr>
                             <td id="cb" class="manage-column column-cb check-column" scope="col">
-                                <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'oja'); ?></label>
+                                <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'ojabooking'); ?></label>
                                 <input id="cb-select-all-1" type="checkbox">
                             </td>
-                            <th id="column-email" class="manage-column column-column-email" scope="col" style="width: 25%;"><?php _e('Contact', 'oja'); ?></th>
-                            <th id="term" class="manage-column column-term" scope="col" style="width: 15ch;"><?php _e('Term', 'oja'); ?></th>
-                            <th id="status" class="manage-column column-status" scope="col" style="width: 10ch;"><?php _e('Status', 'oja'); ?></th>
-                            <th id="group_size" class="manage-column column-group_size num" scope="col" style="width: 5ch;"><?php _e('Group size', 'oja'); ?></th>
-                            <th id="detail" class="manage-column column-detail" scope="col"><?php _e('Detail', 'oja'); ?></th>
-                            <th id="event" class="manage-column column-event" scope="col"><?php _e('Event', 'oja'); ?></th>
-                            <th id="created" class="manage-column column-created" scope="col" style="width: 15ch;"><?php _e('Created', 'oja'); ?></th>
+                            <th id="column-email" class="manage-column column-column-email" scope="col" style="width: 25%;"><?php _e('Contact', 'ojabooking'); ?></th>
+                            <th id="term" class="manage-column column-term" scope="col" style="width: 15ch;"><?php _e('Term', 'ojabooking'); ?></th>
+                            <th id="status" class="manage-column column-status" scope="col" style="width: 10ch;"><?php _e('Status', 'ojabooking'); ?></th>
+                            <th id="group_size" class="manage-column column-group_size num" scope="col" style="width: 5ch;"><?php _e('Group size', 'ojabooking'); ?></th>
+                            <th id="detail" class="manage-column column-detail" scope="col"><?php _e('Detail', 'ojabooking'); ?></th>
+                            <th id="event" class="manage-column column-event" scope="col"><?php _e('Event', 'ojabooking'); ?></th>
+                            <th id="created" class="manage-column column-created" scope="col" style="width: 15ch;"><?php _e('Created', 'ojabooking'); ?></th>
                         </tr>
                     </thead>
 
                     <tfoot>
                         <tr>
                             <td id="cb" class="manage-column column-cb check-column" scope="col">
-                                <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'oja'); ?></label>
+                                <label class="screen-reader-text" for="cb-select-all-1"><?php _e("Select all", 'ojabooking'); ?></label>
                                 <input id="cb-select-all-1" type="checkbox">
                             </td>
-                            <th id="column-email" class="manage-column column-column-email" scope="col"><?php _e('Contact', 'oja'); ?></th>
-                            <th id="term" class="manage-column column-term" scope="col"><?php _e('Term', 'oja'); ?></th>
-                            <th id="status" class="manage-column column-status" scope="col"><?php _e('Status', 'oja'); ?></th>
-                            <th id="group_size" class="manage-column column-group_size num" scope="col"><?php _e('Group size', 'oja'); ?></th>
-                            <th id="detail" class="manage-column column-detail" scope="col"><?php _e('Detail', 'oja'); ?></th>
-                            <th id="event" class="manage-column column-event" scope="col"><?php _e('Event', 'oja'); ?></th>
-                            <th id="created" class="manage-column column-created" scope="col"><?php _e('Created', 'oja'); ?></th>
+                            <th id="column-email" class="manage-column column-column-email" scope="col"><?php _e('Contact', 'ojabooking'); ?></th>
+                            <th id="term" class="manage-column column-term" scope="col"><?php _e('Term', 'ojabooking'); ?></th>
+                            <th id="status" class="manage-column column-status" scope="col"><?php _e('Status', 'ojabooking'); ?></th>
+                            <th id="group_size" class="manage-column column-group_size num" scope="col"><?php _e('Group size', 'ojabooking'); ?></th>
+                            <th id="detail" class="manage-column column-detail" scope="col"><?php _e('Detail', 'ojabooking'); ?></th>
+                            <th id="event" class="manage-column column-event" scope="col"><?php _e('Event', 'ojabooking'); ?></th>
+                            <th id="created" class="manage-column column-created" scope="col"><?php _e('Created', 'ojabooking'); ?></th>
                         </tr>
                     </tfoot>
 
@@ -180,11 +180,11 @@ class Ojabooking_Booking_Admin_Page
                             <tr id="post-<?php echo $booking->id; ?>" class="iedit author-self level-0 post-<?php echo $booking->id; ?> type-post status-publish format-standard">
                                 <th scope="row" class="check-column">
                                     <label class="screen-reader-text" for="cb-select-<?php echo $booking->id; ?>">
-                                        <?php esc_html_e("Select $booking->user_email", 'oja'); ?>
+                                        <?php esc_html_e("Select $booking->user_email", 'ojabooking'); ?>
                                     </label>
                                     <input id="cb-select-<?php echo $booking->id; ?>" type="checkbox" name="user_email[]" value="<?php echo $booking->id; ?>">
                                 </th>
-                                <td class="title column-email has-row-actions column-primary" data-colname="<?php _e('User email', 'oja'); ?>">
+                                <td class="title column-email has-row-actions column-primary" data-colname="<?php _e('User email', 'ojabooking'); ?>">
                                     <?php echo $booking->name; ?>,
                                     <strong>
                                         <a class="row-title" href="mailto:<?php echo $booking->user_email; ?>" aria-label="<?php echo $booking->user_email; ?> ">
@@ -192,27 +192,27 @@ class Ojabooking_Booking_Admin_Page
                                         </a>
                                     </strong>, <?php echo $booking->tel . $contact; ?>
                                     <div class="row-actions">
-                                        <span><a href="<?php echo add_query_arg(array('term_id' => $booking->term_id), $terms_uri); ?>"><?php _e('Show term', 'oja'); ?></a> |</span>
-                                        <span><a href="<?php echo get_edit_post_link($booking->event_id); ?>"><?php _e('Edit Event', 'oja'); ?></a> |</span>
-                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'new_status' => "canceled"), $update_status_uri); ?>"><?php _e('Cancel', 'oja'); ?></a> |</span>
-                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'new_status' => "accepted"), $update_status_uri); ?>"><?php _e('Accept', 'oja'); ?></a> |</span>
+                                        <span><a href="<?php echo add_query_arg(array('term_id' => $booking->term_id), $terms_uri); ?>"><?php _e('Show term', 'ojabooking'); ?></a> |</span>
+                                        <span><a href="<?php echo get_edit_post_link($booking->event_id); ?>"><?php _e('Edit Event', 'ojabooking'); ?></a> |</span>
+                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'new_status' => "canceled"), $update_status_uri); ?>"><?php _e('Cancel', 'ojabooking'); ?></a> |</span>
+                                        <span><a href="<?php echo add_query_arg(array('booking' => $booking->id, 'new_status' => "accepted"), $update_status_uri); ?>"><?php _e('Accept', 'ojabooking'); ?></a> |</span>
 
                                     </div>
                                 </td>
-                                <td class="column-term" data-colname="<?php _e('Term', 'oja'); ?>">
-                                    <a class="row-title" href="<?php echo add_query_arg(array('term_id' => $booking->term_id), $terms_uri); ?>" aria-label="<?php esc_html_e("Show term $booking->term", 'oja'); ?> ">
+                                <td class="column-term" data-colname="<?php _e('Term', 'ojabooking'); ?>">
+                                    <a class="row-title" href="<?php echo add_query_arg(array('term_id' => $booking->term_id), $terms_uri); ?>" aria-label="<?php esc_html_e("Show term $booking->term", 'ojabooking'); ?> ">
                                         <?php echo ojabooking_get_local_date_time($booking->term); ?>
                                     </a>
                                 </td>
-                                <td class="column-status" data-colname="<?php _e('Status', 'oja'); ?>"><?php echo $booking->status; ?></td>
-                                <td class="group_size column-group_size num" data-colname="<?php _e('Group size', 'oja'); ?>"><?php echo $booking->group_size; ?></td>
-                                <td class="column-detail" data-colname="<?php _e('Detail', 'oja'); ?>"><?php echo implode(", ", $booking_detail); ?></td>
-                                <td class="column-event" data-colname="<?php _e('Event', 'oja'); ?>">
-                                    <a class="row-title" href="<?php get_edit_post_link($booking->event_id); ?>" aria-label="<?php esc_html_e("Show event $booking->event_name", 'oja'); ?> ">
+                                <td class="column-status" data-colname="<?php _e('Status', 'ojabooking'); ?>"><?php echo $booking->status; ?></td>
+                                <td class="group_size column-group_size num" data-colname="<?php _e('Group size', 'ojabooking'); ?>"><?php echo $booking->group_size; ?></td>
+                                <td class="column-detail" data-colname="<?php _e('Detail', 'ojabooking'); ?>"><?php echo implode(", ", $booking_detail); ?></td>
+                                <td class="column-event" data-colname="<?php _e('Event', 'ojabooking'); ?>">
+                                    <a class="row-title" href="<?php get_edit_post_link($booking->event_id); ?>" aria-label="<?php esc_html_e("Show event $booking->event_name", 'ojabooking'); ?> ">
                                         <?php echo $booking->event_name; ?>
                                     </a>
                                 </td>
-                                <td class="column-created" data-colname="<?php _e('Created', 'oja'); ?>"><?php echo $booking->created; ?></td>
+                                <td class="column-created" data-colname="<?php _e('Created', 'ojabooking'); ?>"><?php echo $booking->created; ?></td>
 
                             </tr>
                         <?php endforeach; ?>
@@ -220,7 +220,7 @@ class Ojabooking_Booking_Admin_Page
                     </tbody>
                 </table>
                 <div class="tablenav bottom">
-                    <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$bookings_count bookings", 'oja'); ?></span>
+                    <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$bookings_count bookings", 'ojabooking'); ?></span>
                         <?php ojabooking_admin_pagination((int)$bookings['pages'], (int)$paged); ?>
                     </div>
                     <br class="clear">
@@ -255,19 +255,19 @@ class Ojabooking_Booking_Admin_Page
         $status = $_GET['new_status'];
         if (!$is_valid_nonce) {
             return;
-            $message = __('Sorry, your data could not be saved', 'oja');
+            $message = __('Sorry, your data could not be saved', 'ojabooking');
             $type = 'error';
         } elseif (isset($booking) && isset($status)) {
             $updated = ojabooking_update_booking_status($booking, $status);
             if ($updated) {
-                $message = __('Successfully updated', 'oja');
+                $message = __('Successfully updated', 'ojabooking');
                 $type = 'updated';
             } else {
-                $message = __('Something went wrong', 'oja');
+                $message = __('Something went wrong', 'ojabooking');
                 $type = 'error';
             }
         } else {
-            $message = __('Invalid request', 'oja');
+            $message = __('Invalid request', 'ojabooking');
             $type = 'error';
         }
         add_settings_error(

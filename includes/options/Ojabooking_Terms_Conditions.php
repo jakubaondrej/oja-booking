@@ -16,8 +16,8 @@ class Ojabooking_Terms_Conditions
     function admin_menu()
     {
         add_options_page(
-            __('Terms and Conditions', 'oja'),
-            __('Terms and Conditions', 'oja'),
+            __('Terms and Conditions', 'ojabooking'),
+            __('Terms and Conditions', 'ojabooking'),
             'manage_options',
             'ojabooking_terms_conditions',
             array(
@@ -44,21 +44,21 @@ class Ojabooking_Terms_Conditions
 ?>
 
         <div class="wrap privacy-settings-body">
-            <h1><?php _e('Terms and Conditions', 'oja'); ?></h1>
+            <h1><?php _e('Terms and Conditions', 'ojabooking'); ?></h1>
 
             <table class="form-table tools-privacy-policy-page" role="presentation">
                 <tbody>
                     <tr>
                         <th scope="row">
                             <label for="ojabooking_booking">
-                                <?php _e('Create new Terms and Conditions page', 'oja'); ?>
+                                <?php _e('Create new Terms and Conditions page', 'ojabooking'); ?>
                             </label>
                         </th>
                         <td>
                             <div id="ojabooking_terms_conditions">
                                 <form action="" method="post">
                                     <?php submit_button(
-                                        __('Create', 'oja'),
+                                        __('Create', 'ojabooking'),
                                         'primary',
                                         'submit',
                                         true,
@@ -75,7 +75,7 @@ class Ojabooking_Terms_Conditions
                     <tr>
                         <th scope="row">
                             <label for="ojabooking_booking">
-                                <?php _e('Use already existing page', 'oja'); ?>
+                                <?php _e('Use already existing page', 'ojabooking'); ?>
                             </label>
                         </th>
                         <td>
@@ -86,7 +86,7 @@ class Ojabooking_Terms_Conditions
                                     <?php endforeach; ?>
                                 </select>
 
-                                <?php submit_button(__('Use this page', 'oja'),'primary large', 'submit', false ); ?>
+                                <?php submit_button(__('Use this page', 'ojabooking'),'primary large', 'submit', false ); ?>
                                 <?php wp_nonce_field('ojabooking_terms_conditions-save', 'ojabooking_terms_conditions-save-nonce'); ?>
                             </form>
                         </td>
@@ -123,21 +123,21 @@ class Ojabooking_Terms_Conditions
         $is_nonce_ok = $is_nonce_set && $is_valid_nonce;
         if (!$is_nonce_ok) {
             return;
-            $message = __('Sorry, your data could not be saved', 'oja');
+            $message = __('Sorry, your data could not be saved', 'ojabooking');
             $type = 'error';
         }elseif (isset($_POST['submit']) && $_POST['submit'] == 'Create') {
             $new_page_id = ojabooking_create_page_if_not_exists('Terms and Conditions');
             update_option('ojabooking_terms_and_conditions', $new_page_id);
-            $message = __('Page was created.', 'oja');
+            $message = __('Page was created.', 'ojabooking');
             $type = 'updated';
         }  elseif (isset($_POST['ojabooking_terms_conditions_page'])) {
             $ojabooking_terms_conditions_page = $_POST['dojabooking_terms_conditions_page'];
             //- Sanitize the code
             update_option('ojabooking_terms_and_conditions', $ojabooking_terms_conditions_page);
-            $message = __('Successfully updated', 'oja');
+            $message = __('Successfully updated', 'ojabooking');
             $type = 'updated';
         } else {
-            $message = __('Invalid request', 'oja');
+            $message = __('Invalid request', 'ojabooking');
             $type = 'error';
         }
         /* Here is where you update your options. Depending on what you've implemented,

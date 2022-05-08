@@ -597,21 +597,21 @@ function ojabooking_send_booking_confirmation_email($user_email, $booking_id, $e
     $confirm_link = ojabooking_create_booking_action_link($code, $booking_id, $language);
     $cancel_link = ojabooking_create_booking_action_link($code, $booking_id, $language, 'canceled');
     $booking = ojabooking_get_booking_by_id($booking_id);
-    $body    = sprintf('<h1>%s</h1>', __('Booking', 'oja'));
+    $body    = sprintf('<h1>%s</h1>', __('Booking', 'ojabooking'));
 
-    $body    .= sprintf('<p>%s</p>', __('Please, check and confirm your booking. If you will not confirm your booking you will lose claim on your booking. ', 'oja'));
-    $body    .= sprintf('<h3>%s:</h3>', __('Summary', 'oja'));
-    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Booking for', 'oja'), $booking->name);
-    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Term', 'oja'), $term);
+    $body    .= sprintf('<p>%s</p>', __('Please, check and confirm your booking. If you will not confirm your booking you will lose claim on your booking. ', 'ojabooking'));
+    $body    .= sprintf('<h3>%s:</h3>', __('Summary', 'ojabooking'));
+    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Booking for', 'ojabooking'), $booking->name);
+    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Term', 'ojabooking'), $term);
 
     if ($use_languages) {
-        $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Language', 'oja'), $language_term->name);
+        $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Language', 'ojabooking'), $language_term->name);
     }
 
-    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Total price', 'oja'), ojabooking_get_currency($total_price));
-    $body    .= sprintf('<div><strong>%s:</strong>', __('Group', 'oja'));
+    $body    .= sprintf('<div><strong>%s:</strong> %s</div>', __('Total price', 'ojabooking'), ojabooking_get_currency($total_price));
+    $body    .= sprintf('<div><strong>%s:</strong>', __('Group', 'ojabooking'));
 
-    $body    .= sprintf('<table border="1"><tr><th>%s</th><th>%s</th><th>%s</th></tr>', __('Participant', 'oja'), __('Count', 'oja'), __('Price per one', 'oja'));
+    $body    .= sprintf('<table border="1"><tr><th>%s</th><th>%s</th><th>%s</th></tr>', __('Participant', 'ojabooking'), __('Count', 'ojabooking'), __('Price per one', 'ojabooking'));
 
     foreach ($group as $participant_id => $participant_count) {
         $participant = get_term($participant_id, 'ojabooking_price_categories');
@@ -622,7 +622,7 @@ function ojabooking_send_booking_confirmation_email($user_email, $booking_id, $e
     $body    .= sprintf('</table></div>');
 
     $body    .= sprintf(wp_kses(
-        __('<p>Everything looks OK? Please, <a href="%1$s">Confirm your reservation</a> otherwise you can <a href="%2$s">Cancel your reservation</a> </p>', 'oja'),
+        __('<p>Everything looks OK? Please, <a href="%1$s">Confirm your reservation</a> otherwise you can <a href="%2$s">Cancel your reservation</a> </p>', 'ojabooking'),
         array(
             'a' => array(
                 'href' => array(),
@@ -632,7 +632,7 @@ function ojabooking_send_booking_confirmation_email($user_email, $booking_id, $e
         )
     ), $confirm_link, $cancel_link);
     $body    .= sprintf(wp_kses(
-        __('<p>More info you can find on <a href="%1$s">%2$s</a>.</p>', 'oja'),
+        __('<p>More info you can find on <a href="%1$s">%2$s</a>.</p>', 'ojabooking'),
         array(
             'a' => array(
                 'href' => array(),
@@ -642,7 +642,7 @@ function ojabooking_send_booking_confirmation_email($user_email, $booking_id, $e
         )
     ), get_permalink($terms_and_conditions), get_the_title($terms_and_conditions));
 
-    $email_sent = ojabooking_send_auto_html_email(__('booking', 'oja'), $user_email, $body);
+    $email_sent = ojabooking_send_auto_html_email(__('booking', 'ojabooking'), $user_email, $body);
     if (!$email_sent) {
         echo 'ERROR while sending activation email';
         exit;
@@ -658,13 +658,13 @@ function ojabooking_send_booking_already_exists_email($booking, $term, $event_id
     $term = date($date_format . " "  . $time_format, strtotime($term));
     $cancel_link = ojabooking_create_booking_action_link($booking->code, $booking->ID, 'canceled');
 
-    $body    = sprintf('<h1>%s</h1>', __('Booking', 'oja'));
+    $body    = sprintf('<h1>%s</h1>', __('Booking', 'ojabooking'));
 
-    $body    .= sprintf('<p>%s</p>', __('Your booking for this term already exists. It is not possible to create 2 or more booking for single email. No changes has been done.', 'oja'));
-    $body    .= sprintf('<strong>%s: %s</strong>', __('Booking for', 'oja'), $booking->detail);
+    $body    .= sprintf('<p>%s</p>', __('Your booking for this term already exists. It is not possible to create 2 or more booking for single email. No changes has been done.', 'ojabooking'));
+    $body    .= sprintf('<strong>%s: %s</strong>', __('Booking for', 'ojabooking'), $booking->detail);
 
     $body    .= sprintf(wp_kses(
-        __('<p>You can <a href="%1$s">cancel your reservation</a> and after that you can create another new one.</p>', 'oja'),
+        __('<p>You can <a href="%1$s">cancel your reservation</a> and after that you can create another new one.</p>', 'ojabooking'),
         array(
             'a' => array(
                 'href' => array(),
@@ -674,7 +674,7 @@ function ojabooking_send_booking_already_exists_email($booking, $term, $event_id
         )
     ), $cancel_link);
     $body    .= sprintf(wp_kses(
-        __('<p>More info you can find on <a href="%1$s">%2$s</a>.</p>', 'oja'),
+        __('<p>More info you can find on <a href="%1$s">%2$s</a>.</p>', 'ojabooking'),
         array(
             'a' => array(
                 'href' => array(),
@@ -684,7 +684,7 @@ function ojabooking_send_booking_already_exists_email($booking, $term, $event_id
         )
     ), get_permalink($terms_and_conditions), get_the_title($terms_and_conditions));
 
-    if (!ojabooking_send_auto_html_email(__('Booking', 'oja'), $booking->user_email, $body)) {
+    if (!ojabooking_send_auto_html_email(__('Booking', 'ojabooking'), $booking->user_email, $body)) {
         echo 'ERROR while sending activation email';
         exit;
     }
@@ -693,12 +693,12 @@ function ojabooking_send_booking_already_exists_email($booking, $term, $event_id
 function ojabooking_send_booking_canceled_email($booking)
 {
 
-    $body    = sprintf('<h1>%s</h1>', __('Booking cancellation', 'oja'));
+    $body    = sprintf('<h1>%s</h1>', __('Booking cancellation', 'ojabooking'));
 
-    $body    .= sprintf('<p>%s</p>', __('Your booking was cancelled.', 'oja'));
+    $body    .= sprintf('<p>%s</p>', __('Your booking was cancelled.', 'ojabooking'));
 
 
-    if (!ojabooking_send_auto_html_email(__('Booking cancellation', 'oja'), $booking->user_email, $body)) {
+    if (!ojabooking_send_auto_html_email(__('Booking cancellation', 'ojabooking'), $booking->user_email, $body)) {
         echo 'ERROR while sending activation email';
         exit;
     }
@@ -726,7 +726,7 @@ function ojabooking_confirm_booking($booking_id, $key, $action, $language)
 {
     $code = ojabooking_get_booking_code($booking_id);
     if (empty($code) || $code != $key) {
-        return __('Booking does not exist.', 'oja');
+        return __('Booking does not exist.', 'ojabooking');
     } else if ($key == $code) {
         $is_active = ojabooking_is_created_booking_active($booking_id);
         if (!$is_active) {
@@ -734,12 +734,12 @@ function ojabooking_confirm_booking($booking_id, $key, $action, $language)
             $group = ojabooking_get_booking_group($booking_id);
             $can_be_created = ojabooking_booking_can_be_created($term_event->event_id, $term_event->ID, $group);
             if (!$can_be_created) {
-                return __('Sorry, You are too late. Term is already full.', 'oja');
+                return __('Sorry, You are too late. Term is already full.', 'ojabooking');
             }
             $use_languages = get_option('ojabooking_use_booking_languages', 0);
 
             if ($use_languages && $term_event->language != $language) {
-                return __('Sorry, You are too late. Term is not available in your selected language.', 'oja');
+                return __('Sorry, You are too late. Term is not available in your selected language.', 'ojabooking');
             }
         }
         $booking = ojabooking_get_booking_by_id($booking_id);
@@ -748,13 +748,13 @@ function ojabooking_confirm_booking($booking_id, $key, $action, $language)
             ojabooking_send_booking_canceled_email($booking);
         }
         if ($updated) {
-            return sprintf(wp_kses(__('Your booking has been %1$s.', 'oja'), array()), $action);
+            return sprintf(wp_kses(__('Your booking has been %1$s.', 'ojabooking'), array()), $action);
         }
         if ($updated === 0) {
-            return sprintf(wp_kses(__('Your booking is already %1$s.', 'oja'), array()), $action);
+            return sprintf(wp_kses(__('Your booking is already %1$s.', 'ojabooking'), array()), $action);
         }
     }
-    return __('Booking confirmation has failed', 'oja');
+    return __('Booking confirmation has failed', 'ojabooking');
 }
 
 function ojabooking_create_confirmation_code($salt)

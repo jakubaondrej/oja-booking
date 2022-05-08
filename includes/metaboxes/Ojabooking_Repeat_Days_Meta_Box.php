@@ -51,7 +51,7 @@ abstract class Ojabooking_Repeat_Days_Meta_Box
         }
         ?>
         <fieldset>
-            <legend class="screen-reader-text"><span><?php _e('Repeat', 'oja'); ?></span></legend>
+            <legend class="screen-reader-text"><span><?php _e('Repeat', 'ojabooking'); ?></span></legend>
             <?php
             for ($i = 0; $i < 7; $i++) {
                 $day_name = $wp_locale->get_weekday($i);
@@ -64,7 +64,7 @@ abstract class Ojabooking_Repeat_Days_Meta_Box
             }
             ?>
             <label for="ojabooking_repeat_days[]">
-                <input type="checkbox" <?php checked(in_array(8, $ojabooking_repeat_days)); ?> value="8" id="selected_day_8" name="ojabooking_repeat_days[]"> <?php _e('Bank holiday', 'oja'); ?>
+                <input type="checkbox" <?php checked(in_array(8, $ojabooking_repeat_days)); ?> value="8" id="selected_day_8" name="ojabooking_repeat_days[]"> <?php _e('Bank holiday', 'ojabooking'); ?>
             </label>
         </fieldset>
     <?php

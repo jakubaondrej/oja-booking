@@ -22,7 +22,7 @@ ojabooking_get_booking_style();
                     <div class="preloader-animation inside-circle"></div>
                 </div>
             </div>
-            <div class="h1"><?php _e('Loading', 'oja'); ?></div>
+            <div class="h1"><?php _e('Loading', 'ojabooking'); ?></div>
         </div>
         <div class="terms">
         </div>

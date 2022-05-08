@@ -56,13 +56,13 @@ abstract class Ojabooking_Repeat_Times_Meta_Box
             ?>
                 <div id="ojabooking_repeat_times_<?php echo $key; ?>_container">
                     <input type="time" value="<?php echo $value; ?>" id="ojabooking_repeat_times_<?php echo $i; ?>" name="ojabooking_repeat_times[]">
-                    <span class="button remove-ojabooking_repeat_times" style="margin: 0 1rem;"><?php _e('Remove', 'oja'); ?></span>
+                    <span class="button remove-ojabooking_repeat_times" style="margin: 0 1rem;"><?php _e('Remove', 'ojabooking'); ?></span>
                 </div>
             <?php
             }
             ?>
         </div>
-        <span id="add-ojabooking_repeat_times" class="button"><?php _e('Add a next time', 'oja'); ?></span>
+        <span id="add-ojabooking_repeat_times" class="button"><?php _e('Add a next time', 'ojabooking'); ?></span>
 <?php
     }
 }

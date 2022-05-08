@@ -60,11 +60,11 @@ abstract class Ojabooking_Date_Span_Meta_Box
         $ojabooking_start_term = get_post_meta($post->ID, 'ojabooking_start_term', true);
         $ojabooking_end_term = get_post_meta($post->ID, 'ojabooking_end_term', true);
         ?>
-            <label for="ojabooking_start_term"><?php _e('Start','oja');?>:</label>
+            <label for="ojabooking_start_term"><?php _e('Start','ojabooking');?>:</label>
             <input type="datetime-local" id="ojabooking_start_term" name="ojabooking_start_term" 
             value="<?php echo $ojabooking_start_term;?>">
 
-            <label for="ojabooking_end_term"><?php _e('End','oja');?>:</label>
+            <label for="ojabooking_end_term"><?php _e('End','ojabooking');?>:</label>
             <input type="datetime-local" id="ojabooking_end_term" name="ojabooking_end_term" 
             value="<?php echo  $ojabooking_end_term;?>">
 <?php

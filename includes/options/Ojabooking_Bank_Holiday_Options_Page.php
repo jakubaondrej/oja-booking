@@ -16,8 +16,8 @@ class Ojabooking_Bank_Holiday_Options_Page
     function admin_menu()
     {
         add_options_page(
-            __('Bank holidays', 'oja'),   //page title
-            __('Bank holidays', 'oja'),   //menu title
+            __('Bank holidays', 'ojabooking'),   //page title
+            __('Bank holidays', 'ojabooking'),   //menu title
             'edit_posts',   //capability
             'oja-bank-holidays', //menu_slug, 
             array(
@@ -47,27 +47,27 @@ class Ojabooking_Bank_Holiday_Options_Page
         
         <div class="wrap">
         
-            <h1><?php _e('Bank holidays', 'oja'); ?></h1>
+            <h1><?php _e('Bank holidays', 'ojabooking'); ?></h1>
             <?php settings_errors('oja-bank-holidays'); ?>
             <form action="" method="post">
                 <tr>
                     <th scope="row">
-                        <label for="ojabooking_bank_holidays"><?php _e('Dates of Bank holidays', 'oja'); ?></label>
+                        <label for="ojabooking_bank_holidays"><?php _e('Dates of Bank holidays', 'ojabooking'); ?></label>
                     </th>
                     <td>
                         <div id="ojabooking_bank_holidays">
                         <?php foreach ($holidays as $key => $value) : ?>
                             <div id="ojabooking_bank_holidays_<?php echo $key; ?>_container">
                                 <input type="date" id="ojabooking_bank_holidays_<?php echo $key; ?>" name="ojabooking_bank_holidays[]" value="<?php echo date('Y') . "-" . $value; ?>">
-                                <button class="button remove-holiday" style="margin: 0 1rem;"><?php _e('Remove', 'oja'); ?></button>
+                                <button class="button remove-holiday" style="margin: 0 1rem;"><?php _e('Remove', 'ojabooking'); ?></button>
                             </div>
                         <?php endforeach; ?>
                         </div>
-                        <button id="add-holiday" class="button"><?php _e('Add bank holiday', 'oja'); ?></button>
+                        <button id="add-holiday" class="button"><?php _e('Add bank holiday', 'ojabooking'); ?></button>
                     </td>
                 </tr>
         
-                <?php submit_button(__('Save', 'oja')); ?>
+                <?php submit_button(__('Save', 'ojabooking')); ?>
                 <?php wp_nonce_field('oja-bank_holidays-save', 'oja-bank_holidays-save-nonce'); ?>
             </form>
         </div>
@@ -98,7 +98,7 @@ class Ojabooking_Bank_Holiday_Options_Page
         }
 
         if (!current_user_can('manage_options')) {
-            $message = __('You do not have enough permissions', 'oja');
+            $message = __('You do not have enough permissions', 'ojabooking');
             $type = 'error';
         } else {
             if (isset($_POST['ojabooking_bank_holidays'])) {
@@ -110,10 +110,10 @@ class Ojabooking_Bank_Holiday_Options_Page
 
                 //- Sanitize the code
                 update_option('ojabooking_bank_holidays', $formatted_days);
-                $message = __('Successfully updated', 'oja');
+                $message = __('Successfully updated', 'ojabooking');
                 $type = 'updated';
             } else {
-                $message = __('Something failed.', 'oja');
+                $message = __('Something failed.', 'ojabooking');
                 $type = 'error';
             }
         }

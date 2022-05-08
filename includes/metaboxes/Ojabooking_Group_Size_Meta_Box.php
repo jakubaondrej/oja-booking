@@ -47,7 +47,7 @@ abstract class Ojabooking_Group_Size_Meta_Box
         $ojabooking_group_size = get_post_meta($post->ID, 'ojabooking_group_size', true);
 ?>
         <fieldset>
-            <legend class="screen-reader-text"><span><?php _e("What's the max group size?", 'oja'); ?></span></legend>
+            <legend class="screen-reader-text"><span><?php _e("What's the max group size?", 'ojabooking'); ?></span></legend>
             
             <input type="number" value="<?php echo $ojabooking_group_size; ?>" id="ojabooking_group_size" name="ojabooking_group_size"> 
         </fieldset>

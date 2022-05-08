@@ -51,7 +51,7 @@ abstract class Ojabooking_Repeat_Months_Meta_Box
         }
         ?>
         <fieldset>
-            <legend class="screen-reader-text"><span><?php _e('Repeat', 'oja'); ?></span></legend>
+            <legend class="screen-reader-text"><span><?php _e('Repeat', 'ojabooking'); ?></span></legend>
             <?php
             for ($i = 1; $i < 13; $i++) {
                 $month_name = $wp_locale->get_month($i);

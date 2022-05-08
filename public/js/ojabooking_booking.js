@@ -163,6 +163,7 @@ function ojabooking_book_me() {
             loading_spin.fadeIn(200);
         },
         success: function (data) {
+            ojabooking_load_booking();
             if (data.success) {
                 alert(data.data, 'success');
             }
@@ -182,6 +183,7 @@ function ojabooking_book_me() {
         complete: function () {
             loading_spin.fadeOut(100);
             button.fadeIn(300);
+
         }
     });
 }

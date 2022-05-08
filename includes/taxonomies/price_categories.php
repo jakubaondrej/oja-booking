@@ -1,8 +1,8 @@
 <?php 
 function ojabooking_register_price_categories_taxonomy(){
     $labels=array(
-        'name'  => _x('Price categories','Price category tags', 'oja'),
-        'singular_name'  => _x('Price category','Price category tag', 'oja'),
+        'name'  => _x('Price categories','Price category tags', 'ojabooking'),
+        'singular_name'  => _x('Price category','Price category tag', 'ojabooking'),
     );
     $args=array(
         'hierarchical'      => false,
@@ -37,9 +37,9 @@ function ojabooking_price_categories_update_term_fields($term_id, $tt_id) {
 function ojabooking_price_categories_add_term_fields( $taxonomy ) {
 
 	echo '<div class="form-field">
-	<label for="private-party">' . __('Private party','oja') . '</label>
+	<label for="private-party">' . __('Private party','ojabooking') . '</label>
 	<input type="checkbox" name="private_party" id="private-party" />
-	<p>'.__('No one else can book on the same term.','oja') . '</p>
+	<p>'.__('No one else can book on the same term.','ojabooking') . '</p>
 	</div>';
 }
 
@@ -48,11 +48,11 @@ function ojabooking_price_categories_edit_term_fields( $term ) {
 
 	echo '<tr class="form-field">
 	<th>
-        <label for="private-party">' . __('Private party','oja') . '</label>
+        <label for="private-party">' . __('Private party','ojabooking') . '</label>
 	</th>
 	<td>
         <input type="checkbox" name="private_party" id="private-party" ' . checked($private_party,true,false) . ' />
-        <p>'.__('No one else can book on the same term.','oja') . '</p>
+        <p>'.__('No one else can book on the same term.','ojabooking') . '</p>
     </td>
 	</tr>';
 }
