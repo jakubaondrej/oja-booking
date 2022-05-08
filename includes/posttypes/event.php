@@ -188,17 +188,20 @@ function oja_create_booking_ajax()
     }
     $use_languages = get_option('oja_use_booking_languages', 0);
 
-    $term = $_POST['term'];
-    $language = $_POST['booking-language'];
-    $group = $_POST['group'];
-    $email = $_POST['email'];
-    $name = $_POST['name'];
-    $tel = $_POST['tel'];
-    $school_name_department = $_POST['school_name_department'];
-    $class_department = $_POST['class_department'];
-    $event_id = $_POST['event_id'];
-    $termsCheck = $_POST['termsCheck'];
-    $privacyCheck = $_POST['privacyCheck'];
+    $term = sanitize_option("date_format",$_POST['term']);
+    $language = sanitize_key($_POST['booking-language']);
+    $group = isset( $_POST['group'] ) ? (array) $_POST['group'] : array();
+    // Any of the WordPress data sanitization functions can be used here
+    $group = array_map( 'esc_attr', $group );
+
+    $email = sanitize_email($_POST['email']);
+    $name = sanitize_text_field($_POST['name']);
+    $tel = sanitize_text_field($_POST['tel']);
+    $school_name_department = sanitize_text_field($_POST['school_name_department']);
+    $class_department = sanitize_text_field($_POST['class_department']);
+    $event_id = sanitize_key($_POST['event_id']);
+    $termsCheck = isset($_POST['termsCheck']);
+    $privacyCheck = isset($_POST['privacyCheck']);
 
     $errors = array();
     if (empty($term)) {
@@ -248,10 +251,10 @@ function oja_create_booking_ajax()
     if (empty($event_id)) {
         $errors[] = __('Event ID is required', 'oja');
     }
-    if (!isset($termsCheck)) {
+    if (!$termsCheck) {
         $errors[] = __('Terms and Conditions acceptation is required', 'oja');
     }
-    if (!isset($privacyCheck)) {
+    if (!$privacyCheck) {
         $errors[] = __('Privacy Policy acceptation is required', 'oja');
     }
     if (!empty($errors)) {

@@ -1,5 +1,5 @@
 <?php
-function oja_get_template_part_booking_filter()
+function ojabooking_get_template_part_booking_filter()
 {
     $date_today =  date("Y-m-d");
     $date_max = date("Y-m-d", strtotime("+7 months", strtotime($date_today)));
@@ -8,15 +8,15 @@ function oja_get_template_part_booking_filter()
     $event_id = $_GET['event_id'];
 
     $languages = get_terms(array(
-        'taxonomy' => 'oja_languages',
+        'taxonomy' => 'ojabooking_languages',
         'hide_empty' => false,
     ));
 
-    $use_languages = get_option('oja_use_booking_languages', 0);
-    $default_language = get_option('oja_default_booking_language', '');
+    $use_languages = get_option('ojabooking_use_booking_languages', 0);
+    $default_language = get_option('ojabooking_default_booking_language', '');
     if (!isset($book_lang)) $book_lang = $default_language;
 ?>
-    <?php oja_get_alert_placeholder() ?>
+    <?php ojabooking_get_alert_placeholder() ?>
 
     <form id="booking-filter" class="row g-3 needs-validation">
         <div class="col-auto">
@@ -66,7 +66,7 @@ function oja_get_template_part_booking_filter()
                         <h5 class="modal-title"><?php _e('Select participants', 'oja'); ?></h5>
                     </div>
                     <div class="modal-body">
-                        <?php oja_get_template_part_select_categories(); ?>
+                        <?php ojabooking_get_template_part_select_categories(); ?>
                     </div>
                     <div class="modal-footer">
                         <button id="booking-group-select-btn" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php _e('Select', 'oja'); ?></button>
@@ -82,8 +82,8 @@ function oja_get_template_part_booking_filter()
                         <h5 class="modal-title"><?php _e('Contact', 'oja'); ?></h5>
                     </div>
                     <div class="modal-body">
-                        <?php oja_get_customer_contact_placeholder(); ?>
-                        <?php oja_get_customer_privacy_placeholder(); ?>
+                        <?php ojabooking_get_customer_contact_placeholder(); ?>
+                        <?php ojabooking_get_customer_privacy_placeholder(); ?>
 
 
                         <input id="booking-event-id" type="hidden" name="event_id" value="">
@@ -99,11 +99,11 @@ function oja_get_template_part_booking_filter()
 <?php
 }
 
-function oja_get_template_part_select_categories()
+function ojabooking_get_template_part_select_categories()
 {
     $group = $_GET['group'];
     $categories = get_terms(array(
-        'taxonomy' => 'oja_price_categories',
+        'taxonomy' => 'ojabooking_price_categories',
         'hide_empty' => false,
         'meta_key' => 'private_party',
         'meta_compare' => 'NOT EXISTS'
@@ -112,7 +112,7 @@ function oja_get_template_part_select_categories()
         echo "<p>Please create any price categories</p>";
         return;
     }
-    $default_category = get_option('oja_default_price_category', '');
+    $default_category = get_option('ojabooking_default_price_category', '');
     //private_party
 ?>
     <?php foreach ($categories as $category) :
@@ -122,15 +122,15 @@ function oja_get_template_part_select_categories()
         elseif (!$group && $category->term_id == $default_category)
             $group_count = 1;
     ?>
-        <div id="oja_booking_category_<?php echo $category->term_id; ?>" class="price_category row m-2">
-            <label class="col-5 col-form-label" for="oja_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
-            <input type="number" id="oja_group_<?php echo $category->name; ?>" class="col form-control" name="group[<?php echo $category->term_id; ?>]" value="<?php echo $group_count; ?>" min="0" max="100" size="3">
+        <div id="ojabooking_booking_category_<?php echo $category->term_id; ?>" class="price_category row m-2">
+            <label class="col-5 col-form-label" for="ojabooking_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
+            <input type="number" id="ojabooking_group_<?php echo $category->name; ?>" class="col form-control" name="group[<?php echo $category->term_id; ?>]" value="<?php echo $group_count; ?>" min="0" max="100" size="3">
         </div>
     <?php endforeach; ?>
 
     <?php
     $categories = get_terms(array(
-        'taxonomy' => 'oja_price_categories',
+        'taxonomy' => 'ojabooking_price_categories',
         'hide_empty' => false,
         'meta_key'   => 'private_party',
         'meta_compare' => 'EXISTS'
@@ -139,10 +139,10 @@ function oja_get_template_part_select_categories()
     <div id="private-party-groups" class="mt-3 text-center">
         <div class="separator text-center my-3"><?php _e('Or', 'oja'); ?></div>
         <?php foreach ($categories as $category) : ?>
-            <div id="oja_booking_category_<?php echo $category->term_id; ?>" class="private_party price_category">
+            <div id="ojabooking_booking_category_<?php echo $category->term_id; ?>" class="private_party price_category">
                 <button class="btn btn-secondary private-party-select" data-bs-dismiss="modal"><?php printf(esc_html__('Select %1$s', 'oja'), $category->name); ?></button>
-                <label class="d-none" for="oja_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
-                <input type="hidden" id="oja_group_<?php echo $category->name; ?>" name="group[<?php echo $category->term_id; ?>]" value="0">
+                <label class="d-none" for="ojabooking_group_<?php echo $category->name; ?>"><?php echo $category->name; ?></label>
+                <input type="hidden" id="ojabooking_group_<?php echo $category->name; ?>" name="group[<?php echo $category->term_id; ?>]" value="0">
             </div>
         <?php endforeach; ?>
     </div>
@@ -150,7 +150,7 @@ function oja_get_template_part_select_categories()
 }
 
 
-function oja_get_template_part_booking_list()
+function ojabooking_get_template_part_booking_list()
 {
 ?>
     <template id="booking-list-template">

@@ -1,21 +1,21 @@
 <?php
 global $wpdb;
-define('TERMS_EVENT_TABLE_NAME', $wpdb->prefix . 'event_terms');
-define('BOOKING_TERMS_EVENT_TABLE_NAME', $wpdb->prefix . 'event_terms_booking');
-define('BOOKING_GROUP_TABLE_NAME', $wpdb->prefix . 'booking_group');
+define('ojaojabooking_BOOKING_TERMS_EVENT_TABLE_NAME', $wpdb->prefix . 'event_terms');
+define('BOOKING_ojaojabooking_BOOKING_TERMS_EVENT_TABLE_NAME', $wpdb->prefix . 'event_terms_booking');
+define('ojabooking_BOOKING_GROUP_TABLE_NAME', $wpdb->prefix . 'booking_group');
 /**
  * Create DB tables
  */
-function oja_db_custom_tables()
+function ojabooking_db_custom_tables()
 {
     global $wpdb;
-    $oja_actual_version = '1.0.1';
-    $installed_ver = get_option("oja_db_version");
-    if ($installed_ver == $oja_actual_version) {
+    $ojabooking_actual_version = '1.0.1';
+    $installed_ver = get_option("ojabooking_db_version");
+    if ($installed_ver == $ojabooking_actual_version) {
         return;
     }
     if (empty($installed_ver)) {
-        $event_terms_sql_create = 'CREATE TABLE ' . TERMS_EVENT_TABLE_NAME .
+        $event_terms_sql_create = 'CREATE TABLE ' . ojaojabooking_BOOKING_TERMS_EVENT_TABLE_NAME .
             '(ID BIGINT NOT NULL AUTO_INCREMENT,
             event_id BIGINT NOT NULL,
             term TIMESTAMP NOT NULL,
@@ -23,7 +23,7 @@ function oja_db_custom_tables()
             PRIMARY KEY (ID)
             );';
 
-        $event_terms_booking_sql_create = 'CREATE TABLE ' . BOOKING_TERMS_EVENT_TABLE_NAME .
+        $event_terms_booking_sql_create = 'CREATE TABLE ' . BOOKING_ojaojabooking_BOOKING_TERMS_EVENT_TABLE_NAME .
             '(ID BIGINT NOT NULL AUTO_INCREMENT,
             user_email VARCHAR(255) NOT NULL,
             name VARCHAR(255) NOT NULL,
@@ -37,7 +37,7 @@ function oja_db_custom_tables()
             PRIMARY KEY (ID)
             );';
 
-        $booking_group_sql_create = 'CREATE TABLE ' . BOOKING_GROUP_TABLE_NAME .
+        $booking_group_sql_create = 'CREATE TABLE ' . ojabooking_BOOKING_GROUP_TABLE_NAME .
             '(ID BIGINT NOT NULL AUTO_INCREMENT,
             booking_id BIGINT NOT NULL,
             category VARCHAR(32) NOT NULL,
@@ -45,12 +45,12 @@ function oja_db_custom_tables()
             PRIMARY KEY (ID)
             );';
 
-        oja_db_request_query($event_terms_sql_create);
-        oja_db_request_query($event_terms_booking_sql_create);
-        oja_db_request_query($booking_group_sql_create);
+        ojabooking_db_request_query($event_terms_sql_create);
+        ojabooking_db_request_query($event_terms_booking_sql_create);
+        ojabooking_db_request_query($booking_group_sql_create);
     }
     if ($installed_ver = '1.0.0') {
-        $booking_table = BOOKING_TERMS_EVENT_TABLE_NAME;
+        $booking_table = BOOKING_ojaojabooking_BOOKING_TERMS_EVENT_TABLE_NAME;
 
         $query = "ALTER TABLE {$booking_table} 
             ADD COLUMN tel VARCHAR(18) NOT NULL,
@@ -59,11 +59,11 @@ function oja_db_custom_tables()
         
         $wpdb->query($query);
     }
-    update_option("oja_db_version", $oja_actual_version);
+    update_option("ojabooking_db_version", $ojabooking_actual_version);
 }
 
 
-function oja_db_request_query($query)
+function ojabooking_db_request_query($query)
 {
     global $wpdb;
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -71,7 +71,7 @@ function oja_db_request_query($query)
 }
 
 
-function oja_get_booking_statuses()
+function ojabooking_get_booking_statuses()
 {
     return array(
         "created",

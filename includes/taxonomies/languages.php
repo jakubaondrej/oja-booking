@@ -1,5 +1,5 @@
 <?php 
-function oja_register_language_taxonomy(){
+function ojabooking_register_language_taxonomy(){
     $labels=array(
         'name'  => _x('Languages','language tags', 'oja'),
         'singular_name'  => _x('Language','language tag', 'oja'),
@@ -11,6 +11,6 @@ function oja_register_language_taxonomy(){
         'show_admin_column' => true,
         'query_var'         => true,
     );
-    register_taxonomy('oja_languages','oja_event',$args);
+    register_taxonomy('ojabooking_languages','ojabooking_event',$args);
 }
-add_action( 'init', 'oja_register_language_taxonomy', 0 );
+add_action( 'init', 'ojabooking_register_language_taxonomy', 0 );

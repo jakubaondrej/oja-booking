@@ -1,5 +1,5 @@
 <?php
-class Oja_Currency_Options_Page
+class Ojabooking_Currency_Options_Page
 {
 
     /**
@@ -19,7 +19,7 @@ class Oja_Currency_Options_Page
             __('Currency', 'oja'),
             __('Currency', 'oja'),
             'manage_options',
-            'oja_currency',
+            'ojabooking_currency',
             array(
                 $this,
                 'settings_page'
@@ -32,32 +32,32 @@ class Oja_Currency_Options_Page
      */
     function settings_page()
     {
-        $this->oja_currency_save_options();
+        $this->ojabooking_currency_save_options();
 
         /**
          * Renders the content of the submenu page for currency categories.
          */
-        $currency_list = oja_get_curencies();
+        $currency_list = ojabooking_get_curencies();
 
-        $current_currency = get_option('oja_current_currency');
+        $current_currency = get_option('ojabooking_current_currency');
 ?>
         <div class="wrap">
             <h1><?php _e('Currency', 'oja'); ?></h1>
-            <?php settings_errors('oja_currency'); ?>
+            <?php settings_errors('ojabooking_currency'); ?>
 
             <form action="" method="post">
                 <tr>
                     <th scope="row">
-                        <label for="oja_currency">
+                        <label for="ojabooking_currency">
                             <h4><?php _e('Select currency', 'oja'); ?></h4>
                         </label>
                     </th>
                     <td>
-                        <div id="oja_currency_selection">
+                        <div id="ojabooking_currency_selection">
                             <?php foreach ($currency_list as $key => $value) : ?>
                                 <div>
-                                    <input type="radio" id="<?php echo $key ?>" name="oja_current_currency" value='<?php echo $key; ?>' <?php checked($key == $current_currency); ?>>
-                                    <label for="<?php echo $key ?>"><?php echo $key . " - " . $value[0]; ?></label>
+                                    <input type="radio" id="<?php echo esc_attr($key); ?>" name="ojabooking_current_currency" value='<?php echo esc_attr($key); ?>' <?php checked($key == $current_currency); ?>>
+                                    <label for="<?php echo esc_attr($key); ?>"><?php echo $key . " - " . $value[0]; ?></label>
                                 </div>
                             <?php endforeach; ?>
 
@@ -76,7 +76,7 @@ class Oja_Currency_Options_Page
     /**
      * Save options
      */
-    function oja_currency_save_options()
+    function ojabooking_currency_save_options()
     {
         $message = null;
         $type = null;
@@ -96,10 +96,10 @@ class Oja_Currency_Options_Page
         $is_nonce_ok = $is_nonce_set && $is_valid_nonce;
         if (!$is_nonce_ok) {
             return;
-        } elseif (isset($_POST['oja_current_currency'])) {
-            $current_currency = $_POST['oja_current_currency'];
+        } elseif (isset($_POST['ojabooking_current_currency'])) {
+            $current_currency = $_POST['ojabooking_current_currency'];
 
-            update_option('oja_current_currency', $current_currency);
+            update_option('ojabooking_current_currency', $current_currency);
             $message = __('Successfully updated', 'oja');
             $type = 'success';
         } else {
@@ -108,7 +108,7 @@ class Oja_Currency_Options_Page
         }
 
         add_settings_error(
-            'oja_currency',
+            'ojabooking_currency',
             esc_attr('settings_updated'),
             $message,
             $type
@@ -116,10 +116,10 @@ class Oja_Currency_Options_Page
     }
 }
 if (current_user_can('manage_options')) {
-    new Oja_Currency_Options_Page;
+    new Ojabooking_Currency_Options_Page;
 }
 
-function oja_get_curencies()
+function ojabooking_get_curencies()
 {
     return array(
         'AFA' => array('Afghan Afghani', '971'),
@@ -227,7 +227,7 @@ function oja_get_curencies()
 }
 
 
-function oja_get_currency_symbol($cur){
+function ojabooking_get_currency_symbol($cur){
     if(!$cur){
         return false;
     }

@@ -1,5 +1,5 @@
 <?php
-class Oja_Bank_Holiday_Options_Page
+class Ojabooking_Bank_Holiday_Options_Page
 {
 
     /**
@@ -32,14 +32,14 @@ class Oja_Bank_Holiday_Options_Page
      */
     function settings_page()
     {
-        $this->oja_bank_holidays_save_options();
+        $this->ojabooking_bank_holidays_save_options();
         wp_enqueue_script(
             'admin_bank_holidays-js',
             plugins_url('../../admin/js/admin_bank_holidays.js',  __FILE__),
             array('jquery')
         );
         
-        $holidays = get_option('oja_bank_holidays');
+        $holidays = get_option('ojabooking_bank_holidays');
         if(!is_array($holidays)){
             $holidays = array("");
         }
@@ -52,13 +52,13 @@ class Oja_Bank_Holiday_Options_Page
             <form action="" method="post">
                 <tr>
                     <th scope="row">
-                        <label for="oja_bank_holidays"><?php _e('Dates of Bank holidays', 'oja'); ?></label>
+                        <label for="ojabooking_bank_holidays"><?php _e('Dates of Bank holidays', 'oja'); ?></label>
                     </th>
                     <td>
-                        <div id="oja_bank_holidays">
+                        <div id="ojabooking_bank_holidays">
                         <?php foreach ($holidays as $key => $value) : ?>
-                            <div id="oja_bank_holidays_<?php echo $key; ?>_container">
-                                <input type="date" id="oja_bank_holidays_<?php echo $key; ?>" name="oja_bank_holidays[]" value="<?php echo date('Y') . "-" . $value; ?>">
+                            <div id="ojabooking_bank_holidays_<?php echo $key; ?>_container">
+                                <input type="date" id="ojabooking_bank_holidays_<?php echo $key; ?>" name="ojabooking_bank_holidays[]" value="<?php echo date('Y') . "-" . $value; ?>">
                                 <button class="button remove-holiday" style="margin: 0 1rem;"><?php _e('Remove', 'oja'); ?></button>
                             </div>
                         <?php endforeach; ?>
@@ -77,7 +77,7 @@ class Oja_Bank_Holiday_Options_Page
     /**
      * Save options
      */
-    function oja_bank_holidays_save_options()
+    function ojabooking_bank_holidays_save_options()
     {
         $message = null;
         $type = null;
@@ -101,15 +101,15 @@ class Oja_Bank_Holiday_Options_Page
             $message = __('You do not have enough permissions', 'oja');
             $type = 'error';
         } else {
-            if (isset($_POST['oja_bank_holidays'])) {
-                $bank_holidays = $_POST['oja_bank_holidays'];
+            if (isset($_POST['ojabooking_bank_holidays'])) {
+                $bank_holidays = $_POST['ojabooking_bank_holidays'];
                 $formatted_days = array();
                 foreach ($bank_holidays as $item) {
                     $formatted_days[] = date('m-d', strtotime($item));
                 }
 
                 //- Sanitize the code
-                update_option('oja_bank_holidays', $formatted_days);
+                update_option('ojabooking_bank_holidays', $formatted_days);
                 $message = __('Successfully updated', 'oja');
                 $type = 'updated';
             } else {
@@ -128,12 +128,12 @@ class Oja_Bank_Holiday_Options_Page
 }
 
 if (current_user_can('manage_options')) {
-    new Oja_Bank_Holiday_Options_Page;
+    new Ojabooking_Bank_Holiday_Options_Page;
 }
 
-register_activation_hook(__FILE__, 'oja_add_oja_bank_holidays_default_options');
-function oja_add_oja_bank_holidays_default_options()
+register_activation_hook(__FILE__, 'ojabooking_add_ojabooking_bank_holidays_default_options');
+function ojabooking_add_ojabooking_bank_holidays_default_options()
 {
-    if (FALSE === get_option('oja_bank_holidays'))
-        add_option('oja_bank_holidays', '');
+    if (FALSE === get_option('ojabooking_bank_holidays'))
+        add_option('ojabooking_bank_holidays', '');
 }

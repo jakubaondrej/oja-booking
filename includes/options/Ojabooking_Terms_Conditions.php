@@ -1,5 +1,5 @@
 <?php
-class Oja_Terms_Conditions
+class Ojabooking_Terms_Conditions
 {
 
     /**
@@ -19,7 +19,7 @@ class Oja_Terms_Conditions
             __('Terms and Conditions', 'oja'),
             __('Terms and Conditions', 'oja'),
             'manage_options',
-            'oja_terms_conditions',
+            'ojabooking_terms_conditions',
             array(
                 $this,
                 'settings_page'
@@ -32,14 +32,14 @@ class Oja_Terms_Conditions
      */
     function settings_page()
     {
-        $this->oja_booking_save_options();
+        $this->ojabooking_booking_save_options();
 
         /**
          * Renders the content of the submenu page for booking categories.
          */
 
         $pages = get_pages();
-        $oja_terms_and_conditions_page = get_option('oja_terms_and_conditions', '');
+        $ojabooking_terms_and_conditions_page = get_option('ojabooking_terms_and_conditions', '');
 
 ?>
 
@@ -50,12 +50,12 @@ class Oja_Terms_Conditions
                 <tbody>
                     <tr>
                         <th scope="row">
-                            <label for="oja_booking">
+                            <label for="ojabooking_booking">
                                 <?php _e('Create new Terms and Conditions page', 'oja'); ?>
                             </label>
                         </th>
                         <td>
-                            <div id="oja_terms_conditions">
+                            <div id="ojabooking_terms_conditions">
                                 <form action="" method="post">
                                     <?php submit_button(
                                         __('Create', 'oja'),
@@ -66,7 +66,7 @@ class Oja_Terms_Conditions
                                             'value' => 'new'
                                         )
                                     ); ?>
-                                    <?php wp_nonce_field('oja_terms_conditions-save', 'oja_terms_conditions-save-nonce'); ?>
+                                    <?php wp_nonce_field('ojabooking_terms_conditions-save', 'ojabooking_terms_conditions-save-nonce'); ?>
                                 </form>
 
                             </div>
@@ -74,26 +74,26 @@ class Oja_Terms_Conditions
                     </tr>
                     <tr>
                         <th scope="row">
-                            <label for="oja_booking">
+                            <label for="ojabooking_booking">
                                 <?php _e('Use already existing page', 'oja'); ?>
                             </label>
                         </th>
                         <td>
                             <form action="" method="post">
-                                <select name="oja_terms_conditions_page">
+                                <select name="ojabooking_terms_conditions_page">
                                     <?php foreach ($pages as $page) : ?>
-                                        <option value="<?php echo $page->ID; ?>" <?php selected($oja_terms_and_conditions_page, $page->ID); ?>><?php echo $page->post_title; ?></option>
+                                        <option value="<?php echo $page->ID; ?>" <?php selected($ojabooking_terms_and_conditions_page, $page->ID); ?>><?php echo $page->post_title; ?></option>
                                     <?php endforeach; ?>
                                 </select>
 
                                 <?php submit_button(__('Use this page', 'oja'),'primary large', 'submit', false ); ?>
-                                <?php wp_nonce_field('oja_terms_conditions-save', 'oja_terms_conditions-save-nonce'); ?>
+                                <?php wp_nonce_field('ojabooking_terms_conditions-save', 'ojabooking_terms_conditions-save-nonce'); ?>
                             </form>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <?php settings_errors('oja_booking'); ?>
+            <?php settings_errors('ojabooking_booking'); ?>
 
 
         </div>
@@ -103,13 +103,13 @@ class Oja_Terms_Conditions
     /**
      * Save options
      */
-    function oja_booking_save_options()
+    function ojabooking_booking_save_options()
     {
         $message = null;
         $type = null;
 
-        $action       = 'oja_terms_conditions-save';
-        $nonce        = 'oja_terms_conditions-save-nonce';
+        $action       = 'ojabooking_terms_conditions-save';
+        $nonce        = 'ojabooking_terms_conditions-save-nonce';
 
         $is_nonce_set   = isset($_POST[$nonce]);
         $is_valid_nonce = false;
@@ -126,14 +126,14 @@ class Oja_Terms_Conditions
             $message = __('Sorry, your data could not be saved', 'oja');
             $type = 'error';
         }elseif (isset($_POST['submit']) && $_POST['submit'] == 'Create') {
-            $new_page_id = oja_create_page_if_not_exists('Terms and Conditions');
-            update_option('oja_terms_and_conditions', $new_page_id);
+            $new_page_id = ojabooking_create_page_if_not_exists('Terms and Conditions');
+            update_option('ojabooking_terms_and_conditions', $new_page_id);
             $message = __('Page was created.', 'oja');
             $type = 'updated';
-        }  elseif (isset($_POST['oja_terms_conditions_page'])) {
-            $oja_terms_conditions_page = $_POST['doja_terms_conditions_page'];
+        }  elseif (isset($_POST['ojabooking_terms_conditions_page'])) {
+            $ojabooking_terms_conditions_page = $_POST['dojabooking_terms_conditions_page'];
             //- Sanitize the code
-            update_option('oja_terms_and_conditions', $oja_terms_conditions_page);
+            update_option('ojabooking_terms_and_conditions', $ojabooking_terms_conditions_page);
             $message = __('Successfully updated', 'oja');
             $type = 'updated';
         } else {
@@ -144,7 +144,7 @@ class Oja_Terms_Conditions
 	   the code may vary, but it will generally follow something like this:
 	*/
         add_settings_error(
-            'oja_terms_conditions',
+            'ojabooking_terms_conditions',
             esc_attr('settings_updated'),
             $message,
             $type
@@ -152,5 +152,5 @@ class Oja_Terms_Conditions
     }
 }
 if (current_user_can('manage_options')) {
-    new Oja_Terms_Conditions;
+    new Ojabooking_Terms_Conditions;
 }

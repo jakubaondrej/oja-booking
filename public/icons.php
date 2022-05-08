@@ -1,5 +1,5 @@
 <?php
-function oja_get_warning_icon()
+function ojabooking_get_warning_icon()
 {
 ?>
   <svg xmlns="http://www.w3.org/2000/svg" id="exclamation-triangle-fill" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
@@ -7,7 +7,7 @@ function oja_get_warning_icon()
   </svg>
 <?php
 }
-function oja_get_success_icon()
+function ojabooking_get_success_icon()
 {
 ?>
   <svg xmlns="http://www.w3.org/2000/svg" id="check-circle-fill" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">

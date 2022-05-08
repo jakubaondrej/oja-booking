@@ -1,15 +1,15 @@
 <?php
-abstract class Oja_Repeat_Months_Meta_Box
+abstract class Ojabooking_Repeat_Months_Meta_Box
 {
     /**
      * Set up and add the meta box.
      */
     public static function add()
     {
-        $screens = ['oja_event'];
+        $screens = ['ojabooking_event'];
         foreach ($screens as $screen) {
             add_meta_box(
-                'oja_repeat_months_meta_data',          // Unique ID
+                'ojabooking_repeat_months_meta_data',          // Unique ID
                 'Repeat - Months', // Box title
                 [self::class, 'html'],   // Content callback, must be of type callable
                 $screen                  // Post type
@@ -25,14 +25,14 @@ abstract class Oja_Repeat_Months_Meta_Box
      */
     public static function save(int $post_id)
     {
-        if (array_key_exists('oja_repeat_months', $_POST) && array_key_exists('oja_reservation_type', $_POST) && $_POST['oja_reservation_type']=='periodical_event') { 
+        if (array_key_exists('ojabooking_repeat_months', $_POST) && array_key_exists('ojabooking_reservation_type', $_POST) && $_POST['ojabooking_reservation_type']=='periodical_event') { 
             update_post_meta(
                 $post_id,
-                'oja_repeat_months',
-                $_POST['oja_repeat_months']
+                'ojabooking_repeat_months',
+                $_POST['ojabooking_repeat_months']
             );
         }else{
-            delete_post_meta($post_id, 'oja_repeat_months');
+            delete_post_meta($post_id, 'ojabooking_repeat_months');
         }
     }
 
@@ -45,9 +45,9 @@ abstract class Oja_Repeat_Months_Meta_Box
     public static function html($post)
     {
         global $wp_locale;
-        $oja_repeat_months = get_post_meta($post->ID, 'oja_repeat_months', true);
-        if (!is_array($oja_repeat_months)) {
-            $oja_repeat_months = array();
+        $ojabooking_repeat_months = get_post_meta($post->ID, 'ojabooking_repeat_months', true);
+        if (!is_array($ojabooking_repeat_months)) {
+            $ojabooking_repeat_months = array();
         }
         ?>
         <fieldset>
@@ -56,8 +56,8 @@ abstract class Oja_Repeat_Months_Meta_Box
             for ($i = 1; $i < 13; $i++) {
                 $month_name = $wp_locale->get_month($i);
             ?>
-                <label for="oja_repeat_months[]">
-                    <input type="checkbox" <?php checked(in_array($i, $oja_repeat_months)); ?> value="<?php echo $i; ?>" id="selected_day_<?php echo $i; ?>" name="oja_repeat_months[]"> <?php echo $month_name; ?>
+                <label for="ojabooking_repeat_months[]">
+                    <input type="checkbox" <?php checked(in_array($i, $ojabooking_repeat_months)); ?> value="<?php echo $i; ?>" id="selected_day_<?php echo $i; ?>" name="ojabooking_repeat_months[]"> <?php echo $month_name; ?>
                 </label>
                 <br>
             <?php
@@ -68,5 +68,5 @@ abstract class Oja_Repeat_Months_Meta_Box
     }
 }
 
-add_action('add_meta_boxes', ['Oja_Repeat_Months_Meta_Box', 'add']);
-add_action('save_post', ['Oja_Repeat_Months_Meta_Box', 'save']);
+add_action('add_meta_boxes', ['Ojabooking_Repeat_Months_Meta_Box', 'add']);
+add_action('save_post', ['Ojabooking_Repeat_Months_Meta_Box', 'save']);

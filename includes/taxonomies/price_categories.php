@@ -1,5 +1,5 @@
 <?php 
-function oja_register_price_categories_taxonomy(){
+function ojabooking_register_price_categories_taxonomy(){
     $labels=array(
         'name'  => _x('Price categories','Price category tags', 'oja'),
         'singular_name'  => _x('Price category','Price category tag', 'oja'),
@@ -16,16 +16,16 @@ function oja_register_price_categories_taxonomy(){
         'query_var'         => true,
         'public'            => true,
     );
-    register_taxonomy('oja_price_categories','oja_event',$args);
+    register_taxonomy('ojabooking_price_categories','ojabooking_event',$args);
 }
-add_action( 'init', 'oja_register_price_categories_taxonomy');
+add_action( 'init', 'ojabooking_register_price_categories_taxonomy');
 
-add_action( 'oja_price_categories_add_form_fields', 'oja_price_categories_add_term_fields' );
-add_action( 'oja_price_categories_edit_form_fields', 'oja_price_categories_edit_term_fields' );
-add_action('edited_oja_price_categories', 'oja_price_categories_update_term_fields', 10, 2);
-add_action('created_oja_price_categories', 'oja_price_categories_update_term_fields', 10, 2);
+add_action( 'ojabooking_price_categories_add_form_fields', 'ojabooking_price_categories_add_term_fields' );
+add_action( 'ojabooking_price_categories_edit_form_fields', 'ojabooking_price_categories_edit_term_fields' );
+add_action('edited_ojabooking_price_categories', 'ojabooking_price_categories_update_term_fields', 10, 2);
+add_action('created_ojabooking_price_categories', 'ojabooking_price_categories_update_term_fields', 10, 2);
 
-function oja_price_categories_update_term_fields($term_id, $tt_id) {
+function ojabooking_price_categories_update_term_fields($term_id, $tt_id) {
     if (isset($_POST['private_party'])){
         $group = $_POST['private_party'];
         update_term_meta($term_id, 'private_party', true);
@@ -34,7 +34,7 @@ function oja_price_categories_update_term_fields($term_id, $tt_id) {
     }
 }
 
-function oja_price_categories_add_term_fields( $taxonomy ) {
+function ojabooking_price_categories_add_term_fields( $taxonomy ) {
 
 	echo '<div class="form-field">
 	<label for="private-party">' . __('Private party','oja') . '</label>
@@ -43,7 +43,7 @@ function oja_price_categories_add_term_fields( $taxonomy ) {
 	</div>';
 }
 
-function oja_price_categories_edit_term_fields( $term ) {
+function ojabooking_price_categories_edit_term_fields( $term ) {
     $private_party = get_term_meta( $term->term_id, 'private_party', true);
 
 	echo '<tr class="form-field">

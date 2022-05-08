@@ -19,7 +19,7 @@ $("#booking-filter").on('click', 'button', function (e) {
     e.preventDefault();
 });
 $("#booking-filter").on('change', 'input#date,select#booking-language', function (e) {
-    oja_load_booking();
+    ojabooking_load_booking();
 });
 
 $("#booking-list").on('click', '.booking button.book', function (e) {
@@ -33,7 +33,7 @@ $("#booking-list").on('click', '.booking button.book', function (e) {
 $("#booking-filter").on('click', '#booking-contact-modal-btn', function (e) {
     e.stopPropagation();
     e.preventDefault();
-    oja_book_me();
+    ojabooking_book_me();
 });
 
 $('#booking-filter').on('click','button.private-party-select', function (e){
@@ -63,20 +63,20 @@ function group_changed(event) {
         }
     });
     var text = selected_group_array.toString();
-    if(text.length<1) text = Oja_Ajax.select_group_text;
+    if(text.length<1) text = Ojabooking_Ajax.select_group_text;
     $(".selected-group").html(text);
-    oja_load_booking();
+    ojabooking_load_booking();
 }
 
 
-function oja_load_booking() {
+function ojabooking_load_booking() {
     removeAlerts();
     var button = $('#load-more');
     var loading_spin = $("#loading-more");
-    var data = $("#booking-filter").serialize() + "&action=oja_get_events&nextNonce=" + Oja_Ajax.nextNonce;
+    var data = $("#booking-filter").serialize() + "&action=ojabooking_get_events&nextNonce=" + Ojabooking_Ajax.nextNonce;
 
     $.ajax({
-        url: Oja_Ajax.ajaxurl,
+        url: Ojabooking_Ajax.ajaxurl,
         data: data,
         type: 'POST',
         beforeSend: function (xhr) {
@@ -90,9 +90,9 @@ function oja_load_booking() {
                 data.data.events.forEach(event => {
                     appendTerm(event);
                 });
-                Oja_Ajax.current_page++;
-                Oja_Ajax.max_page = data.data.max_num_pages;
-                if (Oja_Ajax.current_page == Oja_Ajax.max_page)
+                Ojabooking_Ajax.current_page++;
+                Ojabooking_Ajax.max_page = data.data.max_num_pages;
+                if (Ojabooking_Ajax.current_page == Ojabooking_Ajax.max_page)
                     button.hide(); // if last page, remove the button
 
                 if (data.data.out['no_events']) {
@@ -140,7 +140,7 @@ function appendTerm(event) {
     }
 }
 
-function oja_book_me() {
+function ojabooking_book_me() {
     event.preventDefault();
     event.stopPropagation();
     removeAlerts();
@@ -152,10 +152,10 @@ function oja_book_me() {
     }
     var button = $('#load-more');
     var loading_spin = $("#loading-more");
-    var data = $("#booking-filter").serialize() + "&action=oja_create_booking&bookingNonce=" + Oja_Ajax.bookingNonce;
+    var data = $("#booking-filter").serialize() + "&action=ojabooking_create_booking&bookingNonce=" + Ojabooking_Ajax.bookingNonce;
 
     $.ajax({
-        url: Oja_Ajax.ajaxurl,
+        url: Ojabooking_Ajax.ajaxurl,
         data: data,
         type: 'POST',
         beforeSend: function (xhr) {

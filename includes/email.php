@@ -1,10 +1,10 @@
 <?php
-add_action('wp_ajax_oja_send_mail', 'oja_send_mail');
-add_action('wp_ajax_nopriv_oja_send_mail', 'oja_send_mail');
+add_action('wp_ajax_ojabooking_send_mail', 'ojabooking_send_mail');
+add_action('wp_ajax_nopriv_ojabooking_send_mail', 'ojabooking_send_mail');
 
-function oja_send_mail()
+function ojabooking_send_mail()
 {
-    if (!wp_verify_nonce($_REQUEST['nonce'], "oja_send_mail_nonce")) {
+    if (!wp_verify_nonce($_REQUEST['nonce'], "ojabooking_send_mail_nonce")) {
         exit("No naughty business please");
     }
     $errors = array();
@@ -43,7 +43,7 @@ function oja_send_mail()
 }
 
 /**Post type: Messages */
-function create_jakubaondrej_message()
+function ojabooking_create_jakubaondrej_message()
 {
     register_post_type(
         'jakubaondrej_message',
@@ -73,4 +73,4 @@ function create_jakubaondrej_message()
         )
     );
 }
-add_action('init', 'create_jakubaondrej_message', 0);
+add_action('init', 'ojabooking_create_jakubaondrej_message', 0);

@@ -1,6 +1,6 @@
 var $ = jQuery;
 var lang = navigator.language;
-var currency = Oja_Currency.current_currency;
+var currency = Ojabooking_Currency.current_currency;
 
 function get_price_text(number) {
   return number.toLocaleString(lang, { style: 'currency', currency: currency });

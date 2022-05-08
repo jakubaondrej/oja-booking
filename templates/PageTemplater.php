@@ -1,6 +1,6 @@
 <?php
 
-class PageTemplater {
+class Ojabooking_PageTemplater {
 
 	/**
 	 * A reference to an instance of this class.
@@ -18,7 +18,7 @@ class PageTemplater {
 	public static function get_instance() {
 
 		if ( null == self::$instance ) {
-			self::$instance = new PageTemplater();
+			self::$instance = new Ojabooking_PageTemplater();
 		} 
 
 		return self::$instance;
@@ -69,8 +69,8 @@ class PageTemplater {
 
 		// Add your templates to this array.
 		$this->templates = array(
-			'booking-page.php' => 'Booking page',
-			'booking_confirmation-page.php' => 'Booking Confirmation page',
+			'ojabooking-page.php' => 'Booking page',
+			'ojabooking_confirmation-page.php' => 'Booking Confirmation page',
 		);
 			
 	} 
@@ -152,4 +152,4 @@ class PageTemplater {
 	}
 
 } 
-add_action( 'plugins_loaded', array( 'PageTemplater', 'get_instance' ) );
+add_action( 'plugins_loaded', array( 'Ojabooking_PageTemplater', 'get_instance' ) );

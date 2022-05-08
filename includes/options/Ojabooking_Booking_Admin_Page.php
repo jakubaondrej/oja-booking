@@ -1,5 +1,5 @@
 <?php
-class Oja_Booking_Admin_Page
+class Ojabooking_Booking_Admin_Page
 {
 
     /**
@@ -16,11 +16,11 @@ class Oja_Booking_Admin_Page
     function admin_menu()
     {
         add_submenu_page(
-            'edit.php?post_type=oja_event',
+            'edit.php?post_type=ojabooking_event',
             __('Booking', 'oja'),
             __('Booking', 'oja'),
             'edit_published_pages',
-            'oja_booking',
+            'ojabooking_booking',
             array(
                 $this,
                 'settings_page'
@@ -33,10 +33,10 @@ class Oja_Booking_Admin_Page
      */
     function settings_page()
     {
-        $this->oja_booking_save_options();
-        settings_errors('oja_update_booking_status');
-        $action       = 'oja_bookings_admin-search';
-        $nonce        = 'oja_bookings_admin-search-nonce';
+        $this->ojabooking_booking_save_options();
+        settings_errors('ojabooking_update_booking_status');
+        $action       = 'ojabooking_bookings_admin-search';
+        $nonce        = 'ojabooking_bookings_admin-search-nonce';
 
         $is_nonce_set   = isset($_GET[$nonce]);
         $is_valid_nonce = false;
@@ -45,7 +45,7 @@ class Oja_Booking_Admin_Page
             $is_valid_nonce = wp_verify_nonce($_GET[$nonce], $action);
         }
 
-        $update_uri_nonce = wp_create_nonce('oja_update_booking_status');
+        $update_uri_nonce = wp_create_nonce('ojabooking_update_booking_status');
 
         $nonce_value=wp_create_nonce($action); // wp_nonce_field($action, $nonce); 
 
@@ -60,16 +60,16 @@ class Oja_Booking_Admin_Page
             echo "BUSTED!";
             die();
         }
-        $bookings = oja_get_bookings($paged, $s, $date_from, $date_to, $term_id,  $status, 15);
+        $bookings = ojabooking_get_bookings($paged, $s, $date_from, $date_to, $term_id,  $status, 15);
         $bookings_count = $bookings['booking_count'];
         $terms_uri_nonce = wp_create_nonce($action);
-        $terms_uri = add_query_arg(array('page' => 'oja_booking_terms', 'post_type' => 'oja_event', $nonce => $terms_uri_nonce), admin_url('edit.php'));
-        $update_uri_nonce = wp_create_nonce('oja_update_booking_status');
+        $terms_uri = add_query_arg(array('page' => 'ojabooking_booking_terms', 'post_type' => 'ojabooking_event', $nonce => $terms_uri_nonce), admin_url('edit.php'));
+        $update_uri_nonce = wp_create_nonce('ojabooking_update_booking_status');
         $update_status_uri = add_query_arg(
             array(
-                'page' => 'oja_booking',
-                'post_type' => 'oja_event',
-                'oja_update_booking_status-nonce' => $update_uri_nonce,
+                'page' => 'ojabooking_booking',
+                'post_type' => 'ojabooking_event',
+                'ojabooking_update_booking_status-nonce' => $update_uri_nonce,
                 'filter-by-date-from' => $date_from,
                 'filter-by-date-to' => $date_to,
                 'status' => $status,
@@ -80,7 +80,7 @@ class Oja_Booking_Admin_Page
         );
 
         $price_categories = get_terms(array(
-            'taxonomy' => 'oja_price_categories',
+            'taxonomy' => 'ojabooking_price_categories',
             'hide_empty' => false,
         ));
 ?>
@@ -88,7 +88,7 @@ class Oja_Booking_Admin_Page
             <h1><?php _e('Bookings', 'oja'); ?></h1>
             <div class="wrap">
                 <ul class="subsubsub">
-                    <li class="all"><a href="<?php echo add_query_arg(array('post_type' => 'oja_event','page' => 'oja_booking'), admin_url('edit.php')); ?>" class="current" aria-current="page">
+                    <li class="all"><a href="<?php echo add_query_arg(array('post_type' => 'ojabooking_event','page' => 'ojabooking_booking'), admin_url('edit.php')); ?>" class="current" aria-current="page">
                             <?php _e('All', 'oja'); ?> <span class="count">(<?php echo $bookings['booking_all_count'];; ?>)</span></a> |
                     </li>
                 </ul>
@@ -101,8 +101,8 @@ class Oja_Booking_Admin_Page
                     <input type="submit" id="search-submit" class="button" value="<?php _e('Search', 'oja'); ?>">
                 </p>
 
-                <input type="hidden" name="post_type" value="oja_event">
-                <input type="hidden" name="page" value="oja_booking">
+                <input type="hidden" name="post_type" value="ojabooking_event">
+                <input type="hidden" name="page" value="ojabooking_booking">
                 <input type="hidden" name="term_id" value="<?php echo $term_id; ?>">
                 <input type="hidden" name="<?php echo $nonce;?>" value="<?php echo $nonce_value; ?>">
                 
@@ -115,7 +115,7 @@ class Oja_Booking_Admin_Page
                         <label class="screen-reader-text" for="cat"><?php _e('Filter by status', 'oja'); ?></label>
                         <select name="status" id="status">
                             <option value=""><?php _e('All statuses', 'oja'); ?></option>
-                            <?php foreach (oja_get_booking_statuses() as $status_item) {
+                            <?php foreach (ojabooking_get_booking_statuses() as $status_item) {
                                 echo '<option class="level-0" value="' . $status_item . '" ' . selected($status_item, $status) . '>' . $status_item . '</option>';
                             }
                             ?>
@@ -124,7 +124,7 @@ class Oja_Booking_Admin_Page
                         <input type="submit" name="filter_action" id="post-query-submit" class="button" value="<?php _e('Filter', 'oja'); ?>">
                     </div>
                     <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$bookings_count bookings", 'oja'); ?></span>
-                        <?php oja_admin_pagination((int)$bookings['pages'], (int)$paged); ?>
+                        <?php ojabooking_admin_pagination((int)$bookings['pages'], (int)$paged); ?>
                     </div>
                     <br class="clear">
 
@@ -171,11 +171,11 @@ class Oja_Booking_Admin_Page
                             $group2=array();
                             $booking_detail = array();
                             foreach ($group as $key => $value) {
-                                $cat_name = oja_get_object_by_property_value($price_categories, 'term_id', (int)$key)->name;
+                                $cat_name = ojabooking_get_object_by_property_value($price_categories, 'term_id', (int)$key)->name;
                                 $booking_detail[] =  $value . "x " . $cat_name;
                                 $group2[(int)$key]=$value;
                             }
-                            $contact=oja_is_group_private_party($group2)?  ", ".$booking->school_name_department . ", ".$booking->class_department:"";
+                            $contact=ojabooking_is_group_private_party($group2)?  ", ".$booking->school_name_department . ", ".$booking->class_department:"";
                             ?>
                             <tr id="post-<?php echo $booking->id; ?>" class="iedit author-self level-0 post-<?php echo $booking->id; ?> type-post status-publish format-standard">
                                 <th scope="row" class="check-column">
@@ -201,7 +201,7 @@ class Oja_Booking_Admin_Page
                                 </td>
                                 <td class="column-term" data-colname="<?php _e('Term', 'oja'); ?>">
                                     <a class="row-title" href="<?php echo add_query_arg(array('term_id' => $booking->term_id), $terms_uri); ?>" aria-label="<?php esc_html_e("Show term $booking->term", 'oja'); ?> ">
-                                        <?php echo oja_get_local_date_time($booking->term); ?>
+                                        <?php echo ojabooking_get_local_date_time($booking->term); ?>
                                     </a>
                                 </td>
                                 <td class="column-status" data-colname="<?php _e('Status', 'oja'); ?>"><?php echo $booking->status; ?></td>
@@ -221,7 +221,7 @@ class Oja_Booking_Admin_Page
                 </table>
                 <div class="tablenav bottom">
                     <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$bookings_count bookings", 'oja'); ?></span>
-                        <?php oja_admin_pagination((int)$bookings['pages'], (int)$paged); ?>
+                        <?php ojabooking_admin_pagination((int)$bookings['pages'], (int)$paged); ?>
                     </div>
                     <br class="clear">
                 </div>
@@ -235,13 +235,13 @@ class Oja_Booking_Admin_Page
     /**
      * Save options
      */
-    function oja_booking_save_options()
+    function ojabooking_booking_save_options()
     {
         $message = null;
         $type = null;
 
-        $action       = 'oja_update_booking_status';
-        $nonce        = 'oja_update_booking_status-nonce';
+        $action       = 'ojabooking_update_booking_status';
+        $nonce        = 'ojabooking_update_booking_status-nonce';
         $is_nonce_set   = isset($_GET[$nonce]);
 
         $is_valid_nonce = false;
@@ -258,7 +258,7 @@ class Oja_Booking_Admin_Page
             $message = __('Sorry, your data could not be saved', 'oja');
             $type = 'error';
         } elseif (isset($booking) && isset($status)) {
-            $updated = oja_update_booking_status($booking, $status);
+            $updated = ojabooking_update_booking_status($booking, $status);
             if ($updated) {
                 $message = __('Successfully updated', 'oja');
                 $type = 'updated';
@@ -271,7 +271,7 @@ class Oja_Booking_Admin_Page
             $type = 'error';
         }
         add_settings_error(
-            'oja_update_booking_status',
+            'ojabooking_update_booking_status',
             esc_attr('settings_updated'),
             $message,
             $type
@@ -279,5 +279,5 @@ class Oja_Booking_Admin_Page
     }
 }
 if (current_user_can('edit_published_pages')) {
-    new Oja_Booking_Admin_Page;
+    new Ojabooking_Booking_Admin_Page;
 }

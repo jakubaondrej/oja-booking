@@ -1,19 +1,19 @@
 <?php
-oja_booking_enqueue();
+ojabooking_booking_enqueue();
 get_header();
-oja_get_booking_style();
+ojabooking_get_booking_style();
 ?>
 <div class="container rounded my-md-2 p-sm-3 p-md-5 bg-content shadow rounded">
         <?php if (have_posts()) :
-                $oja_price_categories = get_terms(array(
-                        'taxonomy' => 'oja_price_categories',
+                $ojabooking_price_categories = get_terms(array(
+                        'taxonomy' => 'ojabooking_price_categories',
                         'hide_empty' => false,
                 ));
                 while (have_posts()) : the_post();
                         $id = get_the_ID();
-                        $is_periodical = oja_is_event_periodical($id);
+                        $is_periodical = ojabooking_is_event_periodical($id);
 
-                        $languages = wp_get_post_terms($id, 'oja_languages');
+                        $languages = wp_get_post_terms($id, 'ojabooking_languages');
                         $language_names = array();
                         if ($languages) {
                                 foreach ($languages as $language) {
@@ -21,9 +21,9 @@ oja_get_booking_style();
                                 }
                         }
 
-                        $prices =  get_post_meta($post->ID, 'oja_price_category', true);
+                        $prices =  get_post_meta($post->ID, 'ojabooking_price_category', true);
 
-                        $max_group = get_post_meta($id, 'oja_group_size', true);
+                        $max_group = get_post_meta($id, 'ojabooking_group_size', true);
 
                         if (has_post_thumbnail()) : ?>
                                 <div class="wrap-text-around-image-left p-3 pe-sm-5 pb-sm-5">
@@ -50,39 +50,38 @@ oja_get_booking_style();
                                                 </tr>
                                         <?php endif; ?>
                                         <?php if ($is_periodical) :
-                                                $oja_start_term = get_post_meta($id, 'oja_start_term', true);
-                                                $oja_end_term = get_post_meta($id, 'oja_end_term', true);
-                                                $term_duration = IsNullOrEmptyString( $oja_start_term)?"":  __("From",'oja') . " ". oja_get_local_date_time($oja_start_term) . " ";
-                                                $term_duration .= IsNullOrEmptyString( $oja_end_term)?"": __("to",'oja') . " " . oja_get_local_date_time($oja_end_term);
+                                                $ojabooking_start_term = get_post_meta($id, 'ojabooking_start_term', true);
+                                                $ojabooking_end_term = get_post_meta($id, 'ojabooking_end_term', true);
+                                                $term_duration = IsNullOrEmptyString( $ojabooking_start_term)?"":  __("From",'oja') . " ". ojabooking_get_local_date_time($ojabooking_start_term) . " ";
+                                                $term_duration .= IsNullOrEmptyString( $ojabooking_end_term)?"": __("to",'oja') . " " . ojabooking_get_local_date_time($ojabooking_end_term);
                                         ?>
                                                 <tr>
                                                         <th scope="row"><?php _e('Term', 'oja'); ?></th>
                                                         <td class="ps-3"><?php echo $term_duration; ?></td>
                                                 </tr>
                                         <?php else :
-                                                $event_term = get_post_meta($id, 'oja_the_term', true);
+                                                $event_term = get_post_meta($id, 'ojabooking_the_term', true);
         ?>
                                                 <tr>
                                                         <th scope="row"><?php _e('Term', 'oja'); ?></th>
-                                                        <td class="ps-3"><?php echo oja_get_local_date_time($event_term); ?></td>
+                                                        <td class="ps-3"><?php echo ojabooking_get_local_date_time($event_term); ?></td>
                                                 </tr>
                                         <?php endif; ?>
 
                                 </tbody>
                         </table>
-                        <?php the_content(); ?>
-                        <?php $booking_page_id = (int)get_option('oja_booking_page');//get_page_id_by_template('booking-page.php'); //
+                        <?php wp_kses_post(the_content()); ?>
+                        <?php $booking_page_id = (int)get_option('ojabooking_booking_page');
                         ?>
-                        <h3>Tickets</h3>
+                        <h3><?php esc_html_e('Tickets','oja');?></h3>
                         <?php 
-                        $next_term = $is_periodical ? oja_get_periodical_event_next_term($id): date("Y-m-d",strtotime($event_term));
+                        $next_term = $is_periodical ? ojabooking_get_periodical_event_next_term($id): date("Y-m-d",strtotime($event_term));
                         if($next_term ): ?>
-                        <form id="create-event-reservation" action="<?php echo get_page_link($booking_page_id) ?>">
+                        <form id="create-event-reservation" action="<?php echo esc_url(get_page_link($booking_page_id)); ?>">
                                 <input type="hidden" name="event_id" value="<?php echo get_the_ID(); ?>">
-                                <input type="hidden" name="date" value="<?php echo $next_term; ?>">
-                                
+                                <input type="hidden" name="date" value="<?php echo esc_attr($next_term); ?>">
                                 <?php
-                                $use_languages = get_option('oja_use_booking_languages', 0);
+                                $use_languages = get_option('ojabooking_use_booking_languages', 0);
                                 if ($use_languages && $languages) :
                                         if (count($languages) > 1) : ?>
                                                 <div class="input-group" title="<?php _e('Language', 'oja'); ?>">
@@ -92,12 +91,12 @@ oja_get_booking_style();
                                                                 </svg></label>
                                                         <select class="form-select" id="booking-language" name="booking-language">
                                                                 <?php foreach ($languages as $language) : ?>
-                                                                        <option value="<?php echo $language->term_id; ?>" <?php selected($book_lang, $language->term_id); ?>><?php echo $language->name; ?></option>
+                                                                        <option value="<?php echo esc_attr($language->term_id); ?>" <?php selected($book_lang, $language->term_id); ?>><?php echo esc_textarea($language->name); ?></option>
                                                                 <?php endforeach; ?>
                                                         </select>
                                                 </div>
                                         <?php else : ?>
-                                                <input type="hidden" name="booking-language" value="<?php echo $languages[0]->term_id; ?>">
+                                                <input type="hidden" name="booking-language" value="<?php echo esc_attr($languages[0]->term_id); ?>">
                                         <?php endif; ?>
                                 <?php endif; ?>
 
@@ -111,11 +110,11 @@ oja_get_booking_style();
                                                         </tr>
                                                 </thead>
                                                 <tbody>
-                                                        <?php foreach ($oja_price_categories as $category) : ?>
+                                                        <?php foreach ($ojabooking_price_categories as $category) : ?>
                                                                 <tr>
-                                                                        <th scope="row"><?php echo $category->name; ?></th>
+                                                                        <th scope="row"><?php echo esc_textarea($category->name); ?></th>
                                                                         <td>
-                                                                                <input type="number" class="group-count" name="group[<?php echo $category->term_id; ?>]" value="0" price="<?php echo $prices[$category->term_id]; ?>" min="0" max="100" size="3">
+                                                                                <input type="number" class="group-count" name="group[<?php echo esc_attr($category->term_id); ?>]" value="0" price="<?php echo esc_attr($prices[$category->term_id]); ?>" min="0" max="100" size="3">
                                                                         </td>
                                                                         <td class="price-category"></td>
                                                                 </tr>

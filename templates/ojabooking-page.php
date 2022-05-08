@@ -1,17 +1,17 @@
 <?php 
-include plugin_dir_path(__FILE__) . 'booking-parts.php';
-oja_enqueue_scripts();
+include plugin_dir_path(__FILE__) . 'ojabooking-parts.php';
+ojabooking_enqueue_scripts();
 get_header();
-oja_booking_enqueue();
-oja_get_booking_style();
+ojabooking_booking_enqueue();
+ojabooking_get_booking_style();
 ?>
-<?php oja_get_template_part_booking_list() ?>
+<?php ojabooking_get_template_part_booking_list() ?>
 
 <div class="container p-1 my-2 p-sm-3 p-md-5 my-2 bg-content shadow rounded-3">
     <h1><?php the_title(); ?></h1>
     <?php
-    oja_get_alert_placeholder();
-    oja_get_template_part_booking_filter();
+    ojabooking_get_alert_placeholder();
+    ojabooking_get_template_part_booking_filter();
     ?>
 
     <div id="booking-list">

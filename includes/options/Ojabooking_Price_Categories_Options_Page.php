@@ -1,5 +1,5 @@
 <?php
-class Oja_Price_Categories_Options_Page
+class Ojabooking_Price_Categories_Options_Page
 {
 
     /**
@@ -19,7 +19,7 @@ class Oja_Price_Categories_Options_Page
             __('Price Categories', 'oja'),
             __('Price Categories', 'oja'),
             'manage_options',
-            'oja_price_categories',
+            'ojabooking_price_categories',
             array(
                 $this,
                 'settings_page'
@@ -32,7 +32,7 @@ class Oja_Price_Categories_Options_Page
      */
     function settings_page()
     {
-        $this->oja_booking_save_options();
+        $this->ojabooking_booking_save_options();
        
 /**
  * Renders the content of the submenu page for booking categories.
@@ -42,28 +42,28 @@ wp_enqueue_script(
     plugins_url('private/js/admin_booking.js',  __FILE__),
     array('jquery')
 );
-$currency_symbol = get_option('oja_current_currency');
+$currency_symbol = get_option('ojabooking_current_currency');
 $categories = get_terms(array(
-    'taxonomy' => 'oja_price_categories',
+    'taxonomy' => 'ojabooking_price_categories',
     'hide_empty' => false,
 ));
-$default_category = get_option('oja_default_price_category','');
+$default_category = get_option('ojabooking_default_price_category','');
 
 ?>
 
 <div class="wrap">
     <h1><?php _e('Price Categories', 'oja'); ?></h1>
-    <?php settings_errors('oja_booking'); ?>
+    <?php settings_errors('ojabooking_booking'); ?>
     <form action="" method="post">
         <tr>
             <th scope="row">
-                <label for="oja_booking"><h4><?php _e('Select default category', 'oja'); ?></h4></label>
+                <label for="ojabooking_booking"><h4><?php _e('Select default category', 'oja'); ?></h4></label>
             </th>
             <td>
-                <div id="oja_booking_categories">
+                <div id="ojabooking_booking_categories">
                     <?php foreach ($categories as $category) : ?>
                         <div>
-                            <input type="radio" class="default-category" id="default-category_<?php echo $category->term_id; ?>" name="default-category" value="<?php echo $category->term_id; ?>" title="<?php echo $category->name; ?>" <?php checked($default_category, $category->term_id);?>>
+                            <input type="radio" class="default-category" id="default-category_<?php echo $category->term_id; ?>" name="default-category" value="<?php echo esc_attr($category->term_id); ?>" title="<?php echo esc_attr($category->name); ?>" <?php checked($default_category, $category->term_id);?>>
                             <label class="category_name" for="default-category_<?php echo $category->term_id; ?>"><?php echo $category->name; ?></label>
                         </div>
                     <?php endforeach; ?>
@@ -72,7 +72,7 @@ $default_category = get_option('oja_default_price_category','');
         </tr>
 
         <?php submit_button(__('Save', 'oja')); ?>
-        <?php wp_nonce_field('oja_booking_categories-save', 'oja_booking_categories-save-nonce'); ?>
+        <?php wp_nonce_field('ojabooking_booking_categories-save', 'ojabooking_booking_categories-save-nonce'); ?>
     </form>
 </div>
 <?php
@@ -81,13 +81,13 @@ $default_category = get_option('oja_default_price_category','');
     /**
      * Save options
      */
-    function oja_booking_save_options()
+    function ojabooking_booking_save_options()
     {
         $message = null;
         $type = null;
 
-        $action       = 'oja_booking_categories-save';
-        $nonce        = 'oja_booking_categories-save-nonce';
+        $action       = 'ojabooking_booking_categories-save';
+        $nonce        = 'ojabooking_booking_categories-save-nonce';
 
         $is_nonce_set   = isset($_POST[$nonce]);
         $is_valid_nonce = false;
@@ -106,7 +106,7 @@ $default_category = get_option('oja_default_price_category','');
         } elseif (isset($_POST['default-category'])) {
             $default_price_category = $_POST['default-category'];
             //- Sanitize the code
-            update_option('oja_default_price_category', $default_price_category);
+            update_option('ojabooking_default_price_category', $default_price_category);
             $message = __('Successfully updated', 'oja');
             $type = 'updated';
         } else {
@@ -117,7 +117,7 @@ $default_category = get_option('oja_default_price_category','');
 	   the code may vary, but it will generally follow something like this:
 	*/
         add_settings_error(
-            'oja_booking_categories',
+            'ojabooking_booking_categories',
             esc_attr('settings_updated'),
             $message,
             $type
@@ -125,5 +125,5 @@ $default_category = get_option('oja_default_price_category','');
     }
 }
 if (current_user_can('manage_options')) {
-    new Oja_Price_Categories_Options_Page;
+    new Ojabooking_Price_Categories_Options_Page;
 }

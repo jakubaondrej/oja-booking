@@ -1,5 +1,5 @@
 <?php
-class Oja_Booking_Terms_Admin_Page
+class Ojabooking_Booking_Terms_Admin_Page
 {
     /**
      * Constructor.
@@ -15,11 +15,11 @@ class Oja_Booking_Terms_Admin_Page
     function admin_menu()
     {
         add_submenu_page(
-            'edit.php?post_type=oja_event',
+            'edit.php?post_type=ojabooking_event',
             __('Booking Terms', 'oja'),
             __('Booking Terms', 'oja'),
             'edit_published_pages',
-            'oja_booking_terms',
+            'ojabooking_booking_terms',
             array(
                 $this,
                 'settings_page'
@@ -33,9 +33,9 @@ class Oja_Booking_Terms_Admin_Page
      */
     function settings_page()
     {
-        $this->oja_booking_save_options();
-        $action       = 'oja_bookings_admin-search';
-        $nonce        = 'oja_bookings_admin-search-nonce';
+        $this->ojabooking_booking_save_options();
+        $action       = 'ojabooking_bookings_admin-search';
+        $nonce        = 'ojabooking_bookings_admin-search-nonce';
 
         $is_nonce_set   = isset($_GET[$nonce]);
         $is_valid_nonce = false;
@@ -54,10 +54,10 @@ class Oja_Booking_Terms_Admin_Page
             echo "BUSTED!";
             die();
         }
-        $terms = oja_get_terms($paged, $s, $date_from, $date_to, $term_id, 15);
+        $terms = ojabooking_get_terms($paged, $s, $date_from, $date_to, $term_id, 15);
         $terms_count = $terms['terms_count'];
         $booking_uri_nonce = wp_create_nonce($action);
-        $booking_uri = add_query_arg(array('page' => 'oja_booking', 'post_type' => 'oja_event', $nonce => $booking_uri_nonce), admin_url('edit.php'));
+        $booking_uri = add_query_arg(array('page' => 'ojabooking_booking', 'post_type' => 'ojabooking_event', $nonce => $booking_uri_nonce), admin_url('edit.php'));
 ?>
         <div class="wrap">
             <h1><?php _e('Terms', 'oja'); ?></h1>
@@ -69,8 +69,8 @@ class Oja_Booking_Terms_Admin_Page
                     <input type="submit" id="search-submit" class="button" value="<?php _e('Search', 'oja'); ?>">
                 </p>
 
-                <input type="hidden" name="post_type" value="oja_event">
-                <input type="hidden" name="page" class="post_type_page" value="oja_booking_terms">
+                <input type="hidden" name="post_type" value="ojabooking_event">
+                <input type="hidden" name="page" class="post_type_page" value="ojabooking_booking_terms">
                 <?php wp_nonce_field($action, $nonce); ?>
 
 
@@ -78,14 +78,14 @@ class Oja_Booking_Terms_Admin_Page
                 <div class="tablenav top">
                     <div class="alignleft actions">
                         <label for="filter-by-date-from"><?php _e('From', 'oja'); ?></label>
-                        <input id="filter-by-date-from" type="date" value="<?php echo $date_from; ?>" name="date_from">
+                        <input id="filter-by-date-from" type="date" value="<?php echo esc_attr($date_from); ?>" name="date_from">
                         <label for="filter-by-date-to"><?php _e('to', 'oja'); ?></label>
-                        <input id="filter-by-date-to" type="date" value="<?php echo $date_to; ?>" name="date_to">
+                        <input id="filter-by-date-to" type="date" value="<?php echo esc_attr($date_to); ?>" name="date_to">
 
                         <input type="submit" name="filter_action" id="post-query-submit" class="button" value="<?php _e('Filter', 'oja'); ?>">
                     </div>
                     <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$terms_count terms", 'oja'); ?></span>
-                        <?php oja_admin_pagination((int)$terms['pages'], (int)$paged); ?>
+                        <?php ojabooking_admin_pagination((int)$terms['pages'], (int)$paged); ?>
                     </div>
                     <br class="clear">
                 </div>
@@ -145,7 +145,7 @@ class Oja_Booking_Terms_Admin_Page
                                 </td>
                                 <td class="term column-term" data-colname="<?php _e('Term', 'oja'); ?>">
                                     <a class="row-title" href="<?php echo add_query_arg(array('term_id' => $term->ID), $booking_uri); ?>" aria-label="<?php esc_html_e("„$term->event_name“ (Open)", 'oja'); ?> ">
-                                        <?php echo oja_get_local_date_time($term->term); ?>
+                                        <?php echo ojabooking_get_local_date_time($term->term); ?>
                                     </a>
                                 </td>
                                 <td class="booking_count column-booking_count num" data-colname="<?php _e('Booking count', 'oja'); ?>"><?php echo $term->booking_count; ?></td>
@@ -160,7 +160,7 @@ class Oja_Booking_Terms_Admin_Page
                 </table>
                 <div class="tablenav bottom">
                     <div class="tablenav-pages one-page"><span class="displaying-num"><?php esc_html_e("$terms_count terms", 'oja'); ?></span>
-                        <?php oja_admin_pagination((int)$terms['pages'], (int)$paged); ?>
+                        <?php ojabooking_admin_pagination((int)$terms['pages'], (int)$paged); ?>
                     </div>
                     <br class="clear">
                 </div>
@@ -173,12 +173,12 @@ class Oja_Booking_Terms_Admin_Page
     /**
      * Save options
      */
-    function oja_booking_save_options()
+    function ojabooking_booking_save_options()
     {
         $message = null;
         $type = null;
     }
 }
 if (current_user_can('edit_published_pages')) {
-    new Oja_Booking_Terms_Admin_Page;
+    new Ojabooking_Booking_Terms_Admin_Page;
 }
